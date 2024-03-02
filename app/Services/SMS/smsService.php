@@ -53,4 +53,20 @@ class smsService
             toastr()->error($e->getMessage(), 'خطا');
         }
     }
+
+    public static function getCredit()
+    {
+        try {
+            $api = new MelipayamakApi(config('melipayamak.username'), config('melipayamak.password'));
+            $sms = $api->sms();
+            $response = collect(json_decode($sms->getCredit(), true));
+
+            if ($response->get('RetStatus')) {
+                return (int)$response->get('Value');
+            }
+            return 0;
+        } catch (\Exception $e) {
+            toastr()->error($e->getMessage(), 'خطا');
+        }
+    }
 }

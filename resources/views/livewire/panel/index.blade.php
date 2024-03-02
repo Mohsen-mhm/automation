@@ -24,5 +24,18 @@
                 </div>
             </div>
         @endif
+        @if(auth()->user()->hasRole(\App\Models\Role::ADMIN_ROLE))
+            <div class="w-full flex justify-center items-center flex-wrap -m-4 text-center">
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        <svg class="text-green-500 w-12 h-12 mb-3 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m3.5 5.5 7.9 6c.4.3.8.3 1.2 0l7.9-6M4 19h16c.6 0 1-.4 1-1V6c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1v12c0 .6.4 1 1 1Z"/>
+                        </svg>
+                        <h2 class="title-font font-medium text-4xl text-gray-900">{{ $credit ?: 'خطا' }}</h2>
+                        <small class="leading-relaxed">موجودی باقی مانده تعداد پیامک پنل</small>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
