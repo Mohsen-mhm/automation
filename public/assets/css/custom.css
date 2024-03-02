@@ -1,0 +1,31 @@
+@font-face {
+    font-family: Vazir;
+    src: url("/assets/fonts/Vazir.ttf");
+}
+
+* {
+    font-family: Vazir;
+    transition: all linear 100ms !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #258641;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #37d564;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #15692d;
+}
