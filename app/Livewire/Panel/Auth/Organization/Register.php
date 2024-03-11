@@ -89,7 +89,7 @@ class Register extends Component
             return redirect()->route('home');
         } catch (Exception $e) {
             DB::rollback();
-            return toastr()->error('خطای سرور در ارسال اطلاعات.' . "<br/>" . 'دوباره تلاش کنید.' . "<br/>" . $e->getMessage(), 'ناموفق');
+            return toastr()->error('خطای سرور در ارسال اطلاعات.' . "<br/>" . 'دوباره تلاش کنید.', 'ناموفق');
         }
     }
 

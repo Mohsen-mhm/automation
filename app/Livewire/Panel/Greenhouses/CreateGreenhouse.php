@@ -140,7 +140,7 @@ class CreateGreenhouse extends Component
                 ]
             );
             $user->roles()->sync(Role::query()->whereName(Role::GREENHOUSE_ROLE)->first()->id);
-
+            $user->update(['active' => $validData['active']]);
             DB::commit();
 
             toastr()->success('اطلاعات با موفقیت ثبت شد.', 'موفق');
@@ -151,7 +151,7 @@ class CreateGreenhouse extends Component
         } catch (\Exception $e) {
             DB::rollback();
             $this->revertDate();
-            return toastr()->error('خطای سرور در ارسال اطلاعات.' . "<br/>" . 'دوباره تلاش کنید.' . "<br/>" . $e->getMessage(), 'ناموفق');
+            return toastr()->error('خطای سرور در ارسال اطلاعات.' . "<br/>" . 'دوباره تلاش کنید.', 'ناموفق');
         }
     }
 

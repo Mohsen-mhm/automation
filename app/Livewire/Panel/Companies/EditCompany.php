@@ -218,7 +218,7 @@ class EditCompany extends Component
                 'active' => $validData['active']
             ]);
             $user->roles()->sync(Role::query()->whereName(Role::COMPANY_ROLE)->first()->id);
-
+            $user->update(['active' => $validData['active']]);
             DB::commit();
 
             toastr()->success('اطلاعات با موفقیت ثبت شد', 'موفق');

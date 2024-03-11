@@ -186,7 +186,7 @@ class EditGreenhouse extends Component
                 ]
             );
             $user->roles()->sync(Role::query()->whereName(Role::GREENHOUSE_ROLE)->first()->id);
-
+            $user->update(['active' => $validData['active']]);
             DB::commit();
 
             $this->dispatch('refresh-table');
