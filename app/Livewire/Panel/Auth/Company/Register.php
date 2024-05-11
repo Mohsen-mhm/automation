@@ -62,7 +62,7 @@ class Register extends Component
 
     public function mount()
     {
-        $this->companyTypes = json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), false, 512, JSON_THROW_ON_ERROR);
+        $this->companyTypes = collect(json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), false, 512, JSON_THROW_ON_ERROR))->toArray();
     }
 
     public function rules()
@@ -99,28 +99,23 @@ class Register extends Component
         ];
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-
-        if ($this->location_link) {
-            try {
-                $coordinates = $this->getCoordinates($this->location_link);
-                if (is_array($coordinates)) {
-                    $this->coordinates = $coordinates['coordinates'];
-                    $this->latitude = $coordinates['latitude'];
-                    $this->longitude = $coordinates['longitude'];
-                } else {
-                    toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
-                }
-            } catch (Exception) {
-                toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
-            }
-        }
-    }
-
     public function register()
     {
+        $this->validateOnly('location_link');
+
+        try {
+            $coordinates = $this->getCoordinates($this->location_link);
+            if (is_array($coordinates)) {
+                $this->coordinates = $coordinates['coordinates'];
+                $this->latitude = $coordinates['latitude'];
+                $this->longitude = $coordinates['longitude'];
+            } else {
+                return toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
+            }
+        } catch (Exception) {
+            return toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
+        }
+
         $validData = $this->validate();
         $this->assignDate();
         $validData['coordinates'] = $this->coordinates;

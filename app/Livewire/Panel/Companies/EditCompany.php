@@ -102,7 +102,7 @@ class EditCompany extends Component
 
     public function mount()
     {
-        $this->companyTypes = json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), false, 512, JSON_THROW_ON_ERROR);
+        $this->companyTypes = collect(json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), false, 512, JSON_THROW_ON_ERROR))->toArray();
         $this->statuses = Config::getStatuses()->toArray();
     }
 

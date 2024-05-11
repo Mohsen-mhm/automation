@@ -56,11 +56,6 @@ class Register extends Component
         ];
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
     public function register()
     {
         $validData = $this->validate();

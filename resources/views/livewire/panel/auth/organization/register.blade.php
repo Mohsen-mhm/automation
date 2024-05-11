@@ -14,7 +14,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="fname" wire:model.live="fname"
+                    <input type="text" id="fname" wire:model="fname"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="علی" required>
                     @error('fname')
@@ -32,7 +32,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="lname" wire:model.live="lname"
+                    <input type="text" id="lname" wire:model="lname"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="احمدی" required>
                     @error('lname')
@@ -52,7 +52,7 @@
                             d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                     </svg>
                 </label>
-                <input type="text" id="national_id" wire:model.live="national_id"
+                <input type="text" id="national_id" wire:model="national_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                     placeholder="2281234567" required>
                 @error('national_id')
@@ -72,7 +72,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="organization_name" wire:model.live="organization_name"
+                    <input type="text" id="organization_name" wire:model="organization_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="جهاد" required>
                     @error('organization_name')
@@ -91,7 +91,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="organization_level" wire:model.live="organization_level"
+                    <input type="text" id="organization_level" wire:model="organization_level"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="مدیر اجرایی" required>
                     @error('organization_level')
@@ -112,7 +112,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select type="text" id="province" wire:model.live="province" wire:ignore
+                    <select type="text" id="province" wire:model="province" wire:ignore
                         class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="فارس" required></select>
                     @error('province')
@@ -130,7 +130,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select type="text" id="city" wire:model.live="city" wire:ignore
+                    <select type="text" id="city" wire:model="city" wire:ignore
                         class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="شیراز" required></select>
                     @error('city')
@@ -151,7 +151,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="address" wire:model.live="address"
+                    <input type="text" id="address" wire:model="address"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="بلوار پاسداران، ..." required>
                     @error('address')
@@ -169,7 +169,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="postal" wire:model.live="postal"
+                    <input type="text" id="postal" wire:model="postal"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="718123456" required>
                     @error('postal')
@@ -185,7 +185,7 @@
                     <label for="landline_number" class="flex mb-2 text-sm font-medium text-gray-900">
                         شماره تلفن ثابت
                     </label>
-                    <input type="text" id="landline_number" wire:model.live="landline_number"
+                    <input type="text" id="landline_number" wire:model="landline_number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="07123456789">
                     @error('landline_number')
@@ -203,7 +203,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="phone_number" wire:model.live="phone_number"
+                    <input type="text" id="phone_number" wire:model="phone_number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                         placeholder="09123456789" required>
                     @error('phone_number')
@@ -224,7 +224,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input wire:model.live="national_card"
+                    <input wire:model="national_card"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none transition"
                         id="national_card" type="file">
                     @error('national_card')
@@ -243,7 +243,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input wire:model.live="personnel_card"
+                    <input wire:model="personnel_card"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none transition"
                         id="personnel_card" type="file">
                     @error('personnel_card')
@@ -265,7 +265,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input wire:model.live="introduction_letter"
+                    <input wire:model="introduction_letter"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none transition"
                         id="introduction_letter" type="file">
                     @error('introduction_letter')
@@ -289,6 +289,21 @@
                     ثبت و ارسال
                 </button>
             </div>
+            @if($errors->any())
+                <div
+                    class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 ml-1 mt-[2px]" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-medium">اطمینان حاصل کنید که تمامی الزامات به درستی وارد شده است.</span>
+                    </div>
+                </div>
+            @endif
         </form>
     </div>
 

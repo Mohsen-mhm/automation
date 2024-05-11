@@ -54,9 +54,9 @@ class CreateGreenhouse extends Component
 
     public function mount()
     {
-        $this->substrates = json_decode(collect(Config::query()->whereName(Config::SUBSTRATE)->first())->get('value'));
-        $this->productTypes = json_decode(collect(Config::query()->whereName(Config::PRODUCT_TYPE)->first())->get('value'));
-        $this->greenhouseStatuses = json_decode(collect(Config::query()->whereName(Config::GREENHOUSE_STATUS)->first())->get('value'));
+        $this->substrates = collect(json_decode(collect(Config::query()->whereName(Config::SUBSTRATE)->first())->get('value')))->toArray();
+        $this->productTypes = collect(json_decode(collect(Config::query()->whereName(Config::PRODUCT_TYPE)->first())->get('value')))->toArray();
+        $this->greenhouseStatuses = collect(json_decode(collect(Config::query()->whereName(Config::GREENHOUSE_STATUS)->first())->get('value')))->toArray();
         $this->statuses = Config::getStatuses()->toArray();
     }
 

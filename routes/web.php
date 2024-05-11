@@ -51,6 +51,7 @@ Route::get('system-start', function () {
     Artisan::call('migrate:fresh');
     Artisan::call('storage:link');
     Artisan::call('db:seed');
+    Artisan::call('optimize:clear');
 });
 
 

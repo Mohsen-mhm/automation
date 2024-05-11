@@ -14,7 +14,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="name" wire:model.live="name"
+                    <input type="text" id="name" wire:model="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="گلخانه محمدی" required>
                     @error('name')
@@ -32,7 +32,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="licence_number" wire:model.live="licence_number"
+                    <input type="text" id="licence_number" wire:model="licence_number"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="4689496584" required>
                     @error('licence_number')
@@ -53,7 +53,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select id="substrate_type" wire:model.live="substrate_type"
+                    <select id="substrate_type" wire:model="substrate_type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected>بستر را انتخاب کنید</option>
                         @foreach ($substrates as $substrate)
@@ -75,7 +75,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select id="product_type" wire:model.live="product_type"
+                    <select id="product_type" wire:model="product_type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected>محصول را انتخاب کنید</option>
                         @foreach ($productTypes as $productType)
@@ -100,7 +100,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="meterage" wire:model.live="meterage"
+                    <input type="text" id="meterage" wire:model="meterage"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="2000 متر مربع" required>
                     @error('meterage')
@@ -118,7 +118,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select id="greenhouse_status" wire:model.live="greenhouse_status"
+                    <select id="greenhouse_status" wire:model="greenhouse_status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected>وضعیت را انتخاب کنید</option>
                         @foreach ($greenhouseStatuses as $greenhouseStatus)
@@ -174,7 +174,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="owner_name" wire:model.live="owner_name"
+                    <input type="text" id="owner_name" wire:model="owner_name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="محسن محمدی" required>
                     @error('owner_name')
@@ -192,7 +192,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="owner_national_id" wire:model.live="owner_national_id"
+                    <input type="text" id="owner_national_id" wire:model="owner_national_id"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="2281234567" required>
                     @error('owner_national_id')
@@ -213,7 +213,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="owner_phone" wire:model.live="owner_phone"
+                    <input type="text" id="owner_phone" wire:model="owner_phone"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="09123456789" required>
                     @error('owner_phone')
@@ -224,7 +224,7 @@
                 </div>
                 <div class="flex justify-start items-center">
                     <div class="flex items-center me-4">
-                        <input id="climate_system" type="checkbox" value="0" wire:model.live="climate_system"
+                        <input id="climate_system" type="checkbox" value="0" wire:model="climate_system"
                                class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2">
                         <label for="climate_system"
                                class="ms-2 text-sm font-medium text-gray-900">دارای سامانه کنترل
@@ -238,7 +238,7 @@
                 </div>
                 <div class="flex justify-start items-center">
                     <div class="flex items-center me-4">
-                        <input id="feeding_system" type="checkbox" value="0" wire:model.live="feeding_system"
+                        <input id="feeding_system" type="checkbox" value="0" wire:model="feeding_system"
                                class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2">
                         <label for="feeding_system"
                                class="ms-2 text-sm font-medium text-gray-900">دارای سامانه تغذیه و
@@ -262,7 +262,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select type="text" id="province" wire:model.live="province" wire:ignore
+                    <select type="text" id="province" wire:model="province" wire:ignore
                             class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                             placeholder="فارس" required></select>
                     @error('province')
@@ -280,7 +280,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select type="text" id="city" wire:model.live="city" wire:ignore
+                    <select type="text" id="city" wire:model="city" wire:ignore
                             class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                             placeholder="شیراز" required></select>
                     @error('city')
@@ -301,7 +301,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="address" wire:model.live="address"
+                    <input type="text" id="address" wire:model="address"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="بلوار پاسداران، ..." required>
                     @error('address')
@@ -319,7 +319,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="postal" wire:model.live="postal"
+                    <input type="text" id="postal" wire:model="postal"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="718123456" required>
                     @error('postal')
@@ -330,7 +330,7 @@
                 </div>
             </div>
 
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div class="grid gap-6 mb-6 md:grid-cols-1">
                 <div>
                     <label for="location_link" class="flex mb-2 text-sm font-medium text-gray-900">
                         لینک لوکیشن گلخانه (از گوگل مپ)
@@ -340,7 +340,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input type="text" id="location_link" wire:model.blur="location_link"
+                    <input type="text" id="location_link" wire:model.blur="location_link" dir="ltr"
                            class="bg-gray-50 text-left border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
                            placeholder="https://maps.app.goo.gl/.....">
                     @error('location_link')
@@ -348,26 +348,6 @@
                             class="font-medium">{{ $message }}</span>
                     </p>
                     @enderror
-                </div>
-                <div class="flex flex-col justify-center items-start" dir="ltr">
-                    <div role="status" wire:loading wire:loading.target="getCoordinates()">
-                        <svg aria-hidden="true"
-                             class="w-6 h-6 text-gray-200 animate-spin fill-blue-600"
-                             viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                fill="currentColor"/>
-                            <path
-                                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                fill="currentFill"/>
-                        </svg>
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <div wire:loading.remove>
-                        <p>coordinates: <b class="text-[#258641]" wire:transition>{{ $coordinates }}</b></p>
-                        <p>latitude: <b class="text-[#258641]" wire:transition>{{ $latitude }}</b></p>
-                        <p>longitude: <b class="text-[#258641]" wire:transition>{{ $longitude }}</b></p>
-                    </div>
                 </div>
             </div>
 
@@ -382,7 +362,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input wire:model.live="operation_licence"
+                    <input wire:model="operation_licence"
                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none transition"
                            id="operation_licence" type="file">
                     @error('operation_licence')
@@ -400,7 +380,7 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <input wire:model.live="image"
+                    <input wire:model="image"
                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none transition"
                            id="image" type="file">
                     @error('image')
@@ -417,6 +397,21 @@
                     ثبت و ارسال
                 </button>
             </div>
+            @if($errors->any())
+                <div
+                    class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 ml-1 mt-[2px]" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-medium">اطمینان حاصل کنید که تمامی الزامات به درستی وارد شده است.</span>
+                    </div>
+                </div>
+            @endif
         </form>
     </div>
 

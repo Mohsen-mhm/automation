@@ -58,9 +58,9 @@ class Register extends Component
     public function mount()
     {
         try {
-            $this->substrates = json_decode(collect(Config::query()->whereName(Config::SUBSTRATE)->first())->get('value'));
-            $this->productTypes = json_decode(collect(Config::query()->whereName(Config::PRODUCT_TYPE)->first())->get('value'));
-            $this->greenhouseStatuses = json_decode(collect(Config::query()->whereName(Config::GREENHOUSE_STATUS)->first())->get('value'));
+            $this->substrates = collect(json_decode(collect(Config::query()->whereName(Config::SUBSTRATE)->first())->get('value')))->toArray();
+            $this->productTypes = collect(json_decode(collect(Config::query()->whereName(Config::PRODUCT_TYPE)->first())->get('value')))->toArray();
+            $this->greenhouseStatuses = collect(json_decode(collect(Config::query()->whereName(Config::GREENHOUSE_STATUS)->first())->get('value')))->toArray();
         } catch (Exception) {
             toastr()->error('خطای سرور، دوباره تلاش کنید', 'ناموفق');
             return redirect()->route('login.greenhouse');
@@ -93,28 +93,21 @@ class Register extends Component
         ];
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-
-        if ($this->location_link) {
-            try {
-                $coordinates = $this->getCoordinates($this->location_link);
-                if (is_array($coordinates)) {
-                    $this->coordinates = $coordinates['coordinates'];
-                    $this->latitude = $coordinates['latitude'];
-                    $this->longitude = $coordinates['longitude'];
-                } else {
-                    toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
-                }
-            } catch (Exception) {
-                toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
-            }
-        }
-    }
-
     public function register()
     {
+        $this->validateOnly('location_link');
+        try {
+            $coordinates = $this->getCoordinates($this->location_link);
+            if (is_array($coordinates)) {
+                $this->coordinates = $coordinates['coordinates'];
+                $this->latitude = $coordinates['latitude'];
+                $this->longitude = $coordinates['longitude'];
+            } else {
+                toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
+            }
+        } catch (Exception) {
+            toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
+        }
         $validData = $this->validate();
         $this->assignDate();
         $validData['coordinates'] = $this->coordinates;
