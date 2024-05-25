@@ -88,12 +88,12 @@ class Register extends Component
             'province' => ['required', 'string'],
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'postal' => ['required', 'string', new ValidIranPostalCode()],
-            'landline_number' => ['required', 'string', new ValidPhoneNumber()],
-            'phone_number' => ['nullable', 'string', new ValidPhoneNumber()],
+            'postal' => ['required', 'string'],
+            'landline_number' => ['required', 'string'],
+            'phone_number' => ['nullable', 'string'],
             'location_link' => ['required', 'string', new ValidUrl()],
-            'website' => ['required', 'string', new ValidUrl()],
-            'email' => ['required', 'email'],
+            'website' => ['required', 'string', 'unique:companies,website'],
+            'email' => ['required', 'email', 'unique:companies,email'],
             'official_newspaper' => ['required', 'file', 'mimes:jpeg,png,svg,pdf'],
             'operation_licence' => ['required', 'image'],
         ];
@@ -115,9 +115,10 @@ class Register extends Component
         } catch (Exception) {
             return toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
         }
-
+        if (!collect($this->getErrorBag())->count()) {
+            $this->assignDate();
+        }
         $validData = $this->validate();
-        $this->assignDate();
         $validData['coordinates'] = $this->coordinates;
         $validData['latitude'] = $this->latitude;
         $validData['longitude'] = $this->longitude;

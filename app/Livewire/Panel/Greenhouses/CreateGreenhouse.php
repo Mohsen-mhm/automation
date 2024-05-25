@@ -109,8 +109,8 @@ class CreateGreenhouse extends Component
 
     public function store()
     {
-        $validData = $this->validate();
         $this->assignDate();
+        $validData = $this->validate();
         $validData['operation_date'] = $this->operation_date;
         $validData['construction_date'] = $this->construction_date;
 

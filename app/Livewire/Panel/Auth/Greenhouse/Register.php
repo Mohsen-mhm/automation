@@ -86,8 +86,8 @@ class Register extends Component
             'province' => ['required', 'string'],
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'postal' => ['required', 'string', new ValidIranPostalCode()],
-            'location_link' => ['required', 'string', new ValidUrl()],
+            'postal' => ['required', 'string'],
+            'location_link' => ['required', 'string', new ValidUrl(), 'unique:greenhouses,location_link'],
             'operation_licence' => ['required', 'image'],
             'image' => ['required', 'image'],
         ];
@@ -108,8 +108,11 @@ class Register extends Component
         } catch (Exception) {
             toastr()->error('دریافت مشخصات ناموفق بود.' . '<br/>' . 'لینک را مجددا وارد نمایید.', 'ناموفق');
         }
+
+        if (!collect($this->getErrorBag())->count()) {
+            $this->assignDate();
+        }
         $validData = $this->validate();
-        $this->assignDate();
         $validData['coordinates'] = $this->coordinates;
         $validData['latitude'] = $this->latitude;
         $validData['longitude'] = $this->longitude;

@@ -40,10 +40,10 @@ return new class extends Migration {
             $table->string('address');
             $table->string('postal');
 
-            $table->string('landline_number')->unique();
-            $table->string('phone_number')->unique();
+            $table->string('landline_number');
+            $table->string('phone_number')->nullable();
 
-            $table->string('location_link')->unique();
+            $table->string('location_link');
             $table->string('coordinates');
             $table->string('latitude');
             $table->string('longitude');

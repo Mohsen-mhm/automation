@@ -145,8 +145,8 @@ class EditGreenhouse extends Component
 
     public function update()
     {
-        $validData = $this->validate();
         $this->assignDate();
+        $validData = $this->validate();
         $validData['operation_date'] = $this->operation_date;
         $validData['construction_date'] = $this->construction_date;
 

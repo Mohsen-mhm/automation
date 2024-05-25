@@ -91,7 +91,7 @@ class CreateCompany extends Component
             'landline_number' => ['required', 'string', new ValidPhoneNumber()],
             'phone_number' => ['nullable', 'string', new ValidPhoneNumber()],
             'location_link' => ['required', 'string', new ValidUrl()],
-            'website' => ['required', 'string', new ValidUrl()],
+            'website' => ['required', 'string'],
             'email' => ['required', 'email'],
             'official_newspaper' => ['required', 'file', 'mimes:jpeg,png,svg,pdf'],
             'operation_licence' => ['required', 'image'],
@@ -121,8 +121,8 @@ class CreateCompany extends Component
 
     public function store()
     {
-        $validData = $this->validate();
         $this->assignDate();
+        $validData = $this->validate();
         $validData['registration_date'] = $this->registration_date;
 
         $validData['coordinates'] = $this->coordinates;

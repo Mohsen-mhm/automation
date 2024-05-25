@@ -50,9 +50,9 @@ class Register extends Component
             'province' => ['required', 'string'],
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'postal' => ['required', 'string', new ValidIranPostalCode()],
-            'landline_number' => ['nullable', 'string', new ValidPhoneNumber()],
-            'phone_number' => ['required', 'string', new ValidPhoneNumber()],
+            'postal' => ['required', 'string'],
+            'landline_number' => ['nullable', 'string'],
+            'phone_number' => ['required', 'string'],
         ];
     }
 

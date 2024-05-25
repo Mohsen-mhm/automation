@@ -133,7 +133,7 @@ class EditCompany extends Component
             'landline_number' => ['required', 'string', new ValidPhoneNumber()],
             'phone_number' => ['nullable', 'string', new ValidPhoneNumber()],
             'location_link' => ['required', 'string', new ValidUrl()],
-            'website' => ['required', 'string', new ValidUrl()],
+            'website' => ['required', 'string'],
             'email' => ['required', 'email'],
             'official_newspaper' => ['nullable', 'file', 'mimes:jpeg,png,svg,pdf'],
             'operation_licence' => ['nullable', 'image'],
@@ -163,8 +163,8 @@ class EditCompany extends Component
 
     public function update()
     {
-        $validData = $this->validate();
         $this->assignDate();
+        $validData = $this->validate();
         $validData['registration_date'] = $this->registration_date;
         $validData['coordinates'] = $this->coordinates;
         $validData['latitude'] = $this->latitude;
