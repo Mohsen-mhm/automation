@@ -15,7 +15,7 @@
                         </svg>
                     </label>
                     <input type="text" id="name" wire:model="name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="گلخانه محمدی" required>
                     @error('name')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -33,7 +33,7 @@
                         </svg>
                     </label>
                     <input type="text" id="licence_number" wire:model="licence_number"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="4689496584" required>
                     @error('licence_number')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -101,7 +101,7 @@
                         </svg>
                     </label>
                     <input type="text" id="meterage" wire:model="meterage"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="2000 متر مربع" required>
                     @error('meterage')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -140,7 +140,7 @@
                         تاریخ احداث
                     </label>
                     <input type="text" id="construction_date" wire:model="construction_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1400/05/24">
                     @error('construction_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -154,7 +154,7 @@
                         تاریخ بهره برداری
                     </label>
                     <input type="text" id="operation_date" wire:model="operation_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1401/03/25">
                     @error('operation_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -175,7 +175,7 @@
                         </svg>
                     </label>
                     <input type="text" id="owner_name" wire:model="owner_name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="محسن محمدی" required>
                     @error('owner_name')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -193,7 +193,7 @@
                         </svg>
                     </label>
                     <input type="text" id="owner_national_id" wire:model="owner_national_id"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="2281234567" required>
                     @error('owner_national_id')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -214,7 +214,7 @@
                         </svg>
                     </label>
                     <input type="text" id="owner_phone" wire:model="owner_phone"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="09123456789" required>
                     @error('owner_phone')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -225,7 +225,7 @@
                 <div class="flex justify-start items-center">
                     <div class="flex items-center me-4">
                         <input id="climate_system" type="checkbox" value="0" wire:model="climate_system"
-                               class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2">
+                               class="w-4 h-4 text-[#6058C3] bg-gray-100 border-gray-300 rounded focus:ring-[#7367F0] focus:ring-2">
                         <label for="climate_system"
                                class="ms-2 text-sm font-medium text-gray-900">دارای سامانه کنترل
                             اقلیم</label>
@@ -239,7 +239,7 @@
                 <div class="flex justify-start items-center">
                     <div class="flex items-center me-4">
                         <input id="feeding_system" type="checkbox" value="0" wire:model="feeding_system"
-                               class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2">
+                               class="w-4 h-4 text-[#6058C3] bg-gray-100 border-gray-300 rounded focus:ring-[#7367F0] focus:ring-2">
                         <label for="feeding_system"
                                class="ms-2 text-sm font-medium text-gray-900">دارای سامانه تغذیه و
                             آبیاری</label>
@@ -263,7 +263,7 @@
                         </svg>
                     </label>
                     <select type="text" id="province" wire:model="province" wire:ignore
-                            class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                            class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                             placeholder="فارس" required></select>
                     @error('province')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -281,7 +281,7 @@
                         </svg>
                     </label>
                     <select type="text" id="city" wire:model="city" wire:ignore
-                            class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                            class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                             placeholder="شیراز" required></select>
                     @error('city')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -302,7 +302,7 @@
                         </svg>
                     </label>
                     <input type="text" id="address" wire:model="address"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="بلوار پاسداران، ..." required>
                     @error('address')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -320,7 +320,7 @@
                         </svg>
                     </label>
                     <input type="text" id="postal" wire:model="postal"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="718123456" required>
                     @error('postal')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -341,7 +341,7 @@
                         </svg>
                     </label>
                     <input type="text" id="location_link" wire:model.blur="location_link" dir="ltr"
-                           class="bg-gray-50 text-left border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 text-left border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="https://maps.app.goo.gl/.....">
                     @error('location_link')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -393,7 +393,7 @@
 
             <div class="w-full flex justify-center items-center mt-8">
                 <button type="submit"
-                        class="focus:outline-none text-white font-bold bg-[#258641] hover:bg-[#215e32] focus:ring-4 focus:ring-green-300 rounded-lg px-5 py-2.5 me-2 mb-2 transition">
+                        class="focus:outline-none text-white font-bold bg-[#6058C3] hover:bg-[#7367F0] focus:ring-4 focus:ring-[#6058C3] rounded-lg px-5 py-2.5 me-2 mb-2 transition">
                     ثبت و ارسال
                 </button>
             </div>
@@ -417,11 +417,11 @@
 
     <div class="w-full flex justify-center items-center mt-8 mb-24">
         <a href="{{ route('home') }}"
-           class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition">
+           class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-200 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition">
             بازگشت به صفحه اصلی
         </a>
         <a href="{{ route('login.organization') }}"
-           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none transition">
+           class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none transition">
             صفحه ورود
         </a>
     </div>

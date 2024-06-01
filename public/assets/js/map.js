@@ -1,10 +1,10 @@
-let map = L.map('map').setView([29.25, 53.14], 7);
+let map = L.map('map').setView([29.45, 53.14], 7);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
 let myIcon = L.icon({
     iconUrl: './assets/img/marker-icon.svg',
-    iconSize: [48, 105],
+    iconSize: [42, 105],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
 });
@@ -12,20 +12,44 @@ let myIcon = L.icon({
 let greenhouseMarkerLayer = L.layerGroup().addTo(map);
 let companyMarkerLayer = L.layerGroup().addTo(map);
 
+function renderMarkers(type, markers) {
+    if (type === 'greenhouse') {
+        // greenhouseMarkerLayer.clearLayers();
+        // defineMarkersAndInfo(markers, greenhouseMarkerLayer);
+        // greenhouseMarkerLayer.addTo(map);
+        // map.removeLayer(companyMarkerLayer);
+        greenhouseMarkerLayer.clearLayers();
+        defineMarkersAndInfo(markers, greenhouseMarkerLayer);
+        map.addLayer(greenhouseMarkerLayer);
+        map.removeLayer(companyMarkerLayer);
+    } else if (type === 'company') {
+        companyMarkerLayer.clearLayers();
+        // defineMarkersAndInfo(markers, companyMarkerLayer);
+        // companyMarkerLayer.addTo(map);
+        // map.removeLayer(greenhouseMarkerLayer);
+        companyMarkerLayer.clearLayers();
+        defineMarkersAndInfo(markers, companyMarkerLayer);
+        map.addLayer(companyMarkerLayer);
+        map.removeLayer(greenhouseMarkerLayer);
+    }
+}
+
 function showDefaultTabMarkers() {
     defineMarkersAndInfo(greenhouseMarkers, greenhouseMarkerLayer);
     defineMarkersAndInfo(companyMarkers, companyMarkerLayer);
-    greenhouseMarkerLayer.addTo(map);
-    companyMarkerLayer.remove();
+    map.addLayer(greenhouseMarkerLayer);
+    map.removeLayer(companyMarkerLayer);
 }
 
 const greenhouseTab = document.querySelector('#greenhouseTab');
 const companyTab = document.querySelector('#companyTab');
+const greenhouseFiltersSection = document.querySelector('#greenhouseFiltersSection');
+const companyFiltersSection = document.querySelector('#companyFiltersSection');
 
 greenhouseTab.addEventListener('click', function (event) {
     event.preventDefault();
     if (!this.classList.contains('active')) {
-        let newClasses = ['bg-[#258641]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#206133]', 'active'];
+        let newClasses = ['bg-[#6058C3]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#7367F0]', 'active'];
         let oldClasses = ['text-gray-900', 'bg-gray-200', 'border-gray-200'];
 
         oldClasses.forEach(element => {
@@ -37,6 +61,11 @@ greenhouseTab.addEventListener('click', function (event) {
             companyTab.classList.remove(element);
             greenhouseTab.classList.add(element);
         });
+
+        greenhouseFiltersSection.classList.add('flex');
+        greenhouseFiltersSection.classList.remove('hidden');
+        companyFiltersSection.classList.add('hidden')
+        companyFiltersSection.classList.remove('flex');
 
         greenhouseMarkerLayer.addTo(map);
         companyMarkerLayer.remove();
@@ -46,7 +75,7 @@ greenhouseTab.addEventListener('click', function (event) {
 companyTab.addEventListener('click', function (event) {
     event.preventDefault();
     if (!this.classList.contains('active')) {
-        let newClasses = ['bg-[#258641]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#206133]', 'active'];
+        let newClasses = ['bg-[#6058C3]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#7367F0]', 'active'];
         let oldClasses = ['text-gray-900', 'bg-gray-200', 'border-gray-200'];
 
         oldClasses.forEach(element => {
@@ -58,6 +87,11 @@ companyTab.addEventListener('click', function (event) {
             greenhouseTab.classList.remove(element);
             companyTab.classList.add(element);
         });
+
+        companyFiltersSection.classList.add('flex');
+        companyFiltersSection.classList.remove('hidden');
+        greenhouseFiltersSection.classList.add('hidden')
+        greenhouseFiltersSection.classList.remove('flex');
 
         companyMarkerLayer.addTo(map);
         greenhouseMarkerLayer.remove();
@@ -70,27 +104,21 @@ function defineMarkersAndInfo(markersObj, markerLayer) {
             icon: myIcon
         }).addTo(markerLayer);
 
-        let popupContent = `
-            <div class="custom-popup" dir="rtl">
-                <h3>${markerInfo.name}</h3>
-                <p class="my-2">${markerInfo.area}</p>
-                <p class="my-2 ${markerInfo.company ? 'hidden' : ''}">${markerInfo.product}</p>
-                <p class="my-2 ${markerInfo.company ? 'hidden' : ''}">${markerInfo.space}</p>
-            </div>
-        `;
-        marker.bindPopup(popupContent);
-
         marker.on('click', function () {
             updateMarkerDetails(markerInfo);
+            let sidebarToggle = document.getElementById('sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.click();
+            }
         })
     });
 }
 
-
 const markerInfoEl = document.querySelector('#markers-info');
 
 function updateMarkerDetails(markerInfo) {
-    markerInfoEl.innerHTML = `
+    if (markerInfoEl) {
+        markerInfoEl.innerHTML = `
         <div class="marker-details w-full flex flex-col justify-center items-center text-center px-3" dir="rtl">
             <img class="my-3" src="${markerInfo.image ? markerInfo.image : './assets/img/default-image.svg'}">
             <h4>${markerInfo.name}</h4>
@@ -109,7 +137,10 @@ function updateMarkerDetails(markerInfo) {
             <p class="my-2 ${markerInfo.company ? 'hidden' : ''}">رطوبت داخل سالن: ${markerInfo.insideHumidity}</p>
         </div>
     `;
+    }
 }
+
+showDefaultTabMarkers();
 
 
 //          Add Buttons for Markers
@@ -147,4 +178,3 @@ function updateMarkerDetails(markerInfo) {
 // }
 
 
-showDefaultTabMarkers();

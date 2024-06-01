@@ -1,5 +1,7 @@
-<div class="w-full flex flex-col justify-center items-center">
-    <div class="w-full flex flex-col justify-center items-center bg-gray-100 p-4 sm:p-8 lg:flex lg:space-x-8 lg:p-12">
-        <livewire:map />
-    </div>
+<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+    <main>
+        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <livewire:map/>
+        </div>
+    </main>
 </div>

@@ -20,14 +20,17 @@
 
 </head>
 
-<body dir="rtl" class="bg-gray-100 flex items-center justify-start w-screen h-screen">
+<body dir="rtl">
 <x-loader/>
-<livewire:layouts.menu/>
+<div class="flex h-screen overflow-hidden"
+     x-data="{ page: 'ecommerce', 'stickyMenu': false, 'sidebarToggle': false }">
+    <livewire:layouts.menu/>
 
-{{ $slot }}
+    {{ $slot }}
 
-<livewire:layouts.sidebar/>
-<livewire:layouts.toggle/>
+    <livewire:layouts.sidebar/>
+    <livewire:layouts.toggle/>
+</div>
 
 <script src="/assets/js/tailwind/tailwind.min.js"></script>
 <script src="/assets/js/flowbite/flowbite.min.js"></script>

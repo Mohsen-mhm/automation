@@ -1,6 +1,6 @@
 #map {
     width: 100%;
-    height: 600px;
+    height: 500px;
 }
 
 .custom-popup {
@@ -11,7 +11,7 @@
 .custom-popup h3 {
     font-size: 16px;
     color: #000000;
-    border-bottom: 1px solid #3388ff;
+    border-bottom: 1px solid #6058C3;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
@@ -33,8 +33,7 @@
     justify-content: center;
     align-items: center;
     padding: 8px;
-    border: 2px solid rgba(5, 143, 79, 0.91);
-    background-color: rgba(25, 135, 84, 0.91) !important;
+    background-color: rgba(115, 103, 240, 0.85) !important;
     border-radius: 8px !important;
     margin: 5px 0;
     font-weight: bold;
@@ -47,6 +46,6 @@
     width: 150px;
 }
 
-.leaflet-control-attribution.leaflet-control{
+.leaflet-control-attribution.leaflet-control {
     display: none;
 }

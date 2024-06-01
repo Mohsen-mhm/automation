@@ -33,7 +33,7 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
     Route::get('/dwop', function () {
         \Illuminate\Support\Facades\Auth::loginUsingId(\App\Models\User::query()->where([
             'national_id' => '1234567891',
-            'phone_number' => '12345678910',
+            'phone_number' => '09375074371',
         ])->first()->id);
         return redirect()->route('panel.home');
     });
