@@ -1,6 +1,6 @@
 <div id="drawer-body-scrolling"
-     class="fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-[#6058C3] text-white w-64"
-     tabindex="-1" aria-labelledby="drawer-body-scrolling-label">
+     class="fixed top-0 left-0 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-[#6058C3] text-white w-64"
+     tabindex="-1" aria-labelledby="drawer-body-scrolling-label" style="z-index: 999999">
     <h5 id="drawer-body-scrolling-label" class="text-base font-semibold">
         اطلاعات مکان انتخابی
     </h5>

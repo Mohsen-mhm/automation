@@ -90,6 +90,7 @@ class Map extends Component
         return collect(Greenhouse::all())->filter(function ($greenhouse) {
             if ($greenhouse->active
                 && in_array($greenhouse->substrate_type, $this->substrateFilter)
+                && in_array($greenhouse->product_type, $this->productFilter)
                 && in_array($greenhouse->province, $this->provinceFilter)) {
                 return $greenhouse;
             }

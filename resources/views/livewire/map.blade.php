@@ -7,12 +7,27 @@
                 گلخانه
                 ها
             </div>
+        </li>
+        <li class="w-full">
+            <div id="companyTab"
+                 class="inline-block w-full p-2 text-gray-900 bg-gray-200 border-gray-200 focus:ring-4 focus:ring-green-300 focus:outline-none rounded-e-lg font-medium lg:font-bold text-base lg:text-lg cursor-pointer">
+                شرکت های اتوماسیون
+            </div>
+        </li>
+    </ul>
+    <ul
+        class="relative flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#6058C3] my-2 py-2 pt-10"
+        wire:ignore>
+        <li class="absolute top-1 right-1/2 translate-x-1/2">
+            <p class="text-lg text-[#6058C3] font-bold">فیلترها</p>
+        </li>
+        <li class="w-full border-e border-[#6058C3]">
             <div class="w-full flex justify-center items-center space-x-1" id="greenhouseFiltersSection"
                  x-data="{ substrateOpen: false, productOpen: false, provinceOpen: false }">
                 <div class="w-auto relative mx-1">
                     <button @click="substrateOpen = !substrateOpen"
                             class="text-[#6058C3] hover:text-white border border-[#6058C3] mt-0.5 hover:bg-[#6058C3] focus:ring-1 focus:outline-none focus:ring-[#6058C3] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                        فیلتر بستر
+                        بستر
                     </button>
                     <div
                         x-show="substrateOpen"
@@ -22,7 +37,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg"
+                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="substrateOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -51,7 +66,7 @@
                 <div class="w-auto relative mx-1">
                     <button @click="productOpen = !productOpen"
                             class="text-[#6058C3] hover:text-white border border-[#6058C3] mt-0.5 hover:bg-[#6058C3] focus:ring-1 focus:outline-none focus:ring-[#6058C3] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                        فیلتر محصول
+                        محصول
                     </button>
                     <div
                         x-show="productOpen"
@@ -61,7 +76,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg w-full"
+                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="productOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -90,7 +105,7 @@
                 <div class="w-auto relative mx-1">
                     <button @click="provinceOpen = !provinceOpen"
                             class="text-[#6058C3] hover:text-white border border-[#6058C3] mt-0.5 hover:bg-[#6058C3] focus:ring-1 focus:outline-none focus:ring-[#6058C3] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                        فیلتر استان
+                        استان
                     </button>
                     <div
                         x-show="provinceOpen"
@@ -100,7 +115,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg w-full"
+                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="provinceOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -128,17 +143,14 @@
                 </div>
             </div>
         </li>
-        <li class="w-full">
-            <div id="companyTab"
-                 class="inline-block w-full p-2 text-gray-900 bg-gray-200 border-gray-200 focus:ring-4 focus:ring-green-300 focus:outline-none rounded-e-lg font-medium lg:font-bold text-base lg:text-lg cursor-pointer">
-                شرکت های اتوماسیون
-            </div>
-            <div class="w-full hidden justify-center items-center space-x-1" id="companyFiltersSection"
+
+        <li class="w-full border-s border-[#6058C3]">
+            <div class="w-full flex justify-center items-center space-x-1 opacity-65" id="companyFiltersSection"
                  x-data="{ companyTypeOpen: false, companyProvinceOpen: false }">
                 <div class="w-auto relative mx-1">
-                    <button @click="companyTypeOpen = !companyTypeOpen"
+                    <button @click="companyTypeOpen = !companyTypeOpen" disabled
                             class="text-[#6058C3] hover:text-white border border-[#6058C3] mt-0.5 hover:bg-[#6058C3] focus:ring-1 focus:outline-none focus:ring-[#6058C3] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                        فیلتر نوع
+                        نوع
                     </button>
                     <div
                         x-show="companyTypeOpen"
@@ -148,7 +160,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg"
+                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg min-w-[150px]"
                         @click.away="companyTypeOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -175,9 +187,9 @@
                     </div>
                 </div>
                 <div class="w-auto relative mx-1">
-                    <button @click="companyProvinceOpen = !companyProvinceOpen"
+                    <button @click="companyProvinceOpen = !companyProvinceOpen" disabled
                             class="text-[#6058C3] hover:text-white border border-[#6058C3] mt-0.5 hover:bg-[#6058C3] focus:ring-1 focus:outline-none focus:ring-[#6058C3] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                        فیلتر استان
+                        استان
                     </button>
                     <div
                         x-show="companyProvinceOpen"
@@ -187,7 +199,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg w-full"
+                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="companyProvinceOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
