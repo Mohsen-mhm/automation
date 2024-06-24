@@ -26,6 +26,7 @@
 <script src="/assets/js/tailwind/tailwind.min.js"></script>
 <script src="/assets/js/flowbite/flowbite.min.js"></script>
 @livewireScripts
+@livewireChartsScripts
 <script src="/assets/js/custom.js"></script>
 </body>
 

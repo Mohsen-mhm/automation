@@ -81,9 +81,5 @@
             class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-200 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition">
             بازگشت به صفحه اصلی
         </a>
-        <a href="{{ route('register.organization') }}"
-            class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-[#6058C3] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none transition">
-            کاربر جدید
-        </a>
     </div>
 </div>

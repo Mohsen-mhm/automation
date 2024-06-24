@@ -4,7 +4,6 @@ namespace App\Livewire\Panel\Users;
 
 use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -14,7 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class UsersTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
 
     protected int $index = 0;
     protected $model = User::class;

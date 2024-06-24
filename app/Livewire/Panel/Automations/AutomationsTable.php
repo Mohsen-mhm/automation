@@ -4,7 +4,6 @@ namespace App\Livewire\Panel\Automations;
 
 use App\Models\Config;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -14,8 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class AutomationsTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
-
     protected $model = Automation::class;
 
     protected int $index = 0;

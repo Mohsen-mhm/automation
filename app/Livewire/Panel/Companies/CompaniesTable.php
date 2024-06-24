@@ -3,9 +3,7 @@
 namespace App\Livewire\Panel\Companies;
 
 use App\Models\Config;
-use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -15,7 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class CompaniesTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
 
     protected $model = Company::class;
 

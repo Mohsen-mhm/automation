@@ -3,10 +3,7 @@
 namespace App\Livewire\Panel\Roles;
 
 use App\Models\Permission;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Role;
@@ -15,7 +12,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class RolesTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
 
     protected int $index = 0;
 

@@ -62,7 +62,7 @@
                         تاریخ اجراء کنترل اقلیم
                     </label>
                     <input type="text" id="climate_date" wire:model="climate_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1400/05/24">
                     @error('climate_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -97,7 +97,7 @@
                         تاریخ اجراء تغذیه و آبیاری
                     </label>
                     <input type="text" id="feeding_date" wire:model="feeding_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1401/03/25">
                     @error('feeding_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -112,15 +112,10 @@
                     <label for="climate_api_link"
                            class="flex mb-2 text-sm font-medium text-gray-900">
                         لینک API کنترل اقلیم
-                        <svg class="w-2 h-2 text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                        </svg>
                     </label>
                     <input type="text" id="climate_api_link" wire:model="climate_api_link"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
-                           placeholder="https://example.com/...." required>
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           placeholder="https://example.com/....">
                     @error('climate_api_link')
                     <p class="mt-2 text-sm text-red-600"><span
                             class="font-medium">{{ $message }}</span>
@@ -131,15 +126,10 @@
                     <label for="climate_linked_date"
                            class="flex mb-2 text-sm font-medium text-gray-900">
                         تاریخ اتصال کنترل اقلیم
-                        <svg class="w-2 h-2 text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                        </svg>
                     </label>
                     <input type="text" id="climate_linked_date" wire:model="climate_linked_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
-                           placeholder="1401/03/25" required>
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           placeholder="1401/03/25">
                     @error('climate_linked_date')
                     <p class="mt-2 text-sm text-red-600"><span
                             class="font-medium">{{ $message }}</span>
@@ -153,15 +143,10 @@
                     <label for="feeding_api_link"
                            class="flex mb-2 text-sm font-medium text-gray-900">
                         لینک API تغذیه و آبیاری
-                        <svg class="w-2 h-2 text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                        </svg>
                     </label>
                     <input type="text" id="feeding_api_link" wire:model="feeding_api_link"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
-                           placeholder="https://example.com/...." required>
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           placeholder="https://example.com/....">
                     @error('feeding_api_link')
                     <p class="mt-2 text-sm text-red-600"><span
                             class="font-medium">{{ $message }}</span>
@@ -172,15 +157,10 @@
                     <label for="feeding_linked_date"
                            class="flex mb-2 text-sm font-medium text-gray-900">
                         تاریخ اتصال تغذیه و آبیاری
-                        <svg class="w-2 h-2 text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                        </svg>
                     </label>
                     <input type="text" id="feeding_linked_date" wire:model="feeding_linked_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
-                           placeholder="1401/03/25" required>
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           placeholder="1401/03/25">
                     @error('feeding_linked_date')
                     <p class="mt-2 text-sm text-red-600"><span
                             class="font-medium">{{ $message }}</span>
@@ -201,7 +181,7 @@
                             </svg>
                         </label>
                         <select type="text" id="status" wire:model.blur="status" wire:ignore
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                                 required>
                             <option value="">وضعیت اطلاعات گلخانه را انتخاب کنید</option>
                             @foreach ($statuses as $status)

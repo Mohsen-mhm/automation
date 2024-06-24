@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Panel\Greenhouses;
 
-use App\Models\Company;
 use App\Models\Config;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -15,8 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class GreenhousesTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
-
     protected $model = Greenhouse::class;
 
     protected int $index = 0;

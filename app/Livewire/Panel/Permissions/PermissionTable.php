@@ -2,14 +2,12 @@
 
 namespace App\Livewire\Panel\Permissions;
 
-use Livewire\WithoutUrlPagination;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Permission;
 
 class PermissionTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
 
     protected int $index = 0;
 

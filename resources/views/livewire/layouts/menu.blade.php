@@ -221,28 +221,28 @@
                         <!-- Menu Item Greenhouses -->
                     @else
                         @if(auth()->user()->hasRole(\App\Models\Role::ADMIN_ROLE))
-                            <h2 class="text-md font-extrabold text-center mt-3">{{ auth()->user()->getName() }}</h2>
+                            <h2 class="text-md font-bold text-white text-center my-3">{{ auth()->user()->getName() }}</h2>
                         @elseif(auth()->user()->hasRole(\App\Models\Role::COMPANY_ROLE))
                             @php
                                 $company = \App\Models\Company::query()->whereNationalId(auth()->user()->getNationalId())->first();
                             @endphp
-                            <h2 class="text-md font-extrabold text-center mt-3">شرکت {{ $company->name }}</h2>
+                            <h2 class="text-md font-bold text-white text-center my-3">شرکت {{ $company->name }}</h2>
                         @elseif(auth()->user()->hasRole(\App\Models\Role::GREENHOUSE_ROLE))
                             @php
                                 $greenhouse = \App\Models\Greenhouse::query()->whereOwnerNationalId(auth()->user()->getNationalId())->first();
                             @endphp
-                            <h2 class="text-md font-extrabold text-center mt-3">گلخانه {{ $greenhouse->name }}</h2>
+                            <h2 class="text-md font-bold text-white text-center my-3">گلخانه {{ $greenhouse->name }}</h2>
                         @elseif(auth()->user()->hasRole(\App\Models\Role::ORGANIZATION_ROLE))
                             @php
                                 $organization = \App\Models\OrganizationUser::query()->whereNationalId(auth()->user()->getNationalId())->first();
                             @endphp
-                            <h2 class="text-md font-extrabold text-center mt-3">کاربر
+                            <h2 class="text-md font-bold text-white text-center my-3">کاربر
                                 سازمانی {{ $organization->fname . ' ' . $organization->lname }}</h2>
                         @endif
 
                         <!-- Menu Item Panel -->
                         <li class="py-1 hover:bg-[#6058C3] rounded-sm">
-                            <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 text-bodydark1 duration-300 ease-in-out hover:bg-[#7367F0]"
+                            <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                href="{{ route('panel.home') }}" @click="selected = (selected === 'Panel' ? '':'Panel')"
                                :class="{ 'bg-[#7367F0] ': (selected === 'Panel') && (page === 'panel') }"
                             >
@@ -253,7 +253,6 @@
                                           stroke-width="2"
                                           d="m4 12 8-8 8 8M6 10.5V19c0 .6.4 1 1 1h3v-3c0-.6.4-1 1-1h2c.6 0 1 .4 1 1v3h3c.6 0 1-.4 1-1v-8.5"/>
                                 </svg>
-
                                 ورود به پنل
                             </a>
                         </li>

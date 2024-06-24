@@ -38,6 +38,8 @@ const greenhouseTab = document.querySelector('#greenhouseTab');
 const companyTab = document.querySelector('#companyTab');
 const greenhouseFiltersSection = document.querySelector('#greenhouseFiltersSection');
 const companyFiltersSection = document.querySelector('#companyFiltersSection');
+const greenhouseFiltersList = document.querySelector('#greenhouseFiltersList');
+const companyFiltersList = document.querySelector('#companyFiltersList');
 const greenhouseFilterButtons = document.querySelectorAll('#greenhouseFiltersSection button');
 const companyFilterButtons = document.querySelectorAll('#companyFiltersSection button');
 
@@ -58,9 +60,17 @@ greenhouseTab.addEventListener('click', function (event) {
         });
 
         greenhouseFiltersSection.classList.add('opacity-100');
-        greenhouseFiltersSection.classList.remove('opacity-65');
-        companyFiltersSection.classList.add('opacity-65')
+        greenhouseFiltersList.classList.remove('translate-y-16');
+        greenhouseFiltersSection.classList.remove('opacity-0');
+
+        companyFiltersSection.classList.add('opacity-0');
+        companyFiltersList.classList.add('translate-y-16');
+        companyFiltersList.classList.remove('z-40');
         companyFiltersSection.classList.remove('opacity-100');
+        companyFiltersList.classList.remove('z-40');
+        companyFiltersList.classList.add('z-0');
+        greenhouseFiltersList.classList.remove('z-0');
+        greenhouseFiltersList.classList.add('z-40');
 
         companyFilterButtons.forEach((item) => {
             item.setAttribute('disabled', '')
@@ -91,10 +101,16 @@ companyTab.addEventListener('click', function (event) {
         });
 
         companyFiltersSection.classList.add('opacity-100');
-        companyFiltersSection.classList.remove('opacity-65');
-        greenhouseFiltersSection.classList.add('opacity-65')
-        greenhouseFiltersSection.classList.remove('opacity-100');
+        companyFiltersList.classList.remove('translate-y-16');
+        companyFiltersSection.classList.remove('opacity-0');
 
+        greenhouseFiltersSection.classList.add('opacity-0');
+        greenhouseFiltersList.classList.add('translate-y-16');
+        greenhouseFiltersSection.classList.remove('opacity-100');
+        greenhouseFiltersList.classList.remove('z-40');
+        greenhouseFiltersList.classList.add('z-0');
+        companyFiltersList.classList.remove('z-0');
+        companyFiltersList.classList.add('z-40');
 
         greenhouseFilterButtons.forEach((item) => {
             item.setAttribute('disabled', '')

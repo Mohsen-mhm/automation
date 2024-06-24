@@ -16,12 +16,12 @@
         </li>
     </ul>
     <ul
-        class="relative flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#6058C3] my-2 py-2 pt-10"
+        class="relative w-auto flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#6058C3] my-2 py-2 pt-20"
         wire:ignore>
         <li class="absolute top-1 right-1/2 translate-x-1/2">
             <p class="text-lg text-[#6058C3] font-bold">فیلترها</p>
         </li>
-        <li class="w-full border-e border-[#6058C3]">
+        <li class="w-full absolute top-10 right-1/2 translate-x-1/2 z-40" id="greenhouseFiltersList">
             <div class="w-full flex justify-center items-center space-x-1" id="greenhouseFiltersSection"
                  x-data="{ substrateOpen: false, productOpen: false, provinceOpen: false }">
                 <div class="w-auto relative mx-1">
@@ -37,7 +37,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
+                        class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="substrateOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -76,7 +76,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
+                        class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="productOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -115,7 +115,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
+                        class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="provinceOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -144,8 +144,8 @@
             </div>
         </li>
 
-        <li class="w-full border-s border-[#6058C3]">
-            <div class="w-full flex justify-center items-center space-x-1 opacity-65" id="companyFiltersSection"
+        <li class="w-full absolute top-10 right-1/2 translate-x-1/2 translate-y-16 z-0" id="companyFiltersList">
+            <div class="w-full flex justify-center items-center space-x-1 opacity-0" id="companyFiltersSection"
                  x-data="{ companyTypeOpen: false, companyProvinceOpen: false }">
                 <div class="w-auto relative mx-1">
                     <button @click="companyTypeOpen = !companyTypeOpen" disabled
@@ -160,7 +160,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg min-w-[150px]"
+                        class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg min-w-[150px]"
                         @click.away="companyTypeOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"
@@ -199,7 +199,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-95"
-                        class="absolute right-1/2 translate-x-1/2 z-50 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
+                        class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#343951] border border-[#6058C3] rounded-lg shadow-lg min-w-[150px]"
                         @click.away="companyProvinceOpen = false"
                     >
                         <ul class="space-y-1 text-sm text-start text-gray-700"

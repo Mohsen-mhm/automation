@@ -3,7 +3,6 @@
 namespace App\Livewire\Panel\Configs;
 
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithoutUrlPagination;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Config;
@@ -12,7 +11,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class ConfigsTable extends DataTableComponent
 {
-    use WithoutUrlPagination;
 
     protected int $index = 0;
 

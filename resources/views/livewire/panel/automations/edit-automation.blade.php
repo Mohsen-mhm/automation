@@ -62,7 +62,7 @@
                         تاریخ اجراء کنترل اقلیم
                     </label>
                     <input type="text" id="climate_date" wire:model="climate_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1400/05/24">
                     @error('climate_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -97,7 +97,7 @@
                         تاریخ اجراء تغذیه و آبیاری
                     </label>
                     <input type="text" id="feeding_date" wire:model="feeding_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1401/03/25">
                     @error('feeding_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -119,7 +119,7 @@
                         </svg>
                     </label>
                     <input type="text" id="climate_api_link" wire:model="climate_api_link"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="https://example.com/...." required>
                     @error('climate_api_link')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -138,7 +138,7 @@
                         </svg>
                     </label>
                     <input type="text" id="climate_linked_date" wire:model="climate_linked_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1401/03/25" required>
                     @error('climate_linked_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -160,7 +160,7 @@
                         </svg>
                     </label>
                     <input type="text" id="feeding_api_link" wire:model="feeding_api_link"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="https://example.com/...." required>
                     @error('feeding_api_link')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -179,7 +179,7 @@
                         </svg>
                     </label>
                     <input type="text" id="feeding_linked_date" wire:model="feeding_linked_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                            placeholder="1401/03/25" required>
                     @error('feeding_linked_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -201,7 +201,7 @@
                             </svg>
                         </label>
                         <select type="text" id="status" wire:model.blur="status" wire:ignore
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#258641] focus:border-[#258641] block w-full p-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
                                 required>
                             <option value="">وضعیت اطلاعات گلخانه را انتخاب کنید</option>
                             @foreach ($statuses as $status)

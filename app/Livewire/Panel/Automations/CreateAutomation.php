@@ -65,8 +65,8 @@ class CreateAutomation extends Component
 
     public function store()
     {
-        $validData = $this->validate();
         $this->assignDate();
+        $validData = $this->validate();
         $validData['feeding_date'] = $this->feeding_date;
         $validData['climate_date'] = $this->climate_date;
         $validData['climate_linked_date'] = $this->climate_linked_date;
