@@ -1,7 +1,7 @@
 <aside
     :class="sidebarToggle ? 'translate-x-0' : 'translate-x-full'"
-    class="absolute right-0 top-0 pt-[30px] flex h-screen min-w-64 flex-col overflow-y-hidden bg-[#343951] duration-300 ease-linear shadow-lg lg:static lg:translate-x-0"
-    @click.outside="sidebarToggle = false" style="z-index: 999">
+    class="absolute right-0 top-0 flex h-screen flex-col overflow-y-hidden bg-[#343951] duration-300 ease-linear shadow-lg lg:static lg:translate-x-0"
+    @click.outside="sidebarToggle = false" style="z-index: 999; min-width: 300px !important; padding-top: 40px">
     <!-- SIDEBAR HEADER -->
     <div class="flex items-center text-white lg:justify-center justify-end gap-2 px-6 py-5.5 lg:py-6.5">
         <button class="block lg:hidden hover:scale-125" @click.stop="sidebarToggle = !sidebarToggle">
@@ -20,6 +20,74 @@
                 <ul class="mb-2 flex flex-col">
                     <!-- Menu Item Company -->
                     @guest
+                        <!-- Menu Item Greenhouses -->
+                        <li class="border-b border-[#7367F0] py-1">
+                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
+                               href="javascript:void(0)"
+                               @click.prevent="selected = (selected === 'Greenhouses' ? '':'Greenhouses')"
+                               :class="{ 'bg-[#7367F0] ': (selected === 'Greenhouses') || (page === 'onlineSystem') }">
+                                <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="none"
+                                     viewBox="0 0 21 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                                <span class="text-sm font-bold transition">
+                                پنل گلخانه ها
+                                </span>
+                                <svg
+                                    class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
+                                    :class="{ 'rotate-0': (selected === 'Greenhouses') }" width="20" height="20"
+                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                                        fill=""
+                                    />
+                                </svg>
+                            </a>
+                            <!-- Dropdown Menu Start -->
+                            <div class="translate transform overflow-hidden"
+                                 :class="(selected === 'Greenhouses') ? 'block' :'hidden'">
+                                <ul class="mb-2 mt-1 flex flex-col gap-2.5">
+                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
+                                           href="{{ route('login.greenhouse') }}"
+                                           :class="page === 'onlineSystem' && '!text-white'">
+                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
+                                                 aria-hidden="true"
+                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="2"
+                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
+                                            </svg>
+                                            ورود
+                                        </a>
+                                    </li>
+                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
+                                           href="{{ route('register.greenhouse') }}"
+                                           :class="page === 'onlineSystem' && '!text-white'">
+                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
+                                                 aria-hidden="true"
+                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="2"
+                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
+                                            </svg>
+                                            ثبت گلخانه
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Dropdown Menu End -->
+                        </li>
+                        <!-- Menu Item Greenhouses -->
+
                         <li class="py-1">
                             <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
                                href="javascript:void(0)"
@@ -151,74 +219,6 @@
                             <!-- Dropdown Menu End -->
                         </li>
                         <!-- Menu Item Organization -->
-
-                        <!-- Menu Item Greenhouses -->
-                        <li class="border-t border-[#7367F0] py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
-                               href="javascript:void(0)"
-                               @click.prevent="selected = (selected === 'Greenhouses' ? '':'Greenhouses')"
-                               :class="{ 'bg-[#7367F0] ': (selected === 'Greenhouses') || (page === 'onlineSystem') }">
-                                <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                     fill="none"
-                                     viewBox="0 0 21 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                <span class="text-sm font-bold transition">
-                                پنل گلخانه ها
-                                </span>
-                                <svg
-                                    class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
-                                    :class="{ 'rotate-0': (selected === 'Greenhouses') }" width="20" height="20"
-                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                        fill=""
-                                    />
-                                </svg>
-                            </a>
-                            <!-- Dropdown Menu Start -->
-                            <div class="translate transform overflow-hidden"
-                                 :class="(selected === 'Greenhouses') ? 'block' :'hidden'">
-                                <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('login.greenhouse') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ورود
-                                        </a>
-                                    </li>
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('register.greenhouse') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ثبت گلخانه
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Dropdown Menu End -->
-                        </li>
-                        <!-- Menu Item Greenhouses -->
                     @else
                         @if(auth()->user()->hasRole(\App\Models\Role::ADMIN_ROLE))
                             <h2 class="text-md font-bold text-white text-center my-3">{{ auth()->user()->getName() }}</h2>

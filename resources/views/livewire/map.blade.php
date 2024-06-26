@@ -16,12 +16,9 @@
         </li>
     </ul>
     <ul
-        class="relative w-auto flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#6058C3] my-2 py-2 pt-20"
+        class="relative w-auto flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#6058C3] my-2 py-2 pt-10"
         wire:ignore>
-        <li class="absolute top-1 right-1/2 translate-x-1/2">
-            <p class="text-lg text-[#6058C3] font-bold">فیلترها</p>
-        </li>
-        <li class="w-full absolute top-10 right-1/2 translate-x-1/2 z-40" id="greenhouseFiltersList">
+        <li class="w-full absolute top-1 right-1/2 translate-x-1/2 z-40" id="greenhouseFiltersList">
             <div class="w-full flex justify-center items-center space-x-1" id="greenhouseFiltersSection"
                  x-data="{ substrateOpen: false, productOpen: false, provinceOpen: false }">
                 <div class="w-auto relative mx-1">
@@ -144,7 +141,7 @@
             </div>
         </li>
 
-        <li class="w-full absolute top-10 right-1/2 translate-x-1/2 translate-y-16 z-0" id="companyFiltersList">
+        <li class="w-full absolute top-1 right-1/2 translate-x-1/2 translate-y-16 z-0" id="companyFiltersList">
             <div class="w-full flex justify-center items-center space-x-1 opacity-0" id="companyFiltersSection"
                  x-data="{ companyTypeOpen: false, companyProvinceOpen: false }">
                 <div class="w-auto relative mx-1">

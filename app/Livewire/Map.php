@@ -29,7 +29,7 @@ class Map extends Component
 
     public function mount(): void
     {
-        collect(json_decode(collect(Config::query()->whereName(Config::SUBSTRATE)->first())->get('value')))
+        collect(Greenhouse::query()->pluck('substrate_type'))->unique()
             ->each(function ($item) {
                 $this->substrates[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -37,7 +37,7 @@ class Map extends Component
                 ];
                 $this->substrateFilter[] = $item;
             });
-        collect(json_decode(collect(Config::query()->whereName(Config::PRODUCT_TYPE)->first())->get('value')))
+        collect(Greenhouse::query()->pluck('product_type'))->unique()
             ->each(function ($item) {
                 $this->productTypes[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -61,7 +61,7 @@ class Map extends Component
                 ];
                 $this->companyProvinceFilter[] = $item;
             });
-        collect(json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value')))
+        collect(Company::query()->pluck('type'))->unique()
             ->each(function ($item) {
                 $this->companyType[] = [
                     'uuid' => Str::uuid()->toString(),
