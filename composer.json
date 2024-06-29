@@ -8,6 +8,7 @@
         "php": "^8.1",
         "alirahimi/livewire-persian-datepicker": "^1.1",
         "asantibanez/livewire-charts": "^3.0",
+        "barryvdh/laravel-dompdf": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
