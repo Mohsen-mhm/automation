@@ -1,4 +1,4 @@
-<div class="w-full p-5 flex flex-col">
+<div class="w-full p-5 flex flex-col overflow-x-hidden">
     <div class="mt-6 mb-3">
         @can(\App\Models\Automation::AUTOMATION_CREATE)
             <button type="button" data-modal-target="create-modal" data-modal-toggle="create-modal"

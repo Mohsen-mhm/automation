@@ -1,4 +1,4 @@
-<div class="md:hidden fixed top-4 left-4 z-50">
+<div class="md:hidden fixed top-4 left-4" style="z-index: 99999;">
     <button id="sidebarToggle"
             class="bg-[#7367F0] text-white p-2 rounded-full focus:outline-none shadow-lg transition-colors hover:bg-[#6058C3]"
             wire:transition>

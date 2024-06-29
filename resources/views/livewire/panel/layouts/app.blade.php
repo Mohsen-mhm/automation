@@ -15,13 +15,16 @@
 
 </head>
 
-<body dir="rtl" class="bg-gray-100 flex justify-start min-h-screen">
+<body dir="rtl" class="bg-gray-100 flex flex-col justify-start min-h-screen">
 <x-loader/>
+<livewire:panel.layouts.header/>
 
-<livewire:panel.layouts.menu/>
-<livewire:panel.layouts.toggle/>
+<div class="bg-gray-100 flex justify-start min-h-screen">
+    <livewire:panel.layouts.menu/>
+    <livewire:panel.layouts.toggle/>
 
-{{ $slot }}
+    {{ $slot }}
+</div>
 
 <script src="/assets/js/tailwind/tailwind.min.js"></script>
 <script src="/assets/js/flowbite/flowbite.min.js"></script>
