@@ -13,7 +13,7 @@
                 @php
                     $greenhouse = \App\Models\Greenhouse::query()->whereOwnerNationalId(auth()->user()->getNationalId())->first();
                 @endphp
-                <h2 class="text-md font-extrabold text-center">گلخانه {{ $greenhouse->name }}</h2>
+                <h2 class="text-md font-extrabold text-center">{{ $greenhouse->name }}</h2>
             @elseif(auth()->user()->hasRole(\App\Models\Role::ORGANIZATION_ROLE))
                 @php
                     $organization = \App\Models\OrganizationUser::query()->whereNationalId(auth()->user()->getNationalId())->first();
