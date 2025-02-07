@@ -1,5 +1,5 @@
 <header
-    class="top-0 flex w-full bg-[#343951] shadow-lg" style="z-index: 9999">
+    class="top-0 flex w-full bg-[#013328] shadow-lg" style="z-index: 9999">
     <div
         class="flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11">
         <div class="w-full justify-between items-center text-center text-white flex">

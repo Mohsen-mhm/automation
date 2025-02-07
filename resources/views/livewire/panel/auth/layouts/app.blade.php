@@ -19,7 +19,7 @@
 <x-loader/>
 <div class="flex w-full h-screen overflow-hidden"
      x-data="{ page: 'ecommerce', 'stickyMenu': false, 'sidebarToggle': false }">
-    <div class="bg-[#343951]">
+    <div class="bg-[#013328]">
         <livewire:layouts.menu/>
     </div>
     <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

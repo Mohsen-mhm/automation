@@ -46,7 +46,7 @@ const companyFilterButtons = document.querySelectorAll('#companyFiltersSection b
 greenhouseTab.addEventListener('click', function (event) {
     event.preventDefault();
     if (!this.classList.contains('active')) {
-        let newClasses = ['bg-[#6058C3]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#7367F0]', 'active'];
+        let newClasses = ['bg-[#026B56]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#013328]', 'active'];
         let oldClasses = ['text-gray-900', 'bg-gray-200', 'border-gray-200'];
 
         oldClasses.forEach(element => {
@@ -87,7 +87,7 @@ greenhouseTab.addEventListener('click', function (event) {
 companyTab.addEventListener('click', function (event) {
     event.preventDefault();
     if (!this.classList.contains('active')) {
-        let newClasses = ['bg-[#6058C3]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#7367F0]', 'active'];
+        let newClasses = ['bg-[#026B56]', 'text-gray-50', 'border-gray-200', 'hover:text-white', 'hover:bg-[#013328]', 'active'];
         let oldClasses = ['text-gray-900', 'bg-gray-200', 'border-gray-200'];
 
         oldClasses.forEach(element => {
@@ -136,6 +136,9 @@ function defineMarkersAndInfo(markersObj, markerLayer) {
                 <p class="my-2">${markerInfo.area}</p>
                 <p class="my-2 ${markerInfo.company ? 'hidden' : ''}">${markerInfo.product}</p>
                 <p class="my-2 ${markerInfo.company ? 'hidden' : ''}">${markerInfo.space}</p>
+                <button type="button" onclick="document.getElementById('sidebarToggle').click()" class="more-info-button mt-2 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-[#013328] rounded-lg hover:bg-[#001F18] focus:ring-4 focus:outline-none focus:ring-[#013328]">
+                    نمایش بیشتر
+                </button>
             </div>
         `;
 
@@ -143,10 +146,6 @@ function defineMarkersAndInfo(markersObj, markerLayer) {
 
         marker.on('click', function () {
             updateMarkerDetails(markerInfo);
-            let sidebarToggle = document.getElementById('sidebarToggle');
-            if (sidebarToggle) {
-                sidebarToggle.click();
-            }
         })
     });
 }

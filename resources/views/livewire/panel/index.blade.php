@@ -26,7 +26,7 @@
                 </div>
             @endif
             @if(collect($greenhousePerProvince->toArray()['data'])->count())
-                <hr class="w-full border-[#6058C3] my-6">
+                <hr class="w-full border-[#026B56] my-6">
                 <div class="w-full grid grid-cols-1">
                     <div class="flex flex-col justify-center items-center min-h-[30rem]">
                         <h4 class="text-2xl font-bold">گلخانه ها بر حسب استان</h4>
@@ -37,7 +37,7 @@
             @endif
 
             @if(collect($usersCount->toArray()['data'])->count())
-                <hr class="w-full border-[#6058C3] my-6">
+                <hr class="w-full border-[#026B56] my-6">
                 <div class="w-full grid grid-cols-1 lg:grid-cols-2">
                     <div class="flex flex-col justify-center items-center min-h-[30rem]">
                         <h4 class="text-2xl font-bold">تعداد کاربران سامانه</h4>
@@ -47,7 +47,7 @@
                 </div>
             @endif
             @if(collect($climateAutomationCountPerCompany->toArray()['data'])->count())
-                <hr class="w-full border-[#6058C3] my-6">
+                <hr class="w-full border-[#026B56] my-6">
                 <div class="w-full grid grid-cols-1">
                     <div class="flex flex-col justify-center items-center min-h-[30rem]">
                         <h4 class="text-2xl font-bold">گلخانه های اقلیم اجرا شده توسط هر شرکت</h4>
@@ -58,7 +58,7 @@
             @endif
 
             @if(collect($feedingAutomationCountPerCompany->toArray()['data'])->count())
-                <hr class="w-full border-[#6058C3] my-6">
+                <hr class="w-full border-[#026B56] my-6">
                 <div class="w-full grid grid-cols-1">
                     <div class="flex flex-col justify-center items-center min-h-[30rem]">
                         <h4 class="text-2xl font-bold">گلخانه های تغذیه اجرا شده توسط هر شرکت</h4>

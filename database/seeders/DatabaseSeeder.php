@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             OrganizationSeeder::class,
             CompanySeeder::class,
             GreenHouseSeeder::class,
+            FilterSeeder::class
         ]);
     }
 }

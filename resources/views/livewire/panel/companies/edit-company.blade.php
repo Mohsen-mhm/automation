@@ -22,7 +22,7 @@
                         </svg>
                     </label>
                     <input type="text" id="name" wire:model.blur="name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="شرکت سیمرغ" required>
                     @error('name')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -40,7 +40,7 @@
                         </svg>
                     </label>
                     <select type="text" id="type" wire:model.blur="type" wire:ignore
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                             required>
                         <option value="">نوع شرکت را انتخاب کنید</option>
                         @foreach ($companyTypes as $companyType)
@@ -68,7 +68,7 @@
                         </svg>
                     </label>
                     <input type="text" id="national_id" wire:model.blur="national_id"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="1016110254" required>
                     @error('national_id')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -87,7 +87,7 @@
                         </svg>
                     </label>
                     <input type="text" id="registration_number" wire:model.blur="registration_number"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="123456" required>
                     @error('registration_number')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -109,7 +109,7 @@
                         </svg>
                     </label>
                     <input type="text" id="registration_place" wire:model.blur="registration_place"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="شیراز" required>
                     @error('registration_place')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -128,7 +128,7 @@
                         </svg>
                     </label>
                     <input type="text" id="registration_date" wire:model="registration_date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="1400/05/24" required>
                     @error('registration_date')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -148,8 +148,8 @@
                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                         </svg>
                     </label>
-                    <select type="text" id="province" wire:model.blur="province" wire:ignore
-                            class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                    <select id="province" wire:model.blur="province" wire:ignore
+                            class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                             required></select>
                     @error('province')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -167,7 +167,7 @@
                         </svg>
                     </label>
                     <select type="text" id="city" wire:model.blur="city" wire:ignore
-                            class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                            class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                             required></select>
                     @error('city')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -188,7 +188,7 @@
                         </svg>
                     </label>
                     <input type="text" id="address" wire:model.blur="address"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="بلوار پاسداران، ..." required>
                     @error('address')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -206,7 +206,7 @@
                         </svg>
                     </label>
                     <input type="text" id="postal" wire:model.blur="postal"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="718123456" required>
                     @error('postal')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -227,7 +227,7 @@
                         </svg>
                     </label>
                     <input type="text" id="ceo_name" wire:model.blur="ceo_name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="بلوار پاسداران، ..." required>
                     @error('ceo_name')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -245,7 +245,7 @@
                         </svg>
                     </label>
                     <input type="text" id="ceo_national_id" wire:model.blur="ceo_national_id"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="718123456" required>
                     @error('ceo_national_id')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -266,7 +266,7 @@
                         </svg>
                     </label>
                     <input type="text" id="ceo_phone" wire:model.blur="ceo_phone"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="09123456789" required>
                     @error('ceo_phone')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -315,7 +315,7 @@
                         </svg>
                     </label>
                     <input type="text" id="interface_name" wire:model.blur="interface_name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="محسن" required>
                     @error('interface_name')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -333,7 +333,7 @@
                         </svg>
                     </label>
                     <input type="text" id="interface_phone" wire:model.blur="interface_phone"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="09123456789" required>
                     @error('interface_phone')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -354,7 +354,7 @@
                         </svg>
                     </label>
                     <input type="text" id="landline_number" wire:model.blur="landline_number"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="07123456789" required>
                     @error('landline_number')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -367,7 +367,7 @@
                         شماره تلفن همراه شرکت
                     </label>
                     <input type="text" id="phone_number" wire:model.blur="phone_number"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="09123456789">
                     @error('phone_number')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -388,7 +388,7 @@
                         </svg>
                     </label>
                     <input type="text" id="location_link" wire:model.blur="location_link"
-                           class="bg-gray-50 text-left border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 text-left border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="https://maps.app.goo.gl/....." required>
                     @error('location_link')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -398,9 +398,9 @@
                 </div>
                 <div class="flex flex-col justify-center items-start" dir="ltr">
                     <div wire:loading.remove>
-                        <p>coordinates: <b class="text-[#6058C3]" wire:transition>{{ $coordinates }}</b></p>
-                        <p>latitude: <b class="text-[#6058C3]" wire:transition>{{ $latitude }}</b></p>
-                        <p>longitude: <b class="text-[#6058C3]" wire:transition>{{ $longitude }}</b></p>
+                        <p>coordinates: <b class="text-[#026B56]" wire:transition>{{ $coordinates }}</b></p>
+                        <p>latitude: <b class="text-[#026B56]" wire:transition>{{ $latitude }}</b></p>
+                        <p>longitude: <b class="text-[#026B56]" wire:transition>{{ $longitude }}</b></p>
                     </div>
                 </div>
             </div>
@@ -416,7 +416,7 @@
                         </svg>
                     </label>
                     <input type="text" id="website" wire:model.blur="website"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="https://company.ir" required>
                     @error('website')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -434,7 +434,7 @@
                         </svg>
                     </label>
                     <input type="email" id="email" wire:model.blur="email"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="info@company.ir" required>
                     @error('email')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -480,7 +480,7 @@
                         علامت تجاری
                     </label>
                     <input type="text" id="brand" wire:model.blur="brand"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                            placeholder="سیمرغ">
                     @error('brand')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -545,7 +545,7 @@
                             </svg>
                         </label>
                         <select type="text" id="status" wire:model.blur="status" wire:ignore
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                                 required>
                             <option value="">وضعیت اطلاعات شرکت را انتخاب کنید</option>
                             @foreach ($statuses as $status)

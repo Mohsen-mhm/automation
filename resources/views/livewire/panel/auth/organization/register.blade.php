@@ -1,6 +1,6 @@
 <div class="w-full flex flex-col justify-center items-center">
     <div
-        class="md:w-3/5 mt-10 flex flex-col justify-center items-center p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+        class="w-full mt-10 flex flex-col justify-center items-center p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
         <h5 class="mb-8 text-2xl font-semibold tracking-tight text-gray-900">ثبت کاربر سازمانی جدید</h5>
         <form class="w-full mb-2" wire:submit="register" enctype="multipart/form-data">
             @csrf
@@ -15,7 +15,7 @@
                         </svg>
                     </label>
                     <input type="text" id="fname" wire:model="fname"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="علی" required>
                     @error('fname')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -33,7 +33,7 @@
                         </svg>
                     </label>
                     <input type="text" id="lname" wire:model="lname"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="احمدی" required>
                     @error('lname')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -53,7 +53,7 @@
                     </svg>
                 </label>
                 <input type="text" id="national_id" wire:model="national_id"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                     placeholder="2281234567" required>
                 @error('national_id')
                     <p class="mt-2 text-sm text-red-600"><span
@@ -73,7 +73,7 @@
                         </svg>
                     </label>
                     <input type="text" id="organization_name" wire:model="organization_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="جهاد" required>
                     @error('organization_name')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -92,7 +92,7 @@
                         </svg>
                     </label>
                     <input type="text" id="organization_level" wire:model="organization_level"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="مدیر اجرایی" required>
                     @error('organization_level')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -113,7 +113,7 @@
                         </svg>
                     </label>
                     <select type="text" id="province" wire:model="province" wire:ignore
-                        class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="ir-province bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="فارس" required></select>
                     @error('province')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -131,7 +131,7 @@
                         </svg>
                     </label>
                     <select type="text" id="city" wire:model="city" wire:ignore
-                        class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="ir-city bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="شیراز" required></select>
                     @error('city')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -152,7 +152,7 @@
                         </svg>
                     </label>
                     <input type="text" id="address" wire:model="address"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="بلوار پاسداران، ..." required>
                     @error('address')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -170,7 +170,7 @@
                         </svg>
                     </label>
                     <input type="text" id="postal" wire:model="postal"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="718123456" required>
                     @error('postal')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -186,7 +186,7 @@
                         شماره تلفن ثابت
                     </label>
                     <input type="text" id="landline_number" wire:model="landline_number"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="07123456789">
                     @error('landline_number')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -204,7 +204,7 @@
                         </svg>
                     </label>
                     <input type="text" id="phone_number" wire:model="phone_number"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#6058C3] focus:border-[#6058C3] block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#026B56] focus:border-[#026B56] block w-full p-2.5"
                         placeholder="09123456789" required>
                     @error('phone_number')
                         <p class="mt-2 text-sm text-red-600"><span
@@ -285,7 +285,7 @@
 
             <div class="w-full flex justify-center items-center mt-8">
                 <button type="submit"
-                    class="focus:outline-none text-white font-bold bg-[#6058C3] hover:bg-[#6058C3] focus:ring-4 focus:ring-[#6058C3] rounded-lg px-5 py-2.5 me-2 mb-2 transition">
+                    class="focus:outline-none text-white font-bold bg-[#026B56] hover:bg-[#026B56] focus:ring-4 focus:ring-[#026B56] rounded-lg px-5 py-2.5 me-2 mb-2 transition">
                     ثبت و ارسال
                 </button>
             </div>

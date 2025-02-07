@@ -1,11 +1,11 @@
 <header
-    class="top-0 flex w-full bg-[#343951] shadow-lg" style="z-index: 9999">
+    class="top-0 flex w-full bg-[#013328] shadow-lg" style="z-index: 9999">
     <div
         class="flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11">
         <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
             <!-- Hamburger Toggle BTN -->
             <button
-                class="z-50 block rounded-sm bg-[#343951] p-1.5 lg:hidden hover:scale-125"
+                class="z-50 block rounded-sm bg-[#013328] p-1.5 lg:hidden hover:scale-125"
                 @click.stop="sidebarToggle = !sidebarToggle">
                 <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                      height="24" fill="none" viewBox="0 0 24 24">

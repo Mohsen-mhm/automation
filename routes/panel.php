@@ -1,24 +1,18 @@
 <?php
 
-use App\Livewire\Home;
 use App\Livewire\Panel\Alerts\Index as AlertsIndex;
-use App\Livewire\Panel\Auth\Admin\Login as AdminLogin;
-use App\Livewire\Panel\Auth\Company\Login as CompanyLogin;
-use App\Livewire\Panel\Auth\Greenhouse\Login as GreenhouseLogin;
-use App\Livewire\Panel\Auth\Organization\Login as OrganizationLogin;
-use App\Livewire\Panel\Auth\Company\Register as CompanyRegister;
-use App\Livewire\Panel\Auth\Greenhouse\Register as GreenhouseRegister;
 use App\Livewire\Panel\Automations\Index as AutomationsIndex;
 use App\Livewire\Panel\Companies\Index as CompaniesIndex;
 use App\Livewire\Panel\Configs\Index as ConfigsIndex;
 use App\Livewire\Panel\Greenhouses\Index as GreenhousesIndex;
 use App\Livewire\Panel\Index as MainIndex;
-use App\Livewire\Panel\Auth\Organization\Register as OrganizationRegister;
 use App\Livewire\Panel\Organizations\Index as OrganizationsIndex;
 use App\Livewire\Panel\Permissions\Index as PermissionsIndex;
 use App\Livewire\Panel\Profile;
 use App\Livewire\Panel\Roles\Index as RolesIndex;
 use App\Livewire\Panel\Users\Index as UsersIndex;
+use App\Livewire\Panel\AboutUs\Index as AboutUsIndex;
+use App\Livewire\Panel\ContactUs\Index as ContactUsIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +41,5 @@ Route::get('/organizations', OrganizationsIndex::class)->name('organizations');
 Route::get('/automations', AutomationsIndex::class)->name('automations');
 
 Route::get('/alerts', AlertsIndex::class)->name('alerts');
+Route::get('/about-us', AboutUsIndex::class)->name('about.us');
+Route::get('/contact-us', ContactUsIndex::class)->name('contact.us');

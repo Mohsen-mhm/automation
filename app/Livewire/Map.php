@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 
 class Map extends Component
 {
+    public string $activeTab = 'greenhouse';
     public array $substrates = [];
     public array $productTypes = [];
     public array $provinces = [];
@@ -29,7 +30,18 @@ class Map extends Component
 
     public function mount(): void
     {
-        collect(Greenhouse::query()->pluck('substrate_type'))->unique()
+        $this->prepareGreenhouseFilterData();
+        $this->prepareCompanyFilterData();
+    }
+
+    public function changeTab($tab): void
+    {
+        $this->activeTab = $tab;
+    }
+
+    public function prepareGreenhouseFilterData(): void
+    {
+        collect(Greenhouse::query()->where('active', true)->pluck('substrate_type'))->unique()
             ->each(function ($item) {
                 $this->substrates[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -37,7 +49,7 @@ class Map extends Component
                 ];
                 $this->substrateFilter[] = $item;
             });
-        collect(Greenhouse::query()->pluck('product_type'))->unique()
+        collect(Greenhouse::query()->where('active', true)->pluck('product_type'))->unique()
             ->each(function ($item) {
                 $this->productTypes[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -45,7 +57,7 @@ class Map extends Component
                 ];
                 $this->productFilter[] = $item;
             });
-        collect(Greenhouse::query()->pluck('province'))->unique()
+        collect(Greenhouse::query()->where('active', true)->pluck('province'))->unique()
             ->each(function ($item) {
                 $this->provinces[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -53,7 +65,12 @@ class Map extends Component
                 ];
                 $this->provinceFilter[] = $item;
             });
-        collect(Company::query()->pluck('province'))->unique()
+        $this->assignGreenhouseFilteredData();
+    }
+
+    public function prepareCompanyFilterData(): void
+    {
+        collect(Company::query()->where('active', true)->pluck('province'))->unique()
             ->each(function ($item) {
                 $this->companyProvinces[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -61,7 +78,7 @@ class Map extends Component
                 ];
                 $this->companyProvinceFilter[] = $item;
             });
-        collect(Company::query()->pluck('type'))->unique()
+        collect(Company::query()->where('active', true)->pluck('type'))->unique()
             ->each(function ($item) {
                 $this->companyType[] = [
                     'uuid' => Str::uuid()->toString(),
@@ -69,13 +86,13 @@ class Map extends Component
                 ];
                 $this->companyTypeFilter[] = $item;
             });
-
-        $this->assignFilteredData();
+        $this->assignCompanyFilteredData();
     }
 
     public function updated($property): void
     {
-        $this->assignFilteredData();
+        $this->assignCompanyFilteredData();
+        $this->assignGreenhouseFilteredData();
         $field = explode('.', $property);
         if (in_array($field[0], $this->greenhouseFilterNames)) {
             $this->dispatch('submit-filter', ['type' => 'greenhouse', 'data' => $this->greenhousesData]);
@@ -111,7 +128,23 @@ class Map extends Component
         });
     }
 
-    public function assignFilteredData(): void
+    public function assignCompanyFilteredData(): void
+    {
+        $filteredCompany = $this->filterCompany();
+        $companiesData = [];
+        foreach ($filteredCompany as $company) {
+            $companiesData[] = [
+                'coordinates' => [$company->latitude, $company->longitude],
+                'image' => asset('storage/' . $company->company_logo),
+                'name' => $company->name . "\n" . $company->type,
+                'area' => $company->province . "\n" . $company->city . "\n" . $company->address,
+                'company' => true
+            ];
+        }
+        $this->companiesData = json_encode($companiesData);
+    }
+
+    public function assignGreenhouseFilteredData(): void
     {
         $filteredGreenhouses = $this->filterGreenhouse();
 
@@ -134,19 +167,17 @@ class Map extends Component
             ];
         }
         $this->greenhousesData = json_encode($greenhouseData);
+    }
 
-        $filteredCompany = $this->filterCompany();
-        $companiesData = [];
-        foreach ($filteredCompany as $company) {
-            $companiesData[] = [
-                'coordinates' => [$company->latitude, $company->longitude],
-                'image' => asset('storage/' . $company->company_logo),
-                'name' => $company->name . "\n" . $company->type,
-                'area' => $company->province . "\n" . $company->city . "\n" . $company->address,
-                'company' => true
-            ];
+    public function resetFilters(): void
+    {
+        if ($this->activeTab == 'greenhouse') {
+            $this->prepareGreenhouseFilterData();
+            $this->dispatch('submit-filter', ['type' => 'greenhouse', 'data' => $this->greenhousesData]);
+        } else {
+            $this->prepareCompanyFilterData();
+            $this->dispatch('submit-filter', ['type' => 'company', 'data' => $this->companiesData]);
         }
-        $this->companiesData = json_encode($companiesData);
     }
 
     public function render()

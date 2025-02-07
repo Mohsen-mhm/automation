@@ -126,6 +126,22 @@ class PermissionSeeder extends Seeder
                 'name' => 'alert-index',
                 'title' => 'دسترسی به صفحه محدوده ها',
             ],
+            [
+                'name' => 'filter-active',
+                'title' => 'فعال/غیرفعال کردن فیلترها',
+            ],
+            [
+                'name' => 'about-us-index',
+                'title' => 'دسترسی به صفحه درباره ما',
+            ],
+            [
+                'name' => 'about-us-edit',
+                'title' => 'ویرایش صفحه درباره ما',
+            ],
+            [
+                'name' => 'contact-us-index',
+                'title' => 'دسترسی به صفحه تماس با ما',
+            ],
         ];
 
         foreach ($items as $item) {

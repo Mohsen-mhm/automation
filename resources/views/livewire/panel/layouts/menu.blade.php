@@ -1,4 +1,4 @@
-<div class="text-white min-w-[15rem] p-2 hidden md:block shadow-lg bg-[#343951]" id="sidebar"
+<div class="text-white min-w-[15rem] p-2 hidden md:block shadow-lg bg-[#013328]" id="sidebar"
      style="">
     <div class="w-full px-2 overflow-y-auto" dir="ltr">
         <div class="w-full" dir="rtl">
@@ -24,7 +24,7 @@
 
             <div class="flex flex-col items-center w-full mt-3 border-t border-gray-200">
 
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.home')) text-gray-200 bg-[#5850ba] @endif"
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.home')) text-gray-200 bg-[#001F18] @endif"
                    href="{{ route('panel.home') }}">
                     <svg class="min-w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                          viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
 
                 @can(\App\Models\Permission::PROFILE_INDEX)
                     <hr class="w-full border-t border-gray-400 mt-2">
-                    <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.profile')) text-gray-200 bg-[#5850ba] @endif"
+                    <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.profile')) text-gray-200 bg-[#001F18] @endif"
                        href="{{ route('panel.profile') }}">
                         <svg class="min-w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                              fill="none"
@@ -56,7 +56,7 @@
                 @if(auth()->user()->isActive())
                     @can(\App\Models\Config::CONFIG_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.configs')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.configs')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.configs') }}">
                             <svg class="min-w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -75,7 +75,7 @@
 
                     @can(\App\Models\Role::ROLE_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.roles')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.roles')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.roles') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -92,7 +92,7 @@
 
                     @can(\App\Models\Permission::PERMISSION_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.permissions')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.permissions')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.permissions') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -109,7 +109,7 @@
 
                     @can(\App\Models\User::USER_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.users')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.users')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.users') }}">
                             <svg class="min-w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -125,7 +125,7 @@
 
                     @can(\App\Models\Company::COMPANY_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.companies')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.companies')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.companies') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -142,7 +142,7 @@
 
                     @can(\App\Models\Greenhouse::GREENHOUSE_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.greenhouses')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.greenhouses')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.greenhouses') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -159,7 +159,7 @@
 
                     @can(\App\Models\OrganizationUser::ORGAN_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.organizations')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.organizations')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.organizations') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="currentColor"
@@ -175,7 +175,7 @@
 
                     @can(\App\Models\Automation::AUTOMATION_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.automations')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.automations')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.automations') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none"
@@ -192,7 +192,7 @@
 
                     @can(\App\Models\GreenhouseAlert::ALERT_INDEX)
                         <hr class="w-full border-t border-gray-400 mt-2">
-                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#6058C3] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.alerts')) text-gray-200 bg-[#5850ba] @endif"
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.alerts')) text-gray-200 bg-[#001F18] @endif"
                            href="{{ route('panel.alerts') }}">
                             <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                  viewBox="0 0 24 24">
@@ -206,12 +206,56 @@
                         </a>
                     @endcan
 
+                    @can(\App\Models\AboutUs::ABOUT_US_INDEX)
+                        <hr class="w-full border-t border-gray-400 mt-2">
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.about.us')) text-gray-200 bg-[#001F18] @endif"
+                           href="{{ route('panel.about.us') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="min-w-6 h-6">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path
+                                    d="M10 19h-6a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1h6a2 2 0 0 1 2 2a2 2 0 0 1 2 -2h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2z"/>
+                                <path d="M12 5v16"/>
+                                <path d="M7 7h1"/>
+                                <path d="M7 11h1"/>
+                                <path d="M16 7h1"/>
+                                <path d="M16 11h1"/>
+                                <path d="M16 15h1"/>
+                            </svg>
+                            <span class="mr-2 font-medium group-hover:flex transition">
+                            تنظیمات درباره ما
+                            </span>
+                        </a>
+                    @endcan
+
+                    @can(\App\Models\ContactUs::CONTACT_US_INDEX)
+                        <hr class="w-full border-t border-gray-400 mt-2">
+                        <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-[#026B56] transition hover:text-gray-100 @if (\Illuminate\Support\Facades\Route::is('panel.contact.us')) text-gray-200 bg-[#001F18] @endif"
+                           href="{{ route('panel.contact.us') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="min-w-6 h-6">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 9h8"/>
+                                <path d="M8 13h6"/>
+                                <path
+                                    d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/>
+                            </svg>
+                            <span class="mr-2 font-medium group-hover:flex transition">
+                            تماس با ما
+                            </span>
+                        </a>
+                    @endcan
+
                 @endif
                 <hr class="w-full border-t border-gray-400 mt-2">
                 <livewire:panel.auth.logout/>
             </div>
         </div>
     </div>
-    <div class="bg-[#343951] py-52"></div>
+    <div class="bg-[#013328] py-52"></div>
 
 </div>

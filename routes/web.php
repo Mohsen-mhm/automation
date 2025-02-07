@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\AboutUs;
+use App\Livewire\ContactUs;
 use App\Livewire\Home;
 use App\Livewire\Panel\Auth\Admin\Login as AdminLogin;
 use App\Livewire\Panel\Auth\Company\Login as CompanyLogin;
@@ -45,6 +47,8 @@ Route::prefix('/register')->as('register.')->middleware(['guest'])->group(functi
     Route::get('/organization', OrganizationRegister::class)->name('organization');
 });
 
+Route::get('/about-us', AboutUs::class)->name('about.us');
+Route::get('/contact-us', ContactUs::class)->name('contact.us');
 
 Route::get('system-start', function () {
     Artisan::call('key:generate');

@@ -11,7 +11,7 @@
 .custom-popup h3 {
     font-size: 16px;
     color: #000000;
-    border-bottom: 1px solid #6058C3;
+    border-bottom: 1px solid #026B56;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
@@ -33,7 +33,7 @@
     justify-content: center;
     align-items: center;
     padding: 8px;
-    background-color: rgba(115, 103, 240, 0.85) !important;
+    background-color: rgba(0, 31, 24, 0.75) !important;
     border-radius: 8px !important;
     margin: 5px 0;
     font-weight: bold;

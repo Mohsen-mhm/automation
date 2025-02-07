@@ -98,6 +98,11 @@ class EditCompany extends Component
         $this->website = collect($this->company)->get('website');
         $this->email = collect($this->company)->get('email');
         $this->status = collect($this->company)->get('status');
+
+        $this->dispatch('editFormOpened', [
+            'province' => collect($this->company)->get('province'),
+            'city' => collect($this->company)->get('city')
+        ]);
     }
 
     public function mount()

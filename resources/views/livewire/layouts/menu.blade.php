@@ -1,12 +1,14 @@
 <aside
     :class="sidebarToggle ? 'translate-x-0' : 'translate-x-full'"
-    class="absolute right-0 top-0 flex h-screen flex-col overflow-y-hidden bg-[#343951] duration-300 ease-linear shadow-lg lg:static lg:translate-x-0"
+    class="absolute right-0 top-0 flex h-screen flex-col overflow-y-hidden bg-[#013328] duration-300 ease-linear shadow-lg lg:static lg:translate-x-0"
     @click.outside="sidebarToggle = false" style="z-index: 999; min-width: 300px !important; padding-top: 40px">
     <!-- SIDEBAR HEADER -->
     <div class="flex items-center text-white lg:justify-center justify-end gap-2 px-6 py-5.5 lg:py-6.5">
         <button class="block lg:hidden hover:scale-125" @click.stop="sidebarToggle = !sidebarToggle">
-            <svg class="w-7 h-7 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+            <svg class="w-7 h-7 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                 fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 18 17.94 6M18 18 6.06 6"/>
             </svg>
         </button>
     </div>
@@ -20,12 +22,28 @@
                 <ul class="mb-2 flex flex-col">
                     <!-- Menu Item Company -->
                     @guest
+                        @if(\Illuminate\Support\Facades\Route::currentRouteName() != 'home')
+                            <li class="border-b border-[#013328] py-1">
+                                <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
+                                   href="{{ route('home') }}">
+                                    <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"
+                                              d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+                                    </svg>
+                                    <span class="text-sm font-bold transition">
+                                        صفحه اصلی
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
                         <!-- Menu Item Greenhouses -->
-                        <li class="border-b border-[#7367F0] py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
+                        <li class="border-b border-[#013328] py-1">
+                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
                                href="javascript:void(0)"
                                @click.prevent="selected = (selected === 'Greenhouses' ? '':'Greenhouses')"
-                               :class="{ 'bg-[#7367F0] ': (selected === 'Greenhouses') || (page === 'onlineSystem') }">
+                               :class="{ 'bg-[#013328] ': (selected === 'Greenhouses') || (page === 'onlineSystem') }">
                                 <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      fill="none"
                                      viewBox="0 0 21 20">
@@ -52,7 +70,7 @@
                             <div class="translate transform overflow-hidden"
                                  :class="(selected === 'Greenhouses') ? 'block' :'hidden'">
                                 <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('login.greenhouse') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -67,7 +85,7 @@
                                             ورود
                                         </a>
                                     </li>
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('register.greenhouse') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -89,10 +107,10 @@
                         <!-- Menu Item Greenhouses -->
 
                         <li class="py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
+                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
                                href="javascript:void(0)"
                                @click.prevent="selected = (selected === 'Company' ? '':'Company')"
-                               :class="{ 'bg-[#7367F0] ': (selected === 'Company') || (page === 'onlineSystem') }">
+                               :class="{ 'bg-[#013328] ': (selected === 'Company') || (page === 'onlineSystem') }">
                                 <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      fill="none"
                                      viewBox="0 0 20 20">
@@ -117,7 +135,7 @@
                             <div class="translate transform overflow-hidden"
                                  :class="(selected === 'Company') ? 'block' :'hidden'">
                                 <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('login.company') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -132,7 +150,7 @@
                                             ورود
                                         </a>
                                     </li>
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('register.company') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -154,11 +172,11 @@
                         <!-- Menu Item Company -->
 
                         <!-- Menu Item Organization -->
-                        <li class="border-t border-[#7367F0] py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#7367F0]"
+                        <li class="border-t border-[#013328] py-1">
+                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
                                href="javascript:void(0)"
                                @click.prevent="selected = (selected === 'Organization' ? '':'Organization')"
-                               :class="{ 'bg-[#7367F0] ': (selected === 'Organization') || (page === 'onlineSystem') }">
+                               :class="{ 'bg-[#013328] ': (selected === 'Organization') || (page === 'onlineSystem') }">
                                 <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      fill="currentColor"
                                      viewBox="0 0 20 19">
@@ -184,7 +202,7 @@
                             <div class="translate transform overflow-hidden"
                                  :class="(selected === 'Organization') ? 'block' :'hidden'">
                                 <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('login.organization') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -199,7 +217,7 @@
                                             ورود
                                         </a>
                                     </li>
-                                    <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                            href="{{ route('register.organization') }}"
                                            :class="page === 'onlineSystem' && '!text-white'">
@@ -231,7 +249,8 @@
                             @php
                                 $greenhouse = \App\Models\Greenhouse::query()->whereOwnerNationalId(auth()->user()->getNationalId())->first();
                             @endphp
-                            <h2 class="text-md font-bold text-white text-center my-3">گلخانه {{ $greenhouse->name }}</h2>
+                            <h2 class="text-md font-bold text-white text-center my-3">
+                                گلخانه {{ $greenhouse->name }}</h2>
                         @elseif(auth()->user()->hasRole(\App\Models\Role::ORGANIZATION_ROLE))
                             @php
                                 $organization = \App\Models\OrganizationUser::query()->whereNationalId(auth()->user()->getNationalId())->first();
@@ -241,10 +260,10 @@
                         @endif
 
                         <!-- Menu Item Panel -->
-                        <li class="py-1 hover:bg-[#6058C3] rounded-sm">
+                        <li class="py-1 hover:bg-[#026B56] rounded-sm">
                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
                                href="{{ route('panel.home') }}" @click="selected = (selected === 'Panel' ? '':'Panel')"
-                               :class="{ 'bg-[#7367F0] ': (selected === 'Panel') && (page === 'panel') }"
+                               :class="{ 'bg-[#013328] ': (selected === 'Panel') && (page === 'panel') }"
                             >
                                 <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      fill="none"
@@ -258,6 +277,76 @@
                         </li>
                         <!-- Menu Item Panel -->
                     @endguest
+
+                    <!-- Menu Item Other -->
+                    <li class="border-t border-[#013328] py-1">
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
+                           href="javascript:void(0)"
+                           @click.prevent="selected = (selected === 'Other' ? '':'Other')"
+                           :class="{ 'bg-[#013328] ': (selected === 'Other') || (page === 'onlineSystem') }">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="min-w-6 h-6">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>
+                                <path d="M8 12l0 .01"/>
+                                <path d="M12 12l0 .01"/>
+                                <path d="M16 12l0 .01"/>
+                            </svg>
+                            <span class="text-sm font-bold transition">
+                                سایر
+                                </span>
+                            <svg
+                                class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
+                                :class="{ 'rotate-0': (selected === 'Other') }" width="20" height="20"
+                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                                    fill=""
+                                />
+                            </svg>
+                        </a>
+                        <!-- Dropdown Menu Start -->
+                        <div class="translate transform overflow-hidden"
+                             :class="(selected === 'Other') ? 'block' :'hidden'">
+                            <ul class="mb-2 mt-1 flex flex-col gap-2.5">
+                                <li class="py-1 hover:bg-[#026B56] rounded-sm">
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
+                                       href="{{ route('about.us') }}"
+                                       :class="page === 'onlineSystem' && '!text-white'">
+                                        <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
+                                             aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                             viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-width="2"
+                                                  d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
+                                        </svg>
+                                        درباره ما
+                                    </a>
+                                </li>
+                                <li class="py-1 hover:bg-[#026B56] rounded-sm">
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
+                                       href="{{ route('contact.us') }}"
+                                       :class="page === 'onlineSystem' && '!text-white'">
+                                        <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
+                                             aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                             viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-width="2"
+                                                  d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
+                                        </svg>
+                                        تماس با ما
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
+                    </li>
                 </ul>
             </div>
         </nav>

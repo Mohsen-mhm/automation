@@ -1,6 +1,6 @@
 <div class="md:hidden fixed top-4 left-4" style="z-index: 99999;">
     <button id="sidebarToggle"
-            class="bg-[#7367F0] text-white p-2 rounded-full focus:outline-none shadow-lg transition-colors hover:bg-[#6058C3]"
+            class="bg-[#013328] text-white p-2 rounded-full focus:outline-none shadow-lg transition-colors hover:bg-[#026B56]"
             wire:transition>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" wire:transition
              stroke="currentColor">
