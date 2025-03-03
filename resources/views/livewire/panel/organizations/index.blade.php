@@ -23,4 +23,5 @@
         <livewire:panel.organizations.edit-organization/>
     @endcan
     <livewire:panel.organizations.show-organization/>
+    <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

@@ -23,4 +23,5 @@
         <livewire:panel.greenhouses.edit-greenhouse/>
     @endcan
     <livewire:panel.greenhouses.show-greenhouse/>
+    <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

@@ -86,6 +86,10 @@ class EditGreenhouse extends Component
         $this->longitude = collect($this->greenhouse)->get('longitude');
         $this->status = collect($this->greenhouse)->get('status');
 
+        $this->dispatch('editFormOpened', [
+            'province' => collect($this->greenhouse)->get('province'),
+            'city' => collect($this->greenhouse)->get('city')
+        ]);
     }
 
     public function mount()

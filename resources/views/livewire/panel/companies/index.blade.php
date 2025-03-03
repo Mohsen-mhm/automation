@@ -23,4 +23,5 @@
         <livewire:panel.companies.edit-company/>
     @endcan
     <livewire:panel.companies.show-company/>
+    <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

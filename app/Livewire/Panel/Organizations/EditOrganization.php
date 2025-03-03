@@ -60,6 +60,11 @@ class EditOrganization extends Component
         $this->landline_number = collect($this->organization)->get('landline_number');
         $this->phone_number = collect($this->organization)->get('phone_number');
         $this->status = collect($this->organization)->get('status');
+        
+        $this->dispatch('editFormOpened', [
+            'province' => collect($this->organization)->get('province'),
+            'city' => collect($this->organization)->get('city')
+        ]);
     }
 
     public function mount()

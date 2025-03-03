@@ -600,6 +600,5 @@
 
         </form>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
     </x-slot>
 </x-modal>
