@@ -156,7 +156,7 @@ function updateMarkerDetails(markerInfo) {
     if (markerInfoEl) {
         markerInfoEl.innerHTML = `
         <div class="marker-details w-full flex flex-col justify-start items-start text-center px-3" dir="rtl">
-            <img class="my-3" src="${markerInfo.image ? markerInfo.image : './assets/img/default-image.svg'}">
+            <img class="my-3" src="${markerInfo.image ? markerInfo.image : './assets/img/default-image.jpg'}">
             <h4>${markerInfo.name}</h4>
             <p class="my-2 text-start flex">
                 <svg class="w-6 h-6 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
