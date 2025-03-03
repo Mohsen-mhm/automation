@@ -27,6 +27,7 @@ class AutomationsTable extends DataTableComponent
             ->setFiltersEnabled()
             ->setFilterLayoutSlideDown()
             ->setPerPageVisibilityStatus(false)
+            ->useComputedPropertiesDisabled()
             ->setThAttributes(function () {
                 return [
                     'class' => 'text-right',

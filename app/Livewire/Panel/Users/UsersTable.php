@@ -27,6 +27,7 @@ class UsersTable extends DataTableComponent
             ->setFiltersEnabled()
             ->setFilterLayoutSlideDown()
             ->setPerPageVisibilityStatus(false)
+            ->useComputedPropertiesDisabled()
             ->setEmptyMessage('رکوردی یافت نشد.')
             ->setThAttributes(function () {
                 return [
