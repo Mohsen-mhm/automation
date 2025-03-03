@@ -135,7 +135,7 @@ class Map extends Component
         foreach ($filteredCompany as $company) {
             $companiesData[] = [
                 'coordinates' => [$company->latitude, $company->longitude],
-                'image' => asset('storage/' . $company->company_logo),
+                'image' => asset($company->company_logo),
                 'name' => $company->name . "\n" . $company->type,
                 'area' => $company->province . "\n" . $company->city . "\n" . $company->address,
                 'company' => true
@@ -152,7 +152,7 @@ class Map extends Component
         foreach ($filteredGreenhouses as $greenhouse) {
             $greenhouseData[] = [
                 'coordinates' => [$greenhouse->latitude, $greenhouse->longitude],
-                'image' => asset('storage/' . $greenhouse->image),
+                'image' => asset($greenhouse->image),
                 'name' => $greenhouse->name,
                 'area' => $greenhouse->province . ' - ' . $greenhouse->city,
                 'product' => $greenhouse->product_type . ' - ' . $greenhouse->substrate_type,

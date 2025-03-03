@@ -323,7 +323,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($image)
-                            <img src="{{ asset('storage/' . $image) }}"
+                            <img src="{{ asset($image) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $greenhouse->get('name') }} image"/>
                         @else
@@ -339,7 +339,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($operationLicence)
-                            <img src="{{ asset('storage/' . $operationLicence) }}"
+                            <img src="{{ asset($operationLicence) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $greenhouse->get('name') }} operation licence"/>
                         @else

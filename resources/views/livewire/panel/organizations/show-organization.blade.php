@@ -217,7 +217,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($nationalCard)
-                            <img src="{{ asset('storage/' . $nationalCard) }}"
+                            <img src="{{ asset($nationalCard) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $organization->get('fname') }} national card"/>
                         @else
@@ -233,7 +233,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($personnelCard)
-                            <img src="{{ asset('storage/' . $personnelCard) }}"
+                            <img src="{{ asset($personnelCard) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $organization->get('fname') }} personnel card"/>
                         @else
@@ -249,7 +249,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($introductionLetter)
-                            <img src="{{ asset('storage/' . $introductionLetter) }}"
+                            <img src="{{ asset($introductionLetter) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $organization->get('fname') }} introduction letter"/>
                         @else

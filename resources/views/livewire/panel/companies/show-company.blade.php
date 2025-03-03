@@ -379,7 +379,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($companyLogo)
-                            <img src="{{ asset('storage/' . $companyLogo) }}"
+                            <img src="{{ asset($companyLogo) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $company->get('name') }} logo"/>
                         @else
@@ -395,7 +395,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($brandLogo)
-                            <img src="{{ asset('storage/' . $brandLogo) }}"
+                            <img src="{{ asset($brandLogo) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $company->get('name') }} brand logo"/>
                         @else
@@ -411,7 +411,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($trademarkCertificate)
-                            <img src="{{ asset('storage/' . $trademarkCertificate) }}"
+                            <img src="{{ asset($trademarkCertificate) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $company->get('name') }} trademark certificate"/>
                         @else
@@ -427,7 +427,7 @@
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($operationLicence)
-                            <img src="{{ asset('storage/' . $operationLicence) }}"
+                            <img src="{{ asset($operationLicence) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $company->get('name') }} operation licence"/>
                         @else

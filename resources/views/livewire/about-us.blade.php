@@ -3,7 +3,7 @@
         <section class="max-w-2xl mx-auto">
             <h2 class="text-2xl font-semibold mb-6">{{ $about->get('title') }}</h2>
             <img
-                src="{{ $about->has('image') ? asset('storage/' . $about->get('image')) : "https://placehold.co/600x400/EEE/31343C" }}"
+                src="{{ $about->has('image') ? asset($about->get('image')) : "https://placehold.co/600x400/EEE/31343C" }}"
                 alt="About Us Image"
                 class="w-1/2 h-full rounded-lg mb-6"/>
             <div class="w-full h-full" id="ck-content">

@@ -93,7 +93,7 @@
                             <label for="dropzone-file"
                                    class="leading-7 text-sm text-gray-600">تصویر فعلی:</label>
                             <img
-                                src="{{ $aboutUs->image ? asset('storage/' . $aboutUs->image) : "https://placehold.co/600x400/EEE/31343C" }}"
+                                src="{{ $aboutUs->image ? asset($aboutUs->image) : "https://placehold.co/600x400/EEE/31343C" }}"
                                 alt="About Us Image"
                                 class="w-full h-full rounded-lg"/>
                         </div>
