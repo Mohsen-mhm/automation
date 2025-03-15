@@ -91,7 +91,7 @@ class Register extends Component
             'postal' => ['required', 'string'],
             'landline_number' => ['required', 'string'],
             'phone_number' => ['nullable', 'string'],
-            'location_link' => ['required', 'string', new ValidUrl()],
+            'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
             'website' => ['required', 'string', 'unique:companies,website'],
             'email' => ['required', 'email', 'unique:companies,email'],
             'official_newspaper' => ['required', 'file', 'mimes:jpeg,png,svg,pdf'],

@@ -37,8 +37,8 @@ class EditGreenhouse extends Component
     public string $product_type = '';
     public string $meterage = '';
     public string $greenhouse_status = '';
-    public string $construction_date = '';
-    public string $operation_date = '';
+    public ?string $construction_date = '';
+    public ?string $operation_date = '';
     public string $owner_name = '';
     public string $owner_phone = '';
     public string $old_owner_national_id = '';
@@ -120,7 +120,7 @@ class EditGreenhouse extends Component
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
             'postal' => ['required', 'string', new ValidIranPostalCode()],
-            'location_link' => ['required', 'string', new ValidUrl()],
+            'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
             'operation_licence' => ['nullable', 'image'],
             'image' => ['nullable', 'image'],
             'status' => ['nullable', 'string'],
@@ -131,7 +131,7 @@ class EditGreenhouse extends Component
     {
         $this->validateOnly($propertyName);
 
-        if ($this->location_link) {
+        if ($this->location_link && $propertyName === "location_link") {
             try {
                 $coordinates = $this->getCoordinates($this->location_link);
                 if (is_array($coordinates)) {
