@@ -90,7 +90,7 @@ class CreateCompany extends Component
             'postal' => ['required', 'string', new ValidIranPostalCode()],
             'landline_number' => ['required', 'string', new ValidPhoneNumber()],
             'phone_number' => ['nullable', 'string', new ValidPhoneNumber()],
-            'location_link' => ['required', 'string', new ValidUrl()],
+            'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
             'website' => ['required', 'string'],
             'email' => ['required', 'email'],
             'official_newspaper' => ['required', 'file', 'mimes:jpeg,png,svg,pdf'],
@@ -103,7 +103,7 @@ class CreateCompany extends Component
     {
         $this->validateOnly($propertyName);
 
-        if ($this->location_link) {
+        if ($this->location_link && $propertyName === "location_link") {
             try {
                 $coordinates = $this->getCoordinates($this->location_link);
                 if (is_array($coordinates)) {

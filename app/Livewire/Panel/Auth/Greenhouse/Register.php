@@ -87,7 +87,7 @@ class Register extends Component
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
             'postal' => ['required', 'string'],
-            'location_link' => ['required', 'string', new ValidUrl(), 'unique:greenhouses,location_link'],
+            'location_link' => ['required', 'string', new ValidUrl(), 'unique:greenhouses,location_link', 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
             'operation_licence' => ['required', 'image'],
             'image' => ['required', 'image'],
         ];
