@@ -12,6 +12,7 @@ class ContactUs extends Component
 {
     public string|null $name;
     public string|null $email;
+    public string|null $phone;
     public string|null $subject;
     public string|null $message;
 
@@ -20,6 +21,7 @@ class ContactUs extends Component
         return [
             'name' => ['required', 'string', 'min:2', 'max:100'],
             'email' => ['required', 'email', 'max:100'],
+            'phone' => ['required', 'string', 'max:20'],
             'subject' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'min:2', 'max:1000'],
         ];
