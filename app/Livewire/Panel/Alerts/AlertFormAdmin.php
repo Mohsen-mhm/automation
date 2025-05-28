@@ -7,7 +7,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class AlertForm extends Component
+class AlertFormAdmin extends Component
 {
     public array $validData;
 
@@ -27,12 +27,10 @@ class AlertForm extends Component
     public int|null $min_humidity = null;
     public int|null $max_humidity = null;
 
-    public function mount(): void
+    public function mount($id): void
     {
-        $this->alert = Greenhouse::query()->where([
-            'owner_national_id' => auth()->user()->getNationalId(),
-            'owner_phone' => auth()->user()->getPhone()
-        ])->first()->alert;
+
+        $this->alert = Greenhouse::query()->find($id)->alert;
 
         $this->lux_active = collect($this->alert)->get('lux_active');
         $this->min_lux = collect($this->alert)->get('min_lux');

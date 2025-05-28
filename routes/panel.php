@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Panel\Alerts\Index as AlertsIndex;
+use App\Livewire\Panel\Alerts\IndexAdmin;
 use App\Livewire\Panel\Automations\Index as AutomationsIndex;
 use App\Livewire\Panel\Companies\Index as CompaniesIndex;
 use App\Livewire\Panel\Configs\Index as ConfigsIndex;
@@ -41,5 +42,6 @@ Route::get('/organizations', OrganizationsIndex::class)->name('organizations');
 Route::get('/automations', AutomationsIndex::class)->name('automations');
 
 Route::get('/alerts', AlertsIndex::class)->name('alerts');
+Route::get('/{id}/alerts', IndexAdmin::class)->name('alerts.admin');
 Route::get('/about-us', AboutUsIndex::class)->name('about.us');
 Route::get('/contact-us', ContactUsIndex::class)->name('contact.us');
