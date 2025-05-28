@@ -26,7 +26,7 @@
                 <div
                     class="grid grid-cols-2 px-4 py-5 text-center text-gray-700 border border-gray-200">
                     <div class="text-gray-800 flex justify-center items-center text-center">
-                        <small class="font-bold">نام</small>
+                        <small class="font-bold">ایمیل</small>
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($contactUs)
@@ -39,7 +39,20 @@
                 <div
                     class="grid grid-cols-2 px-4 py-5 text-center text-gray-700 border border-gray-200">
                     <div class="text-gray-800 flex justify-center items-center text-center">
-                        <small class="font-bold">نام</small>
+                        <small class="font-bold">شماره تلفن</small>
+                    </div>
+                    <div class="text-gray-700 flex justify-center items-center text-center">
+                        @if($contactUs)
+                            <p wire:transition>{{ $contactUs->get('phone') ?? '-' }}</p>
+                        @else
+                            -
+                        @endif
+                    </div>
+                </div>
+                <div
+                    class="grid grid-cols-2 px-4 py-5 text-center text-gray-700 border border-gray-200">
+                    <div class="text-gray-800 flex justify-center items-center text-center">
+                        <small class="font-bold">موضوع</small>
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($contactUs)
@@ -52,7 +65,7 @@
                 <div
                     class="grid grid-cols-2 px-4 py-5 text-center text-gray-700 border border-gray-200">
                     <div class="text-gray-800 flex justify-center items-center text-center">
-                        <small class="font-bold">نام</small>
+                        <small class="font-bold">پیام</small>
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
                         @if($contactUs)
