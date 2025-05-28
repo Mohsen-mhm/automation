@@ -15,6 +15,7 @@ class Greenhouse extends Model
     public const GREENHOUSE_CREATE = 'greenhouse-create';
     public const GREENHOUSE_EDIT = 'greenhouse-edit';
     public const GREENHOUSE_CONFIRM = 'greenhouse-confirm';
+    public const GREENHOUSE_DELETE = 'greenhouse-delete';
 
     protected $fillable = [
         'name',

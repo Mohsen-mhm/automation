@@ -22,6 +22,9 @@
     @can(\App\Models\Greenhouse::GREENHOUSE_EDIT)
         <livewire:panel.greenhouses.edit-greenhouse/>
     @endcan
+    @can(\App\Models\Greenhouse::GREENHOUSE_DELETE)
+        <livewire:panel.greenhouses.delete-greenhouse/>
+    @endcan
     <livewire:panel.greenhouses.show-greenhouse/>
     <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

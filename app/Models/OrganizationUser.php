@@ -13,6 +13,7 @@ class OrganizationUser extends Model
     public const ORGAN_CREATE = 'organ-create';
     public const ORGAN_EDIT = 'organ-edit';
     public const ORGAN_CONFIRM = 'organ-confirm';
+    public const ORGAN_DELETE = 'organ-delete';
 
     protected $fillable = [
         'fname',
