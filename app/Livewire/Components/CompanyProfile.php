@@ -25,7 +25,7 @@ class CompanyProfile extends Component
     use WithFileUploads;
 
     public $company = [];
-    public array $companyTypes;
+    public $companyTypes;
 
     public string $coordinates = '-';
     public string $latitude = '-';
@@ -73,7 +73,7 @@ class CompanyProfile extends Component
             'interface_phone' => auth()->user()->getPhone()
         ])->first());
 
-        $this->companyTypes = json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), false, 512, JSON_THROW_ON_ERROR);
+        $this->companyTypes = json_decode(collect(Config::query()->whereName(Config::COMPANY_TYPE)->first())->get('value'), true, 512, JSON_THROW_ON_ERROR);
 
         $this->name = $this->company->get('name');
         $this->type = $this->company->get('type');
