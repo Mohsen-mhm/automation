@@ -14,6 +14,7 @@ class Company extends Model
     public const COMPANY_CREATE = 'company-create';
     public const COMPANY_EDIT = 'company-edit';
     public const COMPANY_CONFIRM = 'company-confirm';
+    public const COMPANY_DELETE = 'company-delete';
 
     protected $fillable = [
         'name',

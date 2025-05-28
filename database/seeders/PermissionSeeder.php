@@ -59,6 +59,10 @@ class PermissionSeeder extends Seeder
                 'title' => 'ویرایش شرکت',
             ],
             [
+                'name' => 'company-delete',
+                'title' => 'حدف شرکت',
+            ],
+            [
                 'name' => 'company-confirm',
                 'title' => 'تایید/رد کردن اطلاعات شرکت',
             ],
@@ -75,6 +79,10 @@ class PermissionSeeder extends Seeder
                 'title' => 'ویرایش کاربر سازمانی',
             ],
             [
+                'name' => 'organ-delete',
+                'title' => 'حدف کاربر سازمانی',
+            ],
+            [
                 'name' => 'organ-confirm',
                 'title' => 'تایید/رد کردن اطلاعات کاربر سازمانی',
             ],
@@ -89,6 +97,10 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'greenhouse-edit',
                 'title' => 'ویرایش گلخانه',
+            ],
+            [
+                'name' => 'greenhouse-delete',
+                'title' => 'حدف گلخانه',
             ],
             [
                 'name' => 'greenhouse-confirm',

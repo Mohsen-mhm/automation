@@ -22,6 +22,9 @@
     @can(\App\Models\OrganizationUser::ORGAN_EDIT)
         <livewire:panel.organizations.edit-organization/>
     @endcan
+    @can(\App\Models\OrganizationUser::ORGAN_DELETE)
+        <livewire:panel.organizations.delete-organization/>
+    @endcan
     <livewire:panel.organizations.show-organization/>
     <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

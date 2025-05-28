@@ -22,6 +22,9 @@
     @can(\App\Models\Company::COMPANY_EDIT)
         <livewire:panel.companies.edit-company/>
     @endcan
+    @can(\App\Models\Company::COMPANY_DELETE)
+        <livewire:panel.companies.delete-company/>
+    @endcan
     <livewire:panel.companies.show-company/>
     <script src="./../assets/js/ir-city-select/ir-city-select.js"></script>
 </div>

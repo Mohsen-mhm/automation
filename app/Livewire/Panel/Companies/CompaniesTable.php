@@ -102,6 +102,9 @@ class CompaniesTable extends DataTableComponent
         if (Gate::allows(Company::COMPANY_INDEX)) {
             $buttons[] = $this->createActionButton('نمایش', 'text-yellow-700 p-1 fas fa-lg fa-circle-info', 'showInitialize', 'show-modal');
         }
+        if (Gate::allows(Company::COMPANY_DELETE)) {
+            $buttons[] = $this->createActionButton('حذف', 'text-red-700 p-1 fas fa-lg fa-trash', 'deleteInitialize', 'delete-modal');
+        }
         return $buttons;
     }
 
@@ -130,5 +133,10 @@ class CompaniesTable extends DataTableComponent
     public function showInitialize($id): void
     {
         $this->dispatch('showInitialize', $id);
+    }
+
+    public function deleteInitialize($id): void
+    {
+        $this->dispatch('deleteInitialize', $id);
     }
 }

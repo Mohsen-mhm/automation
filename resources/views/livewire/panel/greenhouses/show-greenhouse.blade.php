@@ -322,7 +322,7 @@
                         <small class="font-bold">تصویر یا لوگو گلخانه</small>
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
-                        @if($image)
+                        @if($greenhouse && $image)
                             <img src="{{ asset($image) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $greenhouse->get('name') }} image"/>
@@ -338,7 +338,7 @@
                         <small class="font-bold">پروانه بهره برداری</small>
                     </div>
                     <div class="text-gray-700 flex justify-center items-center text-center">
-                        @if($operationLicence)
+                        @if($greenhouse && $operationLicence)
                             <img src="{{ asset($operationLicence) }}"
                                  style="max-width: 20rem"
                                  alt="{{ $greenhouse->get('name') }} operation licence"/>
