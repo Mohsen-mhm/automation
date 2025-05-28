@@ -61,14 +61,12 @@ class RoleSeeder extends Seeder
         $companyPermissions = Permission::query()
             ->where('name', 'profile-index')->orWhere('name', 'profile-edit')
             ->orWhere('name', 'greenhouse-index')
-            ->orWhere('name', 'automation-index')->orWhere('name', 'automation-create')->orWhere('name', 'automation-edit')->orWhere('name', 'automation-confirm')
             ->get();
         $companyRole->permissions()->sync($companyPermissions->pluck('id'));
 
         $greenhouseRole = Role::query()->whereName(Role::GREENHOUSE_ROLE)->first();
         $greenhousePermissions = Permission::query()
             ->where('name', 'profile-index')->orWhere('name', 'profile-edit')->orWhere('name', 'alert-index')
-            ->orWhere('name', 'automation-index')->orWhere('name', 'automation-create')->orWhere('name', 'automation-edit')->orWhere('name', 'automation-confirm')
             ->get();
         $greenhouseRole->permissions()->sync($greenhousePermissions->pluck('id'));
     }

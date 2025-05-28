@@ -2,7 +2,11 @@
 
 namespace App\Livewire\Panel\Greenhouses;
 
+use App\Models\Company;
 use App\Models\Config;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -13,7 +17,21 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class GreenhousesTable extends DataTableComponent
 {
-    protected $model = Greenhouse::class;
+    public function builder(): Builder
+    {
+        if (auth()->user()->hasRole(Role::ADMIN_ROLE)) {
+            return Greenhouse::query()->select();
+        }
+
+        $companyUser = User::query()->find(auth()->id());
+        $company = Company::query()->where('national_id', $companyUser->national_id)->first();
+        return Greenhouse::query()
+            ->whereHas('automation', function ($query) use ($company) {
+                $query->where('climate_company_id', $company->id)
+                    ->orWhere('feeding_company_id', $company->id);
+            })
+            ->select();
+    }
 
     protected int $index = 0;
 
@@ -92,6 +110,7 @@ class GreenhousesTable extends DataTableComponent
     {
         $buttons = [];
         if (Gate::allows(Greenhouse::GREENHOUSE_EDIT)) {
+            $buttons[] = $this->createActionButton('محدوده ها', 'text-indigo-700 p-1 fas fa-lg fa-bell', 'alertsInitialize', '');
             $buttons[] = $this->createActionButton('ویرایش', 'text-blue-600 p-1 fas fa-lg fa-pencil', 'editInitialize', 'edit-modal');
         }
         if (Gate::allows(Greenhouse::GREENHOUSE_INDEX)) {
@@ -107,8 +126,15 @@ class GreenhousesTable extends DataTableComponent
     {
         return LinkColumn::make($label)
             ->title(fn($row) => '')
-            ->location(fn($row) => 'javascript:void(0)')
+            ->location(fn($row) => $wireClickMethod == "alertsInitialize" ? route('panel.alerts.admin', $row->id) : 'javascript:void(0)')
             ->attributes(function ($row) use ($label, $class, $dataModal, $wireClickMethod) {
+                if ($wireClickMethod == "alertsInitialize") {
+                    return [
+                        'class' => $class,
+                        'style' => 'margin-right:3px; margin-left:3px',
+                        'title' => $label
+                    ];
+                }
                 return [
                     'class' => $class,
                     'style' => 'margin-right:3px; margin-left:3px',
