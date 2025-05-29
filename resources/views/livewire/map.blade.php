@@ -136,7 +136,7 @@
                                 x-transition:leave-start="opacity-100 transform scale-100"
                                 x-transition:leave-end="opacity-0 transform scale-95"
                                 @click.away="{{ toCamelCase($filter->name) }}Open = false"
-                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5">
+                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5" style="z-index: 999 !important;">
 
                                 @switch($filter->name)
                                     @case(\App\Models\Filter::GREENHOUSE_SUBSTRATE_FILTER)
@@ -267,7 +267,7 @@
                                 x-transition:leave-start="opacity-100 transform scale-100"
                                 x-transition:leave-end="opacity-0 transform scale-95"
                                 @click.away="{{ toCamelCase($filter->name) }}Open = false"
-                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5">
+                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5" style="z-index: 999 !important;">
 
                                 @switch($filter->name)
                                     @case(\App\Models\Filter::COMPANY_PROVINCE_FILTER)
@@ -333,10 +333,6 @@
                 <div class="mt-6 pt-6 border-t border-slate-200">
                     <div class="flex items-center justify-between mb-3">
                         <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
-                        <button wire:click="resetFilters"
-                                class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200">
-                            پاک کردن همه
-                        </button>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         @foreach(array_merge($companyTypeFilter, $companyProvinceFilter) as $filter)
@@ -360,10 +356,6 @@
                 <div class="mt-6 pt-6 border-t border-slate-200">
                     <div class="flex items-center justify-between mb-3">
                         <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
-                        <button wire:click="resetFilters"
-                                class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200">
-                            پاک کردن همه
-                        </button>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         @foreach(array_merge($substrateFilter, $productFilter, $provinceFilter) as $filter)
