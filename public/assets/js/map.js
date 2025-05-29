@@ -413,7 +413,6 @@ window.openMarkerDetails = function (markerName) {
         // If there's a sidebar toggle, trigger it
         const sidebarToggle = document.getElementById('sidebarToggleDetail');
         if (sidebarToggle) {
-        console.log(sidebarToggle)
             sidebarToggle.click();
         }
     }
