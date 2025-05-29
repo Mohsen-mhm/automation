@@ -1,31 +1,35 @@
-<header
-    class="top-0 flex w-full bg-[#013328] shadow-lg" style="z-index: 9999">
-    <div
-        class="flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11">
-        <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
-            <!-- Hamburger Toggle BTN -->
+<header class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm z-50">
+    <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+            {{-- Mobile Menu Button --}}
             <button
-                class="z-50 block rounded-sm bg-[#013328] p-1.5 lg:hidden hover:scale-125"
+                class="lg:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors"
                 @click.stop="sidebarToggle = !sidebarToggle">
-                <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                     height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-        </div>
-        <div class="w-full justify-between items-center text-center text-white flex">
-            <div class="flex justify-center items-center w-full">
-                <a class="flex flex-col items-center justify-center px-2"
-                   href="{{ route('home') }}"
-                   id="drawer-navigation-label">
-                    <svg class="min-w-9 h-9" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 22 21">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                              d="M7.24 7.194a24.16 24.16 0 0 1 3.72-3.062m0 0c3.443-2.277 6.732-2.969 8.24-1.46 2.054 2.053.03 7.407-4.522 11.959-4.552 4.551-9.906 6.576-11.96 4.522C1.223 17.658 1.89 14.412 4.121 11m6.838-6.868c-3.443-2.277-6.732-2.969-8.24-1.46-2.054 2.053-.03 7.407 4.522 11.959m3.718-10.499a24.16 24.16 0 0 1 3.719 3.062M17.798 11c2.23 3.412 2.898 6.658 1.402 8.153-1.502 1.503-4.771.822-8.2-1.433m1-6.808a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
-                    </svg>
-                    <span class="mt-2 text-xl flex transition">سامانه متمرکز گلخانه‌های
-                    برخط کشور</span>
+
+            {{-- Logo and Title --}}
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                    <div class="p-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 group-hover:from-emerald-600 group-hover:to-emerald-700 transition-all duration-200 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="text-xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors">
+                            سامانه متمرکز گلخانه‌های برخط کشور
+                        </h1>
+                    </div>
                 </a>
+            </div>
+
+            {{-- Actions (if needed) --}}
+            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                {{-- Add any header actions here --}}
             </div>
         </div>
     </div>

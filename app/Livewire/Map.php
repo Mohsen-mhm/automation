@@ -32,15 +32,36 @@ class Map extends Component
     {
         $this->prepareGreenhouseFilterData();
         $this->prepareCompanyFilterData();
+
+        // Dispatch initial data to JavaScript
+        $this->dispatch('submit-filter', ['type' => 'greenhouse', 'data' => $this->greenhousesData]);
     }
 
     public function changeTab($tab): void
     {
         $this->activeTab = $tab;
+
+        // Dispatch the correct data based on active tab
+        if ($tab === 'greenhouse') {
+            $this->dispatch('submit-filter', ['type' => 'greenhouse', 'data' => $this->greenhousesData]);
+        } else if ($tab === 'company') {
+            $this->dispatch('submit-filter', ['type' => 'company', 'data' => $this->companiesData]);
+        }
+
+        // Also dispatch tab change event for any additional JavaScript handling
+        $this->dispatch('tab-changed', ['activeTab' => $tab]);
     }
 
     public function prepareGreenhouseFilterData(): void
     {
+        // Reset arrays first
+        $this->substrates = [];
+        $this->productTypes = [];
+        $this->provinces = [];
+        $this->substrateFilter = [];
+        $this->productFilter = [];
+        $this->provinceFilter = [];
+
         collect(Greenhouse::query()->where('active', true)->pluck('substrate_type'))->unique()
             ->each(function ($item) {
                 $this->substrates[] = [
@@ -70,6 +91,12 @@ class Map extends Component
 
     public function prepareCompanyFilterData(): void
     {
+        // Reset arrays first
+        $this->companyProvinces = [];
+        $this->companyType = [];
+        $this->companyProvinceFilter = [];
+        $this->companyTypeFilter = [];
+
         collect(Company::query()->where('active', true)->pluck('province'))->unique()
             ->each(function ($item) {
                 $this->companyProvinces[] = [
@@ -101,7 +128,6 @@ class Map extends Component
         }
     }
 
-
     public function filterGreenhouse(): Collection
     {
         return collect(Greenhouse::all())->filter(function ($greenhouse) {
@@ -114,7 +140,6 @@ class Map extends Component
             return null;
         });
     }
-
 
     public function filterCompany(): Collection
     {
@@ -136,7 +161,7 @@ class Map extends Component
             $companiesData[] = [
                 'coordinates' => [$company->latitude, $company->longitude],
                 'image' => asset($company->company_logo),
-                'name' => $company->name . "\n" . $company->type,
+                'name' => $company->name,
                 'area' => $company->province . "\n" . $company->city . "\n" . $company->address,
                 'company' => true
             ];
@@ -185,4 +210,3 @@ class Map extends Component
         return view('livewire.map');
     }
 }
-

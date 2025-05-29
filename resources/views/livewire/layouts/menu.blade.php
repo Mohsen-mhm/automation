@@ -1,355 +1,298 @@
+{{-- Modern Menu Component (menu.blade.php) --}}
 <aside
     :class="sidebarToggle ? 'translate-x-0' : 'translate-x-full'"
-    class="absolute right-0 top-0 flex h-screen flex-col overflow-y-hidden bg-[#013328] duration-300 ease-linear shadow-lg lg:static lg:translate-x-0"
-    @click.outside="sidebarToggle = false" style="z-index: 999; min-width: 300px !important; padding-top: 40px">
-    <!-- SIDEBAR HEADER -->
-    <div class="flex items-center text-white lg:justify-center justify-end gap-2 px-6 py-5.5 lg:py-6.5">
-        <button class="block lg:hidden hover:scale-125" @click.stop="sidebarToggle = !sidebarToggle">
-            <svg class="w-7 h-7 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                 fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M6 18 17.94 6M18 18 6.06 6"/>
+    class="fixed right-0 top-0 z-50 h-screen w-80 transform bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:shadow-none"
+    @click.outside="sidebarToggle = false">
+
+    {{-- Header --}}
+    <div class="flex items-center justify-between border-b border-slate-200 bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-4 text-white">
+        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold">منوی کاربری</h3>
+                <p class="text-sm text-emerald-100">سامانه گلخانه‌ها</p>
+            </div>
+        </div>
+        <button
+            class="rounded-lg p-2 text-white/80 hover:bg-white/20 hover:text-white lg:hidden"
+            @click.stop="sidebarToggle = false">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
     </div>
-    <!-- SIDEBAR HEADER -->
 
-    <div class="no-scrollbar pt-[30px] lg:pt-[50px] flex flex-col overflow-y-auto duration-300 ease-linear">
-        <!-- Sidebar Menu -->
-        <nav class="mt-2 px-2 py-2" x-data="{selected: $persist('Company')}">
-            <!-- Menu Group -->
-            <div>
-                <ul class="mb-2 flex flex-col">
-                    <!-- Menu Item Company -->
+    {{-- Content --}}
+    <div class="flex h-full flex-col overflow-hidden">
+        <div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+            <nav x-data="{
+                selectedItem: '',
+                init() {
+                    // Load from localStorage on init
+                    const stored = localStorage.getItem('menu_selected');
+                    if (stored) {
+                        this.selectedItem = stored;
+                    }
+                },
+                selectItem(item) {
+                    this.selectedItem = this.selectedItem === item ? '' : item;
+                    localStorage.setItem('menu_selected', this.selectedItem);
+                }
+             }">
+                <ul class="space-y-2">
                     @guest
+                        {{-- Home Link --}}
                         @if(\Illuminate\Support\Facades\Route::currentRouteName() != 'home')
-                            <li class="border-b border-[#013328] py-1">
-                                <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
-                                   href="{{ route('home') }}">
-                                    <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2"
-                                              d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
-                                    </svg>
-                                    <span class="text-sm font-bold transition">
-                                        صفحه اصلی
-                                    </span>
+                            <li>
+                                <a href="{{ route('home') }}"
+                                   class="group flex items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600">
+                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3 font-medium">صفحه اصلی</span>
                                 </a>
                             </li>
                         @endif
-                        <!-- Menu Item Greenhouses -->
-                        <li class="border-b border-[#013328] py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
-                               href="javascript:void(0)"
-                               @click.prevent="selected = (selected === 'Greenhouses' ? '':'Greenhouses')"
-                               :class="{ 'bg-[#013328] ': (selected === 'Greenhouses') || (page === 'onlineSystem') }">
-                                <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                     fill="none"
-                                     viewBox="0 0 21 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                <span class="text-sm font-bold transition">
-                                پنل گلخانه ها
-                                </span>
-                                <svg
-                                    class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
-                                    :class="{ 'rotate-0': (selected === 'Greenhouses') }" width="20" height="20"
-                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                        fill=""
-                                    />
-                                </svg>
-                            </a>
-                            <!-- Dropdown Menu Start -->
-                            <div class="translate transform overflow-hidden"
-                                 :class="(selected === 'Greenhouses') ? 'block' :'hidden'">
-                                <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('login.greenhouse') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ورود
-                                        </a>
-                                    </li>
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('register.greenhouse') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ثبت گلخانه
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Dropdown Menu End -->
-                        </li>
-                        <!-- Menu Item Greenhouses -->
 
-                        <li class="py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
-                               href="javascript:void(0)"
-                               @click.prevent="selected = (selected === 'Company' ? '':'Company')"
-                               :class="{ 'bg-[#013328] ': (selected === 'Company') || (page === 'onlineSystem') }">
-                                <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                     fill="none"
-                                     viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M4 15V9m4 6V9m4 6V9m4 6V9M2 16h16M1 19h18M2 7v1h16V7l-8-6-8 6Z"/>
+                        {{-- Greenhouses Section --}}
+                        <li>
+                            <button @click="selectItem('Greenhouses')"
+                                    class="group flex w-full items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600"
+                                    :class="{ 'bg-emerald-50 text-emerald-600': selectedItem === 'Greenhouses' }">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+                                     :class="{ 'bg-emerald-100 text-emerald-600': selectedItem === 'Greenhouses' }">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3 flex-1 text-right font-medium">پنل گلخانه‌ها</span>
+                                <svg class="h-5 w-5 transform transition-transform duration-200"
+                                     :class="{ 'rotate-180': selectedItem === 'Greenhouses' }"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
-                                <span class="text-sm font-bold transition">پنل شرکت ها</span>
-                                <svg
-                                    class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
-                                    :class="{ 'rotate-0': (selected === 'Company') }" width="20" height="20"
-                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                        fill=""
-                                    />
-                                </svg>
-                            </a>
-                            <!-- Dropdown Menu Start -->
-                            <div class="translate transform overflow-hidden"
-                                 :class="(selected === 'Company') ? 'block' :'hidden'">
-                                <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('login.company') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ورود
-                                        </a>
-                                    </li>
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('register.company') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ثبت شرکت
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Dropdown Menu End -->
-                        </li>
-                        <!-- Menu Item Company -->
+                            </button>
 
-                        <!-- Menu Item Organization -->
-                        <li class="border-t border-[#013328] py-1">
-                            <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
-                               href="javascript:void(0)"
-                               @click.prevent="selected = (selected === 'Organization' ? '':'Organization')"
-                               :class="{ 'bg-[#013328] ': (selected === 'Organization') || (page === 'onlineSystem') }">
-                                <svg class="min-w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                     fill="currentColor"
-                                     viewBox="0 0 20 19">
-                                    <path
-                                        d="M7.324 9.917A2.479 2.479 0 0 1 7.99 7.7l.71-.71a2.484 2.484 0 0 1 2.222-.688 4.538 4.538 0 1 0-3.6 3.615h.002ZM7.99 18.3a2.5 2.5 0 0 1-.6-2.564A2.5 2.5 0 0 1 6 13.5v-1c.005-.544.19-1.072.526-1.5H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h7.687l-.697-.7ZM19.5 12h-1.12a4.441 4.441 0 0 0-.579-1.387l.8-.795a.5.5 0 0 0 0-.707l-.707-.707a.5.5 0 0 0-.707 0l-.795.8A4.443 4.443 0 0 0 15 8.62V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.12c-.492.113-.96.309-1.387.579l-.795-.795a.5.5 0 0 0-.707 0l-.707.707a.5.5 0 0 0 0 .707l.8.8c-.272.424-.47.891-.584 1.382H8.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1.12c.113.492.309.96.579 1.387l-.795.795a.5.5 0 0 0 0 .707l.707.707a.5.5 0 0 0 .707 0l.8-.8c.424.272.892.47 1.382.584v1.12a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1.12c.492-.113.96-.309 1.387-.579l.795.8a.5.5 0 0 0 .707 0l.707-.707a.5.5 0 0 0 0-.707l-.8-.795c.273-.427.47-.898.584-1.392h1.12a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5ZM14 15.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
-                                </svg>
-                                <span class="text-sm font-bold transition">
-                                پنل کاربران سازمانی
-                                </span>
-                                <svg
-                                    class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
-                                    :class="{ 'rotate-0': (selected === 'Organization') }" width="20" height="20"
-                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                        fill=""
-                                    />
-                                </svg>
-                            </a>
-                            <!-- Dropdown Menu Start -->
-                            <div class="translate transform overflow-hidden"
-                                 :class="(selected === 'Organization') ? 'block' :'hidden'">
-                                <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('login.organization') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ورود
-                                        </a>
-                                    </li>
-                                    <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                           href="{{ route('register.organization') }}"
-                                           :class="page === 'onlineSystem' && '!text-white'">
-                                            <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                                 aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="2"
-                                                      d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                            </svg>
-                                            ثبت کاربر
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div x-show="selectedItem === 'Greenhouses'"
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                 x-transition:enter-end="opacity-100 transform translate-y-0"
+                                 class="mt-2 space-y-1 pr-4">
+                                <a href="{{ route('login.greenhouse') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ورود گلخانه‌دار</span>
+                                </a>
+                                <a href="{{ route('register.greenhouse') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ثبت گلخانه</span>
+                                </a>
                             </div>
-                            <!-- Dropdown Menu End -->
                         </li>
-                        <!-- Menu Item Organization -->
+
+                        {{-- Companies Section --}}
+                        <li>
+                            <button @click="selectItem('Company')"
+                                    class="group flex w-full items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600"
+                                    :class="{ 'bg-emerald-50 text-emerald-600': selectedItem === 'Company' }">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+                                     :class="{ 'bg-emerald-100 text-emerald-600': selectedItem === 'Company' }">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3 flex-1 text-right font-medium">پنل شرکت‌ها</span>
+                                <svg class="h-5 w-5 transform transition-transform duration-200"
+                                     :class="{ 'rotate-180': selectedItem === 'Company' }"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+
+                            <div x-show="selectedItem === 'Company'"
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                 x-transition:enter-end="opacity-100 transform translate-y-0"
+                                 class="mt-2 space-y-1 pr-4">
+                                <a href="{{ route('login.company') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ورود شرکت</span>
+                                </a>
+                                <a href="{{ route('register.company') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ثبت شرکت</span>
+                                </a>
+                            </div>
+                        </li>
+
+                        {{-- Organization Section --}}
+                        <li>
+                            <button @click="selectItem('Organization')"
+                                    class="group flex w-full items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600"
+                                    :class="{ 'bg-emerald-50 text-emerald-600': selectedItem === 'Organization' }">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+                                     :class="{ 'bg-emerald-100 text-emerald-600': selectedItem === 'Organization' }">
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 4V6L13.5 7V4H10.5V7L9 6V4L3 7V9L9 12L12 10.5L15 12L21 9ZM6 10V12L9 13.5V15.5L6 14V16L9 17.5V19.5L6 18V20L12 23L18 20V18L15 19.5V17.5L18 16V14L15 15.5V13.5L18 12V10L15 11.5L12 10L9 11.5L6 10Z"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3 flex-1 text-right font-medium">کاربران سازمانی</span>
+                                <svg class="h-5 w-5 transform transition-transform duration-200"
+                                     :class="{ 'rotate-180': selectedItem === 'Organization' }"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+
+                            <div x-show="selectedItem === 'Organization'"
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                 x-transition:enter-end="opacity-100 transform translate-y-0"
+                                 class="mt-2 space-y-1 pr-4">
+                                <a href="{{ route('login.organization') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ورود کاربر سازمانی</span>
+                                </a>
+                                <a href="{{ route('register.organization') }}"
+                                   class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                    <div class="flex h-6 w-6 items-center justify-center">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                        </svg>
+                                    </div>
+                                    <span class="mr-3">ثبت کاربر سازمانی</span>
+                                </a>
+                            </div>
+                        </li>
+
                     @else
-                        @if(auth()->user()->hasRole(\App\Models\Role::ADMIN_ROLE))
-                            <h2 class="text-md font-bold text-white text-center my-3">{{ auth()->user()->getName() }}</h2>
-                        @elseif(auth()->user()->hasRole(\App\Models\Role::COMPANY_ROLE))
-                            @php
-                                $company = \App\Models\Company::query()->whereNationalId(auth()->user()->getNationalId())->first();
-                            @endphp
-                            <h2 class="text-md font-bold text-white text-center my-3">شرکت {{ $company->name }}</h2>
-                        @elseif(auth()->user()->hasRole(\App\Models\Role::GREENHOUSE_ROLE))
-                            @php
-                                $greenhouse = \App\Models\Greenhouse::query()->whereOwnerNationalId(auth()->user()->getNationalId())->first();
-                            @endphp
-                            <h2 class="text-md font-bold text-white text-center my-3">
-                                {{ $greenhouse->name }}</h2>
-                        @elseif(auth()->user()->hasRole(\App\Models\Role::ORGANIZATION_ROLE))
-                            @php
-                                $organization = \App\Models\OrganizationUser::query()->whereNationalId(auth()->user()->getNationalId())->first();
-                            @endphp
-                            <h2 class="text-md font-bold text-white text-center my-3">کاربر
-                                سازمانی {{ $organization->fname . ' ' . $organization->lname }}</h2>
-                        @endif
+                        {{-- Authenticated User Section --}}
+                        <li class="mb-6">
+                            <div class="rounded-xl bg-gradient-to-r from-emerald-50 to-emerald-100 p-4">
+                                <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500 text-white">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-slate-800">
+                                            @if(auth()->user()->hasRole(\App\Models\Role::ADMIN_ROLE))
+                                                {{ auth()->user()->getName() }}
+                                            @elseif(auth()->user()->hasRole(\App\Models\Role::COMPANY_ROLE))
+                                                @php
+                                                    $company = \App\Models\Company::query()->whereNationalId(auth()->user()->getNationalId())->first();
+                                                @endphp
+                                                شرکت {{ $company->name }}
+                                            @elseif(auth()->user()->hasRole(\App\Models\Role::GREENHOUSE_ROLE))
+                                                @php
+                                                    $greenhouse = \App\Models\Greenhouse::query()->whereOwnerNationalId(auth()->user()->getNationalId())->first();
+                                                @endphp
+                                                {{ $greenhouse->name }}
+                                            @elseif(auth()->user()->hasRole(\App\Models\Role::ORGANIZATION_ROLE))
+                                                @php
+                                                    $organization = \App\Models\OrganizationUser::query()->whereNationalId(auth()->user()->getNationalId())->first();
+                                                @endphp
+                                                {{ $organization->fname . ' ' . $organization->lname }}
+                                            @endif
+                                        </h3>
+                                        <p class="text-sm text-emerald-600">کاربر فعال</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
-                        <!-- Menu Item Panel -->
-                        <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                            <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                               href="{{ route('panel.home') }}" @click="selected = (selected === 'Panel' ? '':'Panel')"
-                               :class="{ 'bg-[#013328] ': (selected === 'Panel') && (page === 'panel') }"
-                            >
-                                <svg class="min-w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                     fill="none"
-                                     viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="m4 12 8-8 8 8M6 10.5V19c0 .6.4 1 1 1h3v-3c0-.6.4-1 1-1h2c.6 0 1 .4 1 1v3h3c.6 0 1-.4 1-1v-8.5"/>
-                                </svg>
-                                ورود به پنل
+                        {{-- Dashboard Link --}}
+                        <li>
+                            <a href="{{ route('panel.home') }}"
+                               class="group flex items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3 font-medium">پنل کاربری</span>
                             </a>
                         </li>
-                        <!-- Menu Item Panel -->
                     @endguest
 
-                    <!-- Menu Item Other -->
-                    <li class="border-t border-[#013328] py-1">
-                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm p-2 text-white duration-300 ease-in-out hover:bg-[#013328]"
-                           href="javascript:void(0)"
-                           @click.prevent="selected = (selected === 'Other' ? '':'Other')"
-                           :class="{ 'bg-[#013328] ': (selected === 'Other') || (page === 'onlineSystem') }">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round"
-                                 class="min-w-6 h-6">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>
-                                <path d="M8 12l0 .01"/>
-                                <path d="M12 12l0 .01"/>
-                                <path d="M16 12l0 .01"/>
+                    {{-- Other Section --}}
+                    <li class="border-t border-slate-200 pt-4">
+                        <button @click="selectItem('Other')"
+                                class="group flex w-full items-center rounded-xl px-4 py-3 text-slate-700 transition-all hover:bg-slate-100 hover:text-emerald-600"
+                                :class="{ 'bg-emerald-50 text-emerald-600': selectedItem === 'Other' }">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+                                 :class="{ 'bg-emerald-100 text-emerald-600': selectedItem === 'Other' }">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <span class="mr-3 flex-1 text-right font-medium">سایر</span>
+                            <svg class="h-5 w-5 transform transition-transform duration-200"
+                                 :class="{ 'rotate-180': selectedItem === 'Other' }"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
-                            <span class="text-sm font-bold transition">
-                                سایر
-                                </span>
-                            <svg
-                                class="absolute rotate-90 left-4 top-1/2 -translate-y-1/2 fill-current flex transition"
-                                :class="{ 'rotate-0': (selected === 'Other') }" width="20" height="20"
-                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                    fill=""
-                                />
-                            </svg>
-                        </a>
-                        <!-- Dropdown Menu Start -->
-                        <div class="translate transform overflow-hidden"
-                             :class="(selected === 'Other') ? 'block' :'hidden'">
-                            <ul class="mb-2 mt-1 flex flex-col gap-2.5">
-                                <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                       href="{{ route('about.us') }}"
-                                       :class="page === 'onlineSystem' && '!text-white'">
-                                        <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                             aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                             viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                  stroke-linejoin="round" stroke-width="2"
-                                                  d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                        </svg>
-                                        درباره ما
-                                    </a>
-                                </li>
-                                <li class="py-1 hover:bg-[#026B56] rounded-sm">
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-white duration-300 ease-in-out"
-                                       href="{{ route('contact.us') }}"
-                                       :class="page === 'onlineSystem' && '!text-white'">
-                                        <svg class="w-4 h-4 text-white group-hover:-translate-x-1"
-                                             aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                             viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                  stroke-linejoin="round" stroke-width="2"
-                                                  d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
-                                        </svg>
-                                        تماس با ما
-                                    </a>
-                                </li>
-                            </ul>
+                        </button>
+
+                        <div x-show="selectedItem === 'Other'"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 transform -translate-y-2"
+                             x-transition:enter-end="opacity-100 transform translate-y-0"
+                             class="mt-2 space-y-1 pr-4">
+                            <a href="{{ route('about.us') }}"
+                               class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                <div class="flex h-6 w-6 items-center justify-center">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3">درباره ما</span>
+                            </a>
+                            <a href="{{ route('contact.us') }}"
+                               class="group flex items-center rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                                <div class="flex h-6 w-6 items-center justify-center">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <span class="mr-3">تماس با ما</span>
+                            </a>
                         </div>
-                        <!-- Dropdown Menu End -->
                     </li>
                 </ul>
-            </div>
-        </nav>
-        <!-- Sidebar Menu -->
+            </nav>
+        </div>
     </div>
 </aside>

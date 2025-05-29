@@ -29,3 +29,430 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #001F18;
 }
+/* Modern Sidebar Styles */
+
+/* Scrollbar styling for sidebar */
+.sidebar-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+}
+
+/* Backdrop blur for modern glass effect */
+.sidebar-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Smooth transitions for all interactive elements */
+.sidebar-transition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced focus states for accessibility */
+.sidebar-focus:focus {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
+/* Menu item hover effects */
+.menu-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(16, 185, 129, 0.1),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.menu-item:hover::before {
+    left: 100%;
+}
+
+/* Dropdown animation styles */
+.dropdown-enter {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+}
+
+.dropdown-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.2s ease-out;
+}
+
+.dropdown-exit {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-exit-active {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.15s ease-in;
+}
+
+/* Loading states */
+.loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Skeleton loading for content */
+.skeleton {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Tooltip animations */
+.tooltip {
+    transform: translateX(0) translateY(-50%) scale(0.8);
+    opacity: 0;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.tooltip.show {
+    transform: translateX(0) translateY(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 1024px) {
+    .sidebar-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .menu-item {
+        border: 1px solid transparent;
+    }
+
+    .menu-item:focus,
+    .menu-item:hover {
+        border-color: currentColor;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-transition,
+    .dropdown-enter-active,
+    .dropdown-exit-active,
+    .menu-item::before {
+        transition: none;
+    }
+
+    .loading-pulse,
+    .skeleton {
+        animation: none;
+    }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+    .sidebar-dark {
+        background: #1e293b;
+        color: #e2e8f0;
+    }
+
+    .sidebar-dark .border-slate-200 {
+        border-color: #334155;
+    }
+
+    .sidebar-dark .bg-slate-100 {
+        background-color: #334155;
+    }
+
+    .sidebar-dark .text-slate-700 {
+        color: #cbd5e1;
+    }
+
+    .sidebar-dark .hover\:bg-slate-100:hover {
+        background-color: #475569;
+    }
+}
+
+/* Custom scrollbar for webkit browsers */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.3);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+    background-clip: content-box;
+}
+
+/* Enhanced button states */
+.btn-primary {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.39);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px 0 rgba(16, 185, 129, 0.39);
+}
+
+/* Notification styles */
+.notification {
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* Loading spinner */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fade in animation for content */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide in animation for sidebar */
+.slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Interactive elements */
+.interactive {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.interactive:active {
+    transform: scale(0.98);
+}
+
+/* Status indicators */
+.status-indicator {
+    position: relative;
+}
+
+.status-indicator::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.status-indicator.online::after {
+    background: #10b981;
+}
+
+.status-indicator.offline::after {
+    background: #6b7280;
+}
+
+.status-indicator.busy::after {
+    background: #ef4444;
+}
+
+.status-indicator.away::after {
+    background: #f59e0b;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 10px;
+    color: white;
+}
+
+.badge.primary {
+    background: #10b981;
+}
+
+.badge.secondary {
+    background: #6b7280;
+}
+
+.badge.danger {
+    background: #ef4444;
+}
+
+.badge.warning {
+    background: #f59e0b;
+}
+
+.badge.info {
+    background: #3b82f6;
+}
+
+/* Utility classes */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.shadow-soft {
+    box-shadow: 0 2px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-medium {
+    box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-strong {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
+}

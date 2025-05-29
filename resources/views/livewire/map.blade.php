@@ -1,34 +1,67 @@
-<div class="w-full">
-    <ul
-        class="flex text-sm font-medium text-center text-gray-500 rounded-lg" wire:ignore>
-        <li class="w-full">
-            <div id="greenhouseTab"
-                 class="inline-block w-full p-2 bg-[#026B56] text-gray-50 border-gray-200 hover:text-white hover:bg-[#013328] active focus:ring-4 focus:ring-green-300 focus:outline-none rounded-s-lg font-medium lg:font-bold text-base lg:text-lg cursor-pointer"
-                 wire:click="changeTab('greenhouse')">
-                گلخانه
-                ها
+{{-- Modern & Functional Map Component --}}
+<div class="space-y-6">
+    {{-- Page Header --}}
+    <div class="text-center">
+        <h2 class="text-3xl font-bold text-slate-800 mb-2">نقشه گلخانه‌ها و شرکت‌های اتوماسیون</h2>
+        <p class="text-slate-600">مشاهده و جستجوی گلخانه‌ها و شرکت‌های اتوماسیون در سراسر کشور</p>
+    </div>
+
+    {{-- Modern Tab Navigation --}}
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 p-1">
+        <nav class="flex space-x-1 rtl:space-x-reverse">
+            <button
+                wire:click="changeTab('greenhouse')"
+                class="flex-1 py-3 px-6 text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 {{ $activeTab === 'greenhouse' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-md' : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50' }}">
+                <span class="flex items-center justify-center space-x-2 rtl:space-x-reverse">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>گلخانه‌ها</span>
+                </span>
+            </button>
+            <button
+                wire:click="changeTab('company')"
+                class="flex-1 py-3 px-6 text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 {{ $activeTab === 'company' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-md' : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50' }}">
+                <span class="flex items-center justify-center space-x-2 rtl:space-x-reverse">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>شرکت‌های اتوماسیون</span>
+                </span>
+            </button>
+        </nav>
+    </div>
+
+    {{-- Modern Filters Section --}}
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 p-6">
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800">فیلترهای جستجو</h3>
+                    <p class="text-sm text-slate-500">نتایج را بر اساس معیارهای مورد نظر فیلتر کنید</p>
+                </div>
             </div>
-        </li>
-        <li class="w-full">
-            <div id="companyTab"
-                 class="inline-block w-full p-2 text-gray-900 bg-gray-200 border-gray-200 focus:ring-4 focus:ring-green-300 focus:outline-none rounded-e-lg font-medium lg:font-bold text-base lg:text-lg cursor-pointer"
-                 wire:click="changeTab('company')">
-                شرکت های اتوماسیون
-            </div>
-        </li>
-    </ul>
-    <ul
-        class="relative w-auto flex text-sm font-medium text-center text-gray-500 rounded-lg border border-[#026B56] my-2 py-2 pt-10"
-        wire:ignore>
-        <div class="absolute left-3 top-2 group cursor-pointer z-50" wire:click="resetFilters">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                 class="text-[#013328] group-hover:scale-110">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747"/>
-                <path d="M20 4v5h-5"/>
-            </svg>
+            <button
+                wire:click="resetFilters"
+                class="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 text-sm font-medium text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all duration-200 group">
+                <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none"
+                     stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <span>بازنشانی فیلترها</span>
+            </button>
         </div>
+
         @php
             $greenhouseFilters = \App\Models\Filter::query()->where([
                 'type'=> \App\Models\Filter::GREENHOUSE_TYPE,
@@ -43,190 +76,406 @@
                 return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $value))));
             }
         @endphp
-        <li class="w-full absolute top-1 right-1/2 translate-x-1/2 z-40" id="greenhouseFiltersList">
-            <div class="w-full flex justify-center items-center space-x-1" id="greenhouseFiltersSection"
-                 x-data="{ @foreach($greenhouseFilters as $filter){{ toCamelCase($filter->name) }}Open: false, @endforeach }">
-                @foreach($greenhouseFilters as $filter)
-                    <div class="w-auto relative mx-1">
-                        <button @click="{{ toCamelCase($filter->name) }}Open = !{{ toCamelCase($filter->name) }}Open"
-                                class="text-[#026B56] hover:text-white border border-[#026B56] mt-0.5 hover:bg-[#026B56] focus:ring-1 focus:outline-none focus:ring-[#026B56] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                            {{ $filter->title }}
-                        </button>
-                        <div
-                            x-show="{{ toCamelCase($filter->name) }}Open"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 transform scale-95"
-                            x-transition:enter-end="opacity-100 transform scale-100"
-                            x-transition:leave="transition ease-in duration-200"
-                            x-transition:leave-start="opacity-100 transform scale-100"
-                            x-transition:leave-end="opacity-0 transform scale-95"
-                            class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#013328] border border-[#026B56] rounded-lg shadow-lg min-w-[150px]"
-                            @click.away="{{ toCamelCase($filter->name) }}Open = false"
-                        >
-                            @switch($filter->name)
-                                @case(\App\Models\Filter::GREENHOUSE_SUBSTRATE_FILTER)
-                                    <ul class="space-y-1 text-sm text-start text-gray-700"
-                                        aria-labelledby="dropdownHelperButton">
-                                        @foreach($substrates as $substrate)
-                                            <li>
-                                                <div class="flex p-2 rounded hover:bg-[#026B56]">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="{{ $substrate['uuid'] }}"
-                                                               type="checkbox" value="{{ $substrate['name'] }}"
-                                                               wire:model.live="substrateFilter"
-                                                               class="w-4 h-4 text-yellow-500 bg-transparent border-gray-300 rounded focus:ring-yellow-400 focus:ring-2">
-                                                    </div>
-                                                    <div class="ms-2 text-sm">
-                                                        <label for="{{ $substrate['uuid'] }}"
-                                                               class="font-medium text-white">
-                                                            <div>{{ $substrate['name'] }}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-                                @case(\App\Models\Filter::GREENHOUSE_PRODUCT_FILTER)
-                                    <ul class="space-y-1 text-sm text-start text-gray-700"
-                                        aria-labelledby="dropdownHelperButton">
-                                        @foreach($productTypes as $product)
-                                            <li>
-                                                <div class="flex p-2 rounded hover:bg-[#026B56]">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="{{ $product['uuid'] }}"
-                                                               type="checkbox" value="{{ $product['name'] }}"
-                                                               wire:model.live="productFilter"
-                                                               class="w-4 h-4 text-yellow-500 bg-transparent border-gray-300 rounded focus:ring-yellow-400 focus:ring-2">
-                                                    </div>
-                                                    <div class="ms-2 text-sm">
-                                                        <label for="{{ $product['uuid'] }}"
-                                                               class="font-medium text-white">
-                                                            <div>{{ $product['name'] }}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-                                @case(\App\Models\Filter::GREENHOUSE_PROVINCE_FILTER)
-                                    <ul class="space-y-1 text-sm text-start text-gray-700"
-                                        aria-labelledby="dropdownHelperButton">
-                                        @foreach($provinces as $province)
-                                            <li>
-                                                <div class="flex p-2 rounded hover:bg-[#026B56]">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="{{ $province['uuid'] }}"
-                                                               type="checkbox" value="{{ $province['name'] }}"
-                                                               wire:model.live="provinceFilter"
-                                                               class="w-4 h-4 text-yellow-500 bg-transparent border-gray-300 rounded focus:ring-yellow-400 focus:ring-2">
-                                                    </div>
-                                                    <div class="ms-2 text-sm">
-                                                        <label for="{{ $province['uuid'] }}"
-                                                               class="font-medium text-white">
-                                                            <div>{{ $province['name'] }}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-                            @endswitch
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </li>
 
-        <li class="w-full absolute top-1 right-1/2 translate-x-1/2 translate-y-16 z-0" id="companyFiltersList">
-            <div class="w-full flex justify-center items-center space-x-1 opacity-0" id="companyFiltersSection"
-                 x-data="{ @foreach($companyFilters as $filter){{ toCamelCase($filter->name) }}Open: false, @endforeach }">
-                @foreach($companyFilters as $filter)
-                    <div class="w-auto relative mx-1">
-                        <button @click="{{ toCamelCase($filter->name) }}Open = !{{ toCamelCase($filter->name) }}Open"
-                                disabled
-                                class="text-[#026B56] hover:text-white border border-[#026B56] mt-0.5 hover:bg-[#026B56] focus:ring-1 focus:outline-none focus:ring-[#026B56] rounded-lg px-3 py-2 text-xs font-bold text-center inline-flex items-center">
-                            {{ $filter->title }}
-                        </button>
-                        <div
-                            x-show="{{ toCamelCase($filter->name) }}Open"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 transform scale-95"
-                            x-transition:enter-end="opacity-100 transform scale-100"
-                            x-transition:leave="transition ease-in duration-200"
-                            x-transition:leave-start="opacity-100 transform scale-100"
-                            x-transition:leave-end="opacity-0 transform scale-95"
-                            class="absolute right-1/2 translate-x-1/2 z-40 mt-2 p-2 bg-[#013328] border border-[#026B56] rounded-lg min-w-[150px]"
-                            @click.away="{{ toCamelCase($filter->name) }}Open = false"
-                        >
-                            @switch($filter->name)
-                                @case(\App\Models\Filter::COMPANY_TYPE_FILTER)
-                                    <ul class="space-y-1 text-sm text-start text-gray-700"
-                                        aria-labelledby="dropdownHelperButton">
-                                        @foreach($companyType as $type)
-                                            <li>
-                                                <div class="flex p-2 rounded hover:bg-[#026B56]">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="{{ $type['uuid'] }}"
-                                                               type="checkbox" value="{{ $type['name'] }}"
-                                                               wire:model.live="companyTypeFilter"
-                                                               class="w-4 h-4 text-yellow-500 bg-transparent border-gray-300 rounded focus:ring-yellow-400 focus:ring-2">
-                                                    </div>
-                                                    <div class="ms-2 text-sm">
-                                                        <label for="{{ $type['uuid'] }}"
-                                                               class="font-medium text-white">
-                                                            <div>{{ $type['name'] }}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-                                @case(\App\Models\Filter::COMPANY_PROVINCE_FILTER)
-                                    <ul class="space-y-1 text-sm text-start text-gray-700"
-                                        aria-labelledby="dropdownHelperButton">
-                                        @foreach($companyProvinces as $province)
-                                            <li>
-                                                <div class="flex p-2 rounded hover:bg-[#026B56]">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="{{ $province['uuid'] }}"
-                                                               type="checkbox" value="{{ $province['name'] }}"
-                                                               wire:model.live="companyProvinceFilter"
-                                                               class="w-4 h-4 text-yellow-500 bg-transparent border-gray-300 rounded focus:ring-yellow-400 focus:ring-2">
-                                                    </div>
-                                                    <div class="ms-2 text-sm">
-                                                        <label for="{{ $province['uuid'] }}"
-                                                               class="font-medium text-white">
-                                                            <div>{{ $province['name'] }}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-                            @endswitch
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </li>
-    </ul>
+        {{-- Greenhouse Filters --}}
+        @if($activeTab === 'greenhouse')
+            <div class="transition-all duration-300"
+                 x-data="{ @foreach($greenhouseFilters as $filter){{ toCamelCase($filter->name) }}Open: false, @endforeach }"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 transform -translate-y-4"
+                 x-transition:enter-end="opacity-100 transform translate-y-0">
+                <div class="flex flex-wrap gap-3">
+                    @foreach($greenhouseFilters as $filter)
+                        <div class="relative">
+                            <button
+                                @click="{{ toCamelCase($filter->name) }}Open = !{{ toCamelCase($filter->name) }}Open"
+                                class="flex items-center space-x-2 rtl:space-x-reverse px-2 py-1 bg-gradient-to-r from-slate-50 to-slate-100 hover:from-emerald-50 hover:to-emerald-100 border border-slate-200 hover:border-emerald-300 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-700 transition-all duration-200 shadow-sm hover:shadow-md group">
+                                <div
+                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-white group-hover:bg-emerald-100 transition-colors duration-200">
+                                    @switch($filter->name)
+                                        @case(\App\Models\Filter::GREENHOUSE_SUBSTRATE_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                            </svg>
+                                            @break
+                                        @case(\App\Models\Filter::GREENHOUSE_PRODUCT_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                            </svg>
+                                            @break
+                                        @case(\App\Models\Filter::GREENHOUSE_PROVINCE_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            </svg>
+                                            @break
+                                    @endswitch
+                                </div>
+                                <span>{{ $filter->title }}</span>
+                                <svg class="w-4 h-4 transition-transform duration-200"
+                                     :class="{{ toCamelCase($filter->name) }}Open ? 'rotate-180' : ''"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
 
-    <div id="map" class="w-full h-[700px] rounded-lg mt-3 border border-[#026B56] z-30" wire:ignore></div>
-    <link rel="stylesheet" href="./assets/css/map.css">
+                            <div
+                                x-show="{{ toCamelCase($filter->name) }}Open"
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 transform scale-95"
+                                x-transition:enter-end="opacity-100 transform scale-100"
+                                x-transition:leave="transition ease-in duration-150"
+                                x-transition:leave-start="opacity-100 transform scale-100"
+                                x-transition:leave-end="opacity-0 transform scale-95"
+                                @click.away="{{ toCamelCase($filter->name) }}Open = false"
+                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5">
+
+                                @switch($filter->name)
+                                    @case(\App\Models\Filter::GREENHOUSE_SUBSTRATE_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($substrates as $substrate)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $substrate['name'] }}"
+                                                            wire:model.live="substrateFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $substrate['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+
+                                    @case(\App\Models\Filter::GREENHOUSE_PRODUCT_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($productTypes as $product)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $product['name'] }}"
+                                                            wire:model.live="productFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $product['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+
+                                    @case(\App\Models\Filter::GREENHOUSE_PROVINCE_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($provinces as $province)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $province['name'] }}"
+                                                            wire:model.live="provinceFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $province['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+                                @endswitch
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        {{-- Company Filters --}}
+        @if($activeTab === 'company')
+            <div class="transition-all duration-300"
+                 x-data="{ @foreach($companyFilters as $filter){{ toCamelCase($filter->name) }}Open: false, @endforeach }"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 transform -translate-y-4"
+                 x-transition:enter-end="opacity-100 transform translate-y-0">
+                <div class="flex flex-wrap gap-3">
+                    @foreach($companyFilters as $filter)
+                        <div class="relative">
+                            <button
+                                @click="{{ toCamelCase($filter->name) }}Open = !{{ toCamelCase($filter->name) }}Open"
+                                class="flex items-center space-x-2 rtl:space-x-reverse px-2 py-1 bg-gradient-to-r from-slate-50 to-slate-100 hover:from-emerald-50 hover:to-emerald-100 border border-slate-200 hover:border-emerald-300 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-700 transition-all duration-200 shadow-sm hover:shadow-md group">
+                                <div
+                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-white group-hover:bg-emerald-100 transition-colors duration-200">
+                                    @switch($filter->name)
+                                        @case(\App\Models\Filter::COMPANY_TYPE_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                            </svg>
+                                            @break
+                                        @case(\App\Models\Filter::COMPANY_PROVINCE_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            </svg>
+                                            @break
+                                    @endswitch
+                                </div>
+                                <span>{{ $filter->title }}</span>
+                                <svg class="w-4 h-4 transition-transform duration-200"
+                                     :class="{{ toCamelCase($filter->name) }}Open ? 'rotate-180' : ''"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+
+                            <div
+                                x-show="{{ toCamelCase($filter->name) }}Open"
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 transform scale-95"
+                                x-transition:enter-end="opacity-100 transform scale-100"
+                                x-transition:leave="transition ease-in duration-150"
+                                x-transition:leave-start="opacity-100 transform scale-100"
+                                x-transition:leave-end="opacity-0 transform scale-95"
+                                @click.away="{{ toCamelCase($filter->name) }}Open = false"
+                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5">
+
+                                @switch($filter->name)
+                                    @case(\App\Models\Filter::COMPANY_PROVINCE_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($companyProvinces as $province)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $province['name'] }}"
+                                                            wire:model.live="companyProvinceFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $province['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+
+                                    @case(\App\Models\Filter::COMPANY_TYPE_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($companyType as $type)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $type['name'] }}"
+                                                            wire:model.live="companyTypeFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $type['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+                                @endswitch
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        @if($activeTab === 'company')
+            {{-- Active Filters Display --}}
+            @php
+                $activeFilterCount = count($companyTypeFilter) + count($companyProvinceFilter);
+            @endphp
+
+            @if($activeFilterCount > 0)
+                <div class="mt-6 pt-6 border-t border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
+                        <button wire:click="resetFilters"
+                                class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200">
+                            پاک کردن همه
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach(array_merge($companyTypeFilter, $companyProvinceFilter) as $filter)
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                            {{ $filter }}
+                        </span>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endif
+
+        @if($activeTab === 'greenhouse')
+            {{-- Active Filters Display --}}
+            @php
+                $activeFilterCount = count($substrateFilter) + count($productFilter) + count($provinceFilter);
+            @endphp
+
+            @if($activeFilterCount > 0)
+                <div class="mt-6 pt-6 border-t border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
+                        <button wire:click="resetFilters"
+                                class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200">
+                            پاک کردن همه
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach(array_merge($substrateFilter, $productFilter, $provinceFilter) as $filter)
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                            {{ $filter }}
+                        </span>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endif
+    </div>
+
+    {{-- Modern Map Container --}}
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 overflow-hidden">
+        <div class="p-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <div
+                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800">نقشه تعاملی</h3>
+                        <p class="text-sm text-slate-500">روی نشانگرها کلیک کنید تا جزئیات بیشتر ببینید</p>
+                    </div>
+                </div>
+                <div class="text-sm text-slate-500">
+                    {{ $activeTab === 'greenhouse' ? 'نمایش گلخانه‌ها' : 'نمایش شرکت‌ها' }}
+                </div>
+            </div>
+        </div>
+        <div id="map" class="w-full h-[700px]" wire:ignore></div>
+    </div>
+
+    {{-- Enhanced JavaScript Integration --}}
     <script>
+        // Initialize data from Livewire
         let greenhouseMarkers = {!! $greenhousesData !!};
         let companyMarkers = {!! $companiesData !!};
+        let currentActiveTab = '{{ $activeTab }}';
 
         document.addEventListener('livewire:init', () => {
+            // Listen for filter submissions
             Livewire.on('submit-filter', (e) => {
-                renderMarkers(e[0].type, JSON.parse(e[0].data));
+                console.log('🔄 Filter event received:', e[0].type, 'Data length:', JSON.parse(e[0].data).length);
+
+                // Show loading state
+                const mapContainer = document.getElementById('map');
+                if (mapContainer) {
+                    mapContainer.style.opacity = '0.7';
+                    mapContainer.style.transition = 'opacity 0.3s ease';
+                }
+
+                // Render markers with slight delay for smooth UX
+                setTimeout(() => {
+                    renderMarkers(e[0].type, JSON.parse(e[0].data));
+
+                    // Remove loading state
+                    if (mapContainer) {
+                        mapContainer.style.opacity = '1';
+                    }
+                }, 100);
+            });
+
+            // Listen for tab change events
+            Livewire.on('tab-changed', (e) => {
+                console.log('🔄 Tab changed to:', e[0].activeTab);
+                currentActiveTab = e[0].activeTab;
             });
         });
-    </script>
 
+        // Initialize map when DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wait for map to initialize, then show initial data
+            setTimeout(() => {
+                if (typeof renderMarkers === 'function') {
+                    console.log('🗺️ Initializing map with:', currentActiveTab, 'data');
+                    if (currentActiveTab === 'company') {
+                        renderMarkers('company', companyMarkers);
+                    } else {
+                        renderMarkers('greenhouse', greenhouseMarkers);
+                    }
+                }
+            }, 1000);
+        });
+
+        // Add smooth transitions for better UX
+        document.addEventListener('alpine:init', () => {
+            // Add custom scroll behavior for filter dropdowns
+            const style = document.createElement('style');
+            style.textContent = `
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: #f1f5f9;
+                    border-radius: 3px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: #cbd5e1;
+                    border-radius: 3px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: #94a3b8;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </div>
