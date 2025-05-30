@@ -221,58 +221,6 @@
 
                     <!-- Sidebar -->
                     <div class="lg:col-span-2 space-y-8">
-                        <!-- FAQ Section -->
-                        <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
-                            <h3 class="text-xl font-bold text-slate-800 mb-6">سوالات متداول</h3>
-                            <div class="space-y-4">
-                                <details class="group">
-                                    <summary
-                                        class="flex items-center justify-between cursor-pointer p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                                        <span
-                                            class="font-medium text-slate-700">چقدر طول می‌کشد تا پاسخ دریافت کنم؟</span>
-                                        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform"
-                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </summary>
-                                    <div class="mt-3 px-4 pb-4 text-slate-600">
-                                        معمولاً ظرف ۲۴ ساعت پاسخ شما را دریافت خواهید کرد.
-                                    </div>
-                                </details>
-
-                                <details class="group">
-                                    <summary
-                                        class="flex items-center justify-between cursor-pointer p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                                        <span class="font-medium text-slate-700">آیا مشاوره رایگان ارائه می‌دهید؟</span>
-                                        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform"
-                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </summary>
-                                    <div class="mt-3 px-4 pb-4 text-slate-600">
-                                        بله، جلسه مشاوره اولیه کاملاً رایگان است.
-                                    </div>
-                                </details>
-
-                                <details class="group">
-                                    <summary
-                                        class="flex items-center justify-between cursor-pointer p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                                        <span class="font-medium text-slate-700">آیا پشتیبانی آنلاین دارید؟</span>
-                                        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform"
-                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </summary>
-                                    <div class="mt-3 px-4 pb-4 text-slate-600">
-                                        بله، تیم پشتیبانی ما در ساعات کاری آنلاین هستند.
-                                    </div>
-                                </details>
-                            </div>
-                        </div>
-
                         <!-- Contact & Social Media -->
                         <div
                             class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-8 border border-slate-200">
