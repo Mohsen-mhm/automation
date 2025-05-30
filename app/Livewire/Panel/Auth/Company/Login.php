@@ -53,15 +53,25 @@ class Login extends Component
         ])->first();
 
         if ($user && $user->hasRole(Role::COMPANY_ROLE)) {
-            $code = smsService::generateCode($user->id);
-            $result = smsService::sendSMS($user->getPhone(), $code);
-            if ($result) {
-                $this->dispatch('start-interval');
-                toastr()->success('کد ورود با موفقیت ارسال شد.', 'موفق');
-            } else {
+            try {
+                $code = smsService::generateCode($user->id);
+//                $result = smsService::sendSMS($user->getPhone(), $code);
+                $result = true;
+
+                if ($result) {
+                    $this->dispatch('start-interval');
+                    toastr()->success('کد ورود با موفقیت ارسال شد.', 'موفق');
+                } else {
+                    $this->dispatch('sms-send-failed');
+                    toastr()->error('خطا در ارسال کد. دوباره تلاش کنید یا با پشتیبانی در ارتباط باشید', 'خطا');
+                }
+            } catch (\Exception $e) {
+                $this->dispatch('sms-send-failed');
+                \Log::error('SMS sending failed: ' . $e->getMessage());
                 toastr()->error('خطا در ارسال کد. دوباره تلاش کنید یا با پشتیبانی در ارتباط باشید', 'خطا');
             }
         } else {
+            $this->dispatch('sms-send-failed');
             $this->addError('national_id', 'کد ملی یا شماره همراه صحیح نیست.');
             $this->addError('phone_number', 'کد ملی یا شماره همراه صحیح نیست.');
         }

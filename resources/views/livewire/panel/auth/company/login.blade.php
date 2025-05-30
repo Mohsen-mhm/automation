@@ -100,11 +100,12 @@
                         <label for="code-input" class="block text-sm font-semibold text-slate-700">
                             کد تایید پیامکی
                         </label>
-                        <div class="flex items-stretch gap-3">
+                        <div class="flex items-stretch gap-3" wire:ignore>
                             <!-- Send Code Button -->
                             <button
                                 type="button"
-                                onclick="sendSMS(this)"
+                                onclick="sendCode(this)"
+                                data-processing="false"
                                 class="flex-shrink-0 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-xl hover:from-emerald-700 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-emerald-300 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl">
                                 <div class="flex items-center gap-2">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,7 +188,8 @@
             <div class="text-center mt-6">
                 <p class="text-sm text-slate-500">
                     مشکل در ورود دارید؟
-                    <a href="{{ route('contact.us') }}" class="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">تماس با
+                    <a href="{{ route('contact.us') }}"
+                       class="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">تماس با
                         پشتیبانی</a>
                 </p>
             </div>
@@ -272,65 +274,64 @@
 
         <!-- Enhanced JavaScript -->
         <script>
-            function sendSMS(button) {
-                let countdown = 60;
-                const codeEl = document.querySelector('#code-input');
-                const originalText = button.innerHTML;
+            // Global variables to track state
+            let currentInterval = null;
+            let currentButton = null;
+            let originalContent = '';
 
-                // Add loading effect
-                button.classList.add('loading');
-                button.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                    </svg>
-                    <span>در حال ارسال...</span>
-                </div>
-            `;
-                button.setAttribute('disabled', '');
-
-                // Trigger Livewire event
-                Livewire.dispatch('send-sms');
-
-                // Listen for Livewire response
+            // Set up Livewire event listeners only once
+            document.addEventListener('DOMContentLoaded', function() {
                 Livewire.on('start-interval', () => {
-                    // Remove loading effect
-                    button.classList.remove('loading');
+                    if (!currentButton) return;
 
-                    // Enable code input
-                    codeEl.removeAttribute('disabled');
-                    codeEl.focus();
+                    let countdown = 60;
+                    const codeEl = document.querySelector('#code-input');
 
-                    // Start countdown
-                    const interval = setInterval(() => {
+                    // Clear any existing interval first
+                    if (currentInterval) {
+                        clearInterval(currentInterval);
+                    }
+
+                    currentInterval = setInterval(() => {
                         countdown--;
-                        button.innerHTML = `
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <span>${countdown} ثانیه</span>
-                        </div>
-                    `;
+                        currentButton.innerHTML = countdown + ' ثانیه';
+                        currentButton.disabled = true; // Keep disabled during countdown
 
-                        if (countdown <= 0) {
-                            clearInterval(interval);
-                            button.innerHTML = `
-                            <div class="flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                </svg>
-                                <span>ارسال مجدد</span>
-                            </div>
-                        `;
-                            button.removeAttribute('disabled');
+                        // Enable code input only once when countdown starts
+                        if (countdown === 59 && codeEl) {
+                            codeEl.classList.remove('opacity-75');
+                            codeEl.removeAttribute('disabled');
+                        }
+
+                        if (countdown === 0) {
+                            clearInterval(currentInterval);
+                            currentInterval = null;
+                            currentButton.innerHTML = 'ارسال مجدد کد';
+                            currentButton.disabled = false;
+                            currentButton.style.opacity = '';
+                            currentButton.style.cursor = '';
+                            currentButton.dataset.processing = 'false';
+                            currentButton = null;
                         }
                     }, 1000);
                 });
-            }
 
-            // Real-time form validation
-            document.addEventListener('DOMContentLoaded', function () {
+                // Handle SMS send failure
+                Livewire.on('sms-send-failed', () => {
+                    if (!currentButton) return;
+
+                    if (currentInterval) {
+                        clearInterval(currentInterval);
+                        currentInterval = null;
+                    }
+
+                    currentButton.innerHTML = originalContent;
+                    currentButton.disabled = false;
+                    currentButton.style.opacity = '';
+                    currentButton.style.cursor = '';
+                    currentButton.dataset.processing = 'false';
+                    currentButton = null;
+                });
                 const inputs = document.querySelectorAll('input[required]');
 
                 inputs.forEach(input => {
@@ -352,6 +353,26 @@
                     });
                 });
             });
+
+            function sendCode(button) {
+                // Prevent multiple clicks by checking if already processing
+                if (button.dataset.processing === 'true') {
+                    return;
+                }
+
+                // Store references globally
+                currentButton = button;
+                originalContent = button.innerHTML;
+
+                // Mark as processing and disable button
+                button.dataset.processing = 'true';
+                button.disabled = true;
+                button.style.opacity = '0.6';
+                button.style.cursor = 'not-allowed';
+                button.innerHTML = 'در حال ارسال...';
+
+                Livewire.dispatch('send-sms');
+            }
         </script>
     </div>
 </div>
