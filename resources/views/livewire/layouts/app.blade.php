@@ -215,7 +215,7 @@
         // Load Alpine.js without the persist plugin first
         const alpineScript = document.createElement('script');
         alpineScript.defer = true;
-        alpineScript.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+        alpineScript.src = {{ asset('assets/js/alpine/alpine.min.js') }};
         alpineScript.onload = function() {
             console.log('✓ Alpine.js loaded successfully');
         };
