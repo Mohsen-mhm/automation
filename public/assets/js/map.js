@@ -16,21 +16,21 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     className: 'map-tiles'
 }).addTo(map);
 
-// Custom modern marker icons
+// Simplified custom marker icons
 const createCustomIcon = (type) => {
     const iconConfig = {
         greenhouse: {
             html: `
                 <div class="custom-marker greenhouse-marker">
                     <div class="marker-inner">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
                     <div class="marker-pulse"></div>
                 </div>
             `,
-            className: 'greenhouse-marker-container',
+            className: 'greenhouse-icon',
             iconSize: [40, 40],
             iconAnchor: [20, 35],
             popupAnchor: [0, -35]
@@ -39,14 +39,14 @@ const createCustomIcon = (type) => {
             html: `
                 <div class="custom-marker company-marker">
                     <div class="marker-inner">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
                     <div class="marker-pulse"></div>
                 </div>
             `,
-            className: 'company-marker-container',
+            className: 'company-icon',
             iconSize: [40, 40],
             iconAnchor: [20, 35],
             popupAnchor: [0, -35]
@@ -56,6 +56,26 @@ const createCustomIcon = (type) => {
     return L.divIcon(iconConfig[type]);
 };
 
+// Fallback to simple colored circle icons if custom icons fail
+const createFallbackIcon = (type) => {
+    const color = type === 'greenhouse' ? '#10b981' : '#3b82f6';
+
+    return L.divIcon({
+        html: `<div style="
+            width: 24px;
+            height: 24px;
+            background: ${color};
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        "></div>`,
+        className: 'simple-marker',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -12]
+    });
+};
+
 // Layer groups for different marker types
 let greenhouseMarkerLayer = L.layerGroup().addTo(map);
 let companyMarkerLayer = L.layerGroup();
@@ -63,8 +83,10 @@ let companyMarkerLayer = L.layerGroup();
 // Current active tab state
 let currentTab = 'greenhouse';
 
-// Enhanced marker rendering without clustering
+// Enhanced marker rendering
 function renderMarkers(type, markers) {
+    console.log(`🗺️ Rendering ${type} markers:`, markers.length);
+
     currentTab = type;
 
     if (type === 'greenhouse') {
@@ -89,8 +111,7 @@ function renderMarkers(type, markers) {
         }
     }
 
-    // Update tab visual state
-    updateTabState(type);
+    console.log(`✅ ${type} markers rendered successfully`);
 }
 
 // Initialize default markers
@@ -104,37 +125,6 @@ function showDefaultTabMarkers() {
     }
 
     map.addLayer(greenhouseMarkerLayer);
-    updateTabState('greenhouse');
-}
-
-// Enhanced tab state management
-function updateTabState(activeType) {
-    const greenhouseTab = document.querySelector('#greenhouseTab');
-    const companyTab = document.querySelector('#companyTab');
-    const greenhouseFilters = document.querySelector('#greenhouseFiltersList');
-    const companyFilters = document.querySelector('#companyFiltersList');
-
-    if (!greenhouseTab || !companyTab) return;
-
-    // Reset both tabs
-    [greenhouseTab, companyTab].forEach(tab => {
-        tab.className = "flex-1 py-3 px-6 text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-slate-600 hover:text-slate-800 hover:bg-slate-50";
-    });
-
-    // Activate selected tab
-    const activeTab = activeType === 'greenhouse' ? greenhouseTab : companyTab;
-    activeTab.className = "flex-1 py-3 px-6 text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-md";
-
-    // Show/hide filters with smooth animation
-    if (greenhouseFilters && companyFilters) {
-        if (activeType === 'greenhouse') {
-            greenhouseFilters.classList.remove('hidden');
-            companyFilters.classList.add('hidden');
-        } else {
-            companyFilters.classList.remove('hidden');
-            greenhouseFilters.classList.add('hidden');
-        }
-    }
 }
 
 // Enhanced popup creation with modern styling
@@ -145,7 +135,7 @@ function createModernPopup(markerInfo, type) {
         <div class="modern-popup" dir="rtl">
             <div class="popup-header">
                 <div class="popup-icon ${isCompany ? 'company' : 'greenhouse'}">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
                 </div>
@@ -166,7 +156,7 @@ function createModernPopup(markerInfo, type) {
                 ${!isCompany && markerInfo.product ? `
                     <div class="popup-info">
                         <svg class="info-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M5.535 7.677c.313-.98.687-2.023.926-2.677H17.46c.253.63.646 1.64.977 2.61.166.487.312.953.416 1.347.11.42.148.675.148.779 0 .18-.032.355-.09.515-.06.161-.144.3-.243.412-.1.111-.21.192-.324.245a.809.809 0 0 1-.686 0 1.004 1.004 0 0 1-.324-.245c-.1-.112-.183-.25-.242-.412a1.473 1.473 0 0 1-.091-.515 1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.401 1.401 0 0 1 13 9.736a1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.4 1.4 0 0 1 9 9.74v-.008a1 1 0 0 0-2 .003v.008a1.504 1.504 0 0 1-.18.712 1.22 1.22 0 0 1-.146.209l-.007.007a1.01 1.01 0 0 1-.325.248.82.82 0 0 1-.316.08.973.973 0 0 1-.563-.256 1.224 1.224 0 0 1-.102-.103A1.518 1.518 0 0 1 5 9.724v-.006a2.543 2.543 0 0 1 .029-.207c.024-.132.06-.296.11-.49.098-.385.237-.85.395-1.344ZM4 12.112a3.521 3.521 0 0 1-1-2.376c0-.349.098-.8.202-1.208.112-.441.264-.95.428-1.46.327-1.024.715-2.104.958-2.767A1.985 1.985 0 0 1 6.456 3h11.01c.803 0 1.539.481 1.844 1.243.258.641.67 1.697 1.019 2.72a22.3 22.3 0 0 1 .457 1.487c.114.433.214.903.214 1.286 0 .412-.072.821-.214 1.207A3.288 3.288 0 0 1 20 12.16V19a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1v-4H8v4a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2v-6.888ZM13 15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2Z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M5.535 7.677c.313-.98.687-2.023.926-2.677H17.46c.253.63.646 1.64.977 2.61.166.487.312.953.416 1.347.11.42.148.675.148.779 0 .18-.032.355-.09.515-.06.161-.144.3-.243.412-.1.111-.21.192-.324.245a.809.809 0 0 1-.686 0 1.004 1.004 0 0 1-.324-.245c-.1-.112-.183-.25-.242-.412a1.473 1.473 0 0 1-.091-.515 1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.401 1.401 0 0 1 13 9.736a1 1 0 1 0-2 0 1.4 1.4 0 0 1-.333.927.896.896 0 0 1-.667.323.896.896 0 0 1-.667-.323A1.4 1.4 0 0 1 9 9.74v-.008a1 1 0 0 0-2 .003v.008a1.504 1.504 0 0 1-.18.712 1.22 1.22 0 0 1-.146.209l-.007.007a1.01 1.01 0 0 1-.325.248.82.82 0 0 1-.316.08.973.973 0 0 1-.563-.256 1.224 1.224 0 0 1-.102-.103A1.518 1.518 0 0 1 5 9.724v-.006a2.543 2.543 0 0 1 .029-.207c.024-.132.06-.296.11-.49.098-.385.237-.85.395-1.344ZM4 12.112a3.521 3.521 0 0 1-1-2.376c0-.349.098-.8.202-1.208.112-.441.264-.95.428-1.46.327-1.024.715-2.104.958-2.767A1.985 1.985 0 0 1 6.456 3h11.01c.803 0 1.539.481 1.844 1.243.258.641.67 1.697 1.019 2.72a22.3 22.3 0 0 1 .457 1.487c.114.433.214.903.214 1.286 0 .412-.072.821-.214 1.207A3.288 3.288 0 0 1 20 12.160V19a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1v-4H8v4a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2v-6.888ZM13 15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2Z" clip-rule="evenodd"/>
                         </svg>
                         <span>${markerInfo.product}</span>
                     </div>
@@ -185,7 +175,7 @@ function createModernPopup(markerInfo, type) {
             <div class="popup-actions">
                 <button type="button" onclick="openMarkerDetails('${markerInfo.name}')"
                         class="popup-button">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     جزئیات بیشتر
@@ -195,56 +185,74 @@ function createModernPopup(markerInfo, type) {
     `;
 }
 
-// Enhanced marker definition without clustering
+// Enhanced marker definition
 function defineMarkersAndInfo(markersObj, markerLayer, type) {
-    if (!markersObj || !Array.isArray(markersObj)) return;
+    if (!markersObj || !Array.isArray(markersObj)) {
+        console.warn('⚠️ Invalid markers data:', markersObj);
+        return;
+    }
+
+    console.log(`🔧 Creating ${markersObj.length} ${type} markers`);
 
     markersObj.forEach(function (markerInfo, index) {
-        const customIcon = createCustomIcon(type);
-
-        const marker = L.marker(markerInfo.coordinates, {
-            icon: customIcon,
-            title: markerInfo.name
-        });
-
-        const popupContent = createModernPopup(markerInfo, type);
-
-        marker.bindPopup(popupContent, {
-            className: 'modern-popup-container',
-            maxWidth: 320,
-            closeButton: true,
-            autoClose: true,
-            autoPan: true
-        });
-
-        // Store marker info for details panel
-        marker.markerInfo = markerInfo;
-        marker.markerType = type;
-
-        marker.on('click', function () {
-            updateMarkerDetails(markerInfo, type);
-        });
-
-        // Add hover effects
-        marker.on('mouseover', function (e) {
-            const element = e.target.getElement();
-            if (element) {
-                element.classList.add('marker-hover');
+        try {
+            // Try custom icon first, fallback to simple icon if it fails
+            let customIcon;
+            try {
+                customIcon = createCustomIcon(type);
+            } catch (error) {
+                console.warn('⚠️ Custom icon failed, using fallback:', error);
+                customIcon = createFallbackIcon(type);
             }
-        });
 
-        marker.on('mouseout', function (e) {
-            const element = e.target.getElement();
-            if (element) {
-                element.classList.remove('marker-hover');
-            }
-        });
+            const marker = L.marker(markerInfo.coordinates, {
+                icon: customIcon,
+                title: markerInfo.name
+            });
 
-        markerLayer.addLayer(marker);
+            const popupContent = createModernPopup(markerInfo, type);
+
+            marker.bindPopup(popupContent, {
+                className: 'modern-popup-container',
+                maxWidth: 320,
+                closeButton: true,
+                autoClose: true,
+                autoPan: true
+            });
+
+            // Store marker info for details panel
+            marker.markerInfo = markerInfo;
+            marker.markerType = type;
+
+            marker.on('click', function () {
+                updateMarkerDetails(markerInfo, type);
+            });
+
+            // Add hover effects
+            marker.on('mouseover', function (e) {
+                const element = e.target.getElement();
+                if (element) {
+                    element.classList.add('marker-hover');
+                }
+            });
+
+            marker.on('mouseout', function (e) {
+                const element = e.target.getElement();
+                if (element) {
+                    element.classList.remove('marker-hover');
+                }
+            });
+
+            markerLayer.addLayer(marker);
+        } catch (error) {
+            console.error(`❌ Failed to create marker ${index}:`, error, markerInfo);
+        }
     });
+
+    console.log(`✅ Successfully created ${markerLayer.getLayers().length} markers`);
 }
 
-// Enhanced marker details with modern styling
+// Enhanced marker details
 function updateMarkerDetails(markerInfo, type) {
     const markerInfoEl = document.querySelector('#markers-info');
     if (!markerInfoEl) return;
@@ -327,7 +335,7 @@ function updateMarkerDetails(markerInfo, type) {
                     <div class="info-section">
                         <h5>وب سایت</h5>
                         <div class="automation-info" dir="ltr">
-                            <a href="${markerInfo.website}">${markerInfo.website}</a>
+                            <a href="${markerInfo.website}" target="_blank">${markerInfo.website}</a>
                         </div>
                     </div>
                 ` : ''}
@@ -413,9 +421,8 @@ function updateMarkerDetails(markerInfo, type) {
     `;
 }
 
-// Global function for opening marker details (called from popup buttons)
+// Global function for opening marker details
 window.openMarkerDetails = function (markerName) {
-    // Find the marker by name and update details
     const allMarkers = [];
     if (typeof greenhouseMarkers !== 'undefined' && greenhouseMarkers) {
         allMarkers.push(...greenhouseMarkers);
@@ -437,46 +444,8 @@ window.openMarkerDetails = function (markerName) {
     }
 };
 
-// Enhanced tab event listeners
-document.addEventListener('DOMContentLoaded', function () {
-    const greenhouseTab = document.querySelector('#greenhouseTab');
-    const companyTab = document.querySelector('#companyTab');
-
-    if (greenhouseTab) {
-        greenhouseTab.addEventListener('click', function (event) {
-            event.preventDefault();
-            if (currentTab !== 'greenhouse') {
-                if (typeof greenhouseMarkers !== 'undefined' && greenhouseMarkers) {
-                    renderMarkers('greenhouse', greenhouseMarkers);
-                }
-
-                // Trigger Livewire event if available
-                if (typeof Livewire !== 'undefined' && Livewire.emit) {
-                    Livewire.emit('tabChanged', 'greenhouse');
-                }
-            }
-        });
-    }
-
-    if (companyTab) {
-        companyTab.addEventListener('click', function (event) {
-            event.preventDefault();
-            if (currentTab !== 'company') {
-                const markers = (typeof companyMarkers !== 'undefined' && companyMarkers) ? companyMarkers : [];
-                renderMarkers('company', markers);
-
-                // Trigger Livewire event if available
-                if (typeof Livewire !== 'undefined' && Livewire.emit) {
-                    Livewire.emit('tabChanged', 'company');
-                }
-            }
-        });
-    }
-});
-
 // Map utility functions
 const mapUtils = {
-    // Fit map to show all markers
     fitToMarkers: function () {
         const activeLayer = currentTab === 'greenhouse' ? greenhouseMarkerLayer : companyMarkerLayer;
         if (activeLayer.getLayers().length > 0) {
@@ -485,11 +454,9 @@ const mapUtils = {
         }
     },
 
-    // Go to specific marker
     goToMarker: function (markerInfo, zoom = 14) {
         map.setView(markerInfo.coordinates, zoom, {animate: true});
 
-        // Find and open the marker popup
         const activeLayer = currentTab === 'greenhouse' ? greenhouseMarkerLayer : companyMarkerLayer;
         activeLayer.eachLayer(function (marker) {
             if (marker.markerInfo && marker.markerInfo.name === markerInfo.name) {
@@ -498,7 +465,6 @@ const mapUtils = {
         });
     },
 
-    // Search markers by name or location
     searchMarkers: function (query) {
         const allMarkers = [];
         if (currentTab === 'greenhouse' && typeof greenhouseMarkers !== 'undefined' && greenhouseMarkers) {
@@ -519,71 +485,16 @@ const mapUtils = {
 window.searchMap = function (query) {
     const results = mapUtils.searchMarkers(query);
     if (results.length > 0) {
-        // Focus on first result
         mapUtils.goToMarker(results[0]);
         updateMarkerDetails(results[0], currentTab);
     }
     return results;
 };
 
-// Performance optimizations
-const performance = {
-    // Debounce function for filter changes
-    debounce: function (func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    },
-
-    // Throttle function for scroll/zoom events
-    throttle: function (func, limit) {
-        let inThrottle;
-        return function () {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-};
-
-// Add event listeners for better UX
-map.on('zoomend', performance.throttle(function () {
-    // Update UI based on zoom level
-    const zoom = map.getZoom();
-    const mapContainer = document.getElementById('map');
-
-    if (mapContainer) {
-        if (zoom > 10) {
-            mapContainer.classList.add('high-zoom');
-        } else {
-            mapContainer.classList.remove('high-zoom');
-        }
-    }
-}, 250));
-
-// Error handling for marker loading
-window.addEventListener('error', function (e) {
-    if (e.filename && e.filename.includes('map')) {
-        console.warn('Map error caught:', e.message);
-        // Fallback behavior - just log the error
-    }
-});
-
 // Initialize the map with default markers when data is available
 if (typeof greenhouseMarkers !== 'undefined' || typeof companyMarkers !== 'undefined') {
     showDefaultTabMarkers();
 } else {
-    // Wait for data to be available
     document.addEventListener('livewire:init', () => {
         showDefaultTabMarkers();
     });
@@ -594,402 +505,36 @@ window.mapUtils = mapUtils;
 window.updateMapMarkers = renderMarkers;
 window.getCurrentTab = () => currentTab;
 
-// Add CSS styles for modern markers and popups
-const mapStyles = document.createElement('style');
-mapStyles.textContent = `
-    /* Custom Marker Styles */
-    .custom-marker {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
+// Enhanced error handling and debugging
+window.addEventListener('error', function (e) {
+    if (e.filename && e.filename.includes('map')) {
+        console.warn('Map error caught:', e.message);
     }
+});
 
-    .marker-inner {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-    }
+// Debug function to check marker creation
+window.debugMarkers = function () {
+    console.log('=== MARKER DEBUG INFO ===');
+    console.log('Current tab:', currentTab);
+    console.log('Greenhouse markers available:', typeof greenhouseMarkers !== 'undefined' && greenhouseMarkers ? greenhouseMarkers.length : 'None');
+    console.log('Company markers available:', typeof companyMarkers !== 'undefined' && companyMarkers ? companyMarkers.length : 'None');
+    console.log('Greenhouse layer count:', greenhouseMarkerLayer.getLayers().length);
+    console.log('Company layer count:', companyMarkerLayer.getLayers().length);
+    console.log('Map has greenhouse layer:', map.hasLayer(greenhouseMarkerLayer));
+    console.log('Map has company layer:', map.hasLayer(companyMarkerLayer));
 
-    .greenhouse-marker .marker-inner {
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-    }
-
-    .company-marker .marker-inner {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-        color: white;
-    }
-
-    .marker-pulse {
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-        opacity: 0.6;
-    }
-
-    .greenhouse-marker .marker-pulse {
-        background: #10b981;
-    }
-
-    .company-marker .marker-pulse {
-        background: #3b82f6;
-    }
-
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            opacity: 0.6;
-        }
-        50% {
-            transform: scale(1.2);
-            opacity: 0.3;
-        }
-        100% {
-            transform: scale(1.4);
-            opacity: 0;
+    // Test icon creation
+    try {
+        const testIcon = createCustomIcon('greenhouse');
+        console.log('Custom icon creation: SUCCESS');
+    } catch (error) {
+        console.log('Custom icon creation: FAILED', error);
+        try {
+            const fallbackIcon = createFallbackIcon('greenhouse');
+            console.log('Fallback icon creation: SUCCESS');
+        } catch (fallbackError) {
+            console.log('Fallback icon creation: FAILED', fallbackError);
         }
     }
-
-    .custom-marker:hover .marker-inner,
-    .marker-hover .marker-inner {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Modern Popup Styles */
-    .leaflet-popup-content-wrapper {
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        border: 1px solid #e2e8f0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .leaflet-popup-content {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    .leaflet-popup-tip {
-        background: white;
-        border: 1px solid #e2e8f0;
-    }
-
-    .modern-popup {
-        padding: 20px;
-        max-width: 280px;
-    }
-
-    .popup-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
-    }
-
-    .popup-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-    }
-
-    .popup-icon.greenhouse {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
-
-    .popup-icon.company {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-
-    .popup-title h3 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 600;
-        color: #1e293b;
-        line-height: 1.3;
-    }
-
-    .popup-type {
-        font-size: 12px;
-        color: #64748b;
-        font-weight: 500;
-    }
-
-    .popup-content {
-        margin-bottom: 16px;
-    }
-
-    .popup-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
-        font-size: 14px;
-        color: #475569;
-    }
-
-    .popup-info:last-child {
-        margin-bottom: 0;
-    }
-
-    .info-icon {
-        width: 16px;
-        height: 16px;
-        color: #94a3b8;
-        flex-shrink: 0;
-    }
-
-    .popup-actions {
-        padding-top: 16px;
-        border-top: 1px solid #e2e8f0;
-    }
-
-    .popup-button {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        width: 100%;
-        padding: 10px 16px;
-        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #475569;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        justify-content: center;
-    }
-
-    .popup-button:hover {
-        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Details Panel Styles */
-    .marker-details-modern {
-        padding: 24px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    .details-header {
-        margin-bottom: 24px;
-    }
-
-    .details-image {
-        position: relative;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 16px;
-    }
-
-    .details-image img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .image-overlay {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-    }
-
-    .marker-type-badge {
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        color: white;
-    }
-
-    .marker-type-badge.greenhouse {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
-
-    .marker-type-badge.company {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-
-    .details-title h4 {
-        margin: 0;
-        font-size: 20px;
-        font-weight: 700;
-        color: #1e293b;
-        line-height: 1.3;
-    }
-
-    .info-section {
-        margin-bottom: 24px;
-    }
-
-    .info-section h5 {
-        margin: 0 0 16px 0;
-        font-size: 16px;
-        font-weight: 600;
-        color: #334155;
-    }
-
-    .info-grid {
-        display: grid;
-        gap: 12px;
-    }
-
-    .info-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px;
-        background: #f8fafc;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-    }
-
-    .info-item .info-icon {
-        width: 20px;
-        height: 20px;
-        color: #64748b;
-        flex-shrink: 0;
-    }
-
-    .info-label {
-        font-weight: 500;
-        color: #64748b;
-        min-width: 60px;
-    }
-
-    .info-value {
-        color: #1e293b;
-        font-weight: 500;
-    }
-
-    .divider {
-        height: 1px;
-        background: #e2e8f0;
-        margin: 24px 0;
-    }
-
-    .automation-info {
-        padding: 16px;
-        background: #f1f5f9;
-        border-radius: 8px;
-        border: 1px solid #cbd5e1;
-    }
-
-    .automation-info p {
-        margin: 0 0 8px 0;
-        color: #475569;
-        font-weight: 500;
-    }
-
-    .automation-info p:last-child {
-        margin-bottom: 0;
-    }
-
-    .environmental-grid {
-        display: grid;
-        gap: 16px;
-        padding-bottom: 50px;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .env-card {
-        padding: 16px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .env-header {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
-        font-weight: 600;
-        color: #334155;
-    }
-
-    .env-icon {
-        width: 20px;
-        height: 20px;
-        color: #64748b;
-    }
-
-    .env-values {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .env-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .env-label {
-        font-size: 14px;
-        color: #64748b;
-    }
-
-    .env-value {
-        font-size: 14px;
-        font-weight: 600;
-        color: #1e293b;
-    }
-
-    /* Map container enhancements */
-    #map {
-        transition: all 0.3s ease;
-    }
-
-    #map.high-zoom .leaflet-marker-icon {
-        transform: scale(1.1);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .modern-popup {
-            padding: 16px;
-            max-width: 260px;
-        }
-
-        .marker-details-modern {
-            padding: 16px;
-        }
-
-        .environmental-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .info-grid {
-            gap: 8px;
-        }
-
-        .info-item {
-            padding: 10px;
-        }
-    }
-`;
-
-document.head.appendChild(mapStyles);
+    console.log('========================');
+};
