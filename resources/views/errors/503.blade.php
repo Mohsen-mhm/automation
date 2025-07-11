@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', __('سرویس در دسترس نیست'))
+@section('title', __('درحال به روز رسانی سیستم'))
 @section('code', '503')
-@section('message', __('سرویس در دسترس نیست'))
+@section('message', __('درحال به روز رسانی سیستم'))
