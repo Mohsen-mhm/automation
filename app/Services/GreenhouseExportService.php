@@ -209,8 +209,8 @@ class GreenhouseExportService
             $html .= '<td>' . htmlspecialchars($greenhouse->meterage) . '</td>';
             $html .= '<td>' . htmlspecialchars($greenhouse->owner_name) . '</td>';
             $html .= '<td>' . htmlspecialchars($greenhouse->owner_phone) . '</td>';
-            $html .= '<td>' . htmlspecialchars($greenhouse->province ?? '-') . '</td>';
-            $html .= '<td>' . htmlspecialchars($greenhouse->city ?? '-') . '</td>';
+            $html .= '<td>' . htmlspecialchars($greenhouse->province->name ?? '-') . '</td>';
+            $html .= '<td>' . htmlspecialchars($greenhouse->city->name ?? '-') . '</td>';
             $html .= '<td>' . htmlspecialchars($greenhouse->address) . '</td>';
             $html .= '<td>' . $this->getStatusText($greenhouse) . '</td>';
             $html .= '<td>' . ($greenhouse->created_at ? Jalalian::fromDateTime($greenhouse->created_at)->toDateString() : '-') . '</td>';
