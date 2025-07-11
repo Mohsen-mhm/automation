@@ -13,6 +13,7 @@ class Automation extends Model
     public const AUTOMATION_INDEX = 'automation-index';
     public const AUTOMATION_CREATE = 'automation-create';
     public const AUTOMATION_EDIT = 'automation-edit';
+    public const AUTOMATION_DELETE = 'automation-delete';
     public const AUTOMATION_CONFIRM = 'automation-confirm';
 
     protected $fillable = [

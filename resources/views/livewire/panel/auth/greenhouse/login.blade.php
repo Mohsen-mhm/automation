@@ -30,8 +30,8 @@
                 <form wire:submit="login" class="space-y-6">
                     <!-- National ID Field -->
                     <div class="space-y-2">
-                        <label for="national_id" class="block text-sm font-semibold text-slate-700">
-                            کد ملی
+                        <label for="licence_number" class="block text-sm font-semibold text-slate-700">
+                            شماره پروانه گلخانه
                         </label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
@@ -43,15 +43,13 @@
                             </div>
                             <input
                                 type="text"
-                                id="national_id"
-                                wire:model.live="national_id"
+                                id="licence_number"
+                                wire:model.live="licence_number"
                                 class="block w-full pr-12 py-4 text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:bg-white transition-all duration-200 text-right placeholder:text-slate-400"
-                                placeholder="مثال: ۲۲۸۱۲۳۴۵۶۷"
-                                minlength="10"
-                                maxlength="10"
+                                placeholder="مثال: ۱۱/۲۲/۱۱۲۲"
                                 required>
                         </div>
-                        @error('national_id')
+                        @error('licence_number')
                         <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

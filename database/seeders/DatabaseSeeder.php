@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 //            ConfigSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,
+//            ProvinceAndCitySeeder::class,
 //            UserSeeder::class,
 //            OrganizationSeeder::class,
 //            CompanySeeder::class,

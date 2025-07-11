@@ -27,21 +27,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', MainIndex::class)->name('home');
+//Route::get('/', MainIndex::class)->name('home');
 
-Route::get('/users', UsersIndex::class)->name('users');
-Route::get('/configs', ConfigsIndex::class)->name('configs');
-Route::get('/profile', Profile::class)->name('profile');
+//Route::get('/users', UsersIndex::class)->name('users');
+//Route::get('/configs', ConfigsIndex::class)->name('configs');
+//Route::get('/profile', Profile::class)->name('profile');
 
-Route::get('/roles', RolesIndex::class)->name('roles');
-Route::get('/permissions', PermissionsIndex::class)->name('permissions');
+//Route::get('/roles', RolesIndex::class)->name('roles');
+//Route::get('/permissions', PermissionsIndex::class)->name('permissions');
 
-Route::get('/companies', CompaniesIndex::class)->name('companies');
-Route::get('/greenhouses', GreenhousesIndex::class)->name('greenhouses');
-Route::get('/organizations', OrganizationsIndex::class)->name('organizations');
-Route::get('/automations', AutomationsIndex::class)->name('automations');
+//Route::get('/companies', CompaniesIndex::class)->name('companies');
+//Route::get('/greenhouses', GreenhousesIndex::class)->name('greenhouses');
+//Route::get('/organizations', OrganizationsIndex::class)->name('organizations');
+//Route::get('/automations', AutomationsIndex::class)->name('automations');
 
-Route::get('/alerts', AlertsIndex::class)->name('alerts');
-Route::get('/{id}/alerts', IndexAdmin::class)->name('alerts.admin');
-Route::get('/about-us', AboutUsIndex::class)->name('about.us');
-Route::get('/contact-us', ContactUsIndex::class)->name('contact.us');
+//Route::get('/alerts', AlertsIndex::class)->name('alerts');
+//Route::get('/{id}/alerts', IndexAdmin::class)->name('alerts.admin');
+//Route::get('/about-us', AboutUsIndex::class)->name('about.us');
+//Route::get('/contact-us', ContactUsIndex::class)->name('contact.us');

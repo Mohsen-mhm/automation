@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use App\Models\Config;
@@ -78,14 +80,20 @@ class Map extends Component
                 ];
                 $this->productFilter[] = $item;
             });
-        collect(Greenhouse::query()->where('active', true)->pluck('province'))->unique()
-            ->each(function ($item) {
-                $this->provinces[] = [
-                    'uuid' => Str::uuid()->toString(),
-                    'name' => $item
-                ];
-                $this->provinceFilter[] = $item;
-            });
+        collect(
+            Greenhouse::with('province')
+                ->where('active', true)
+                ->get()
+                ->pluck('province.name')
+                ->filter()
+                ->unique()
+        )->each(function ($item) {
+            $this->provinces[] = [
+                'uuid' => Str::uuid()->toString(),
+                'name' => $item
+            ];
+            $this->provinceFilter[] = $item;
+        });
         $this->assignGreenhouseFilteredData();
     }
 
@@ -97,14 +105,20 @@ class Map extends Component
         $this->companyProvinceFilter = [];
         $this->companyTypeFilter = [];
 
-        collect(Company::query()->where('active', true)->pluck('province'))->unique()
-            ->each(function ($item) {
-                $this->companyProvinces[] = [
-                    'uuid' => Str::uuid()->toString(),
-                    'name' => $item
-                ];
-                $this->companyProvinceFilter[] = $item;
-            });
+        collect(
+            Company::with('province')
+                ->where('active', true)
+                ->get()
+                ->pluck('province.name')
+                ->filter()
+                ->unique()
+        )->each(function ($item) {
+            $this->companyProvinces[] = [
+                'uuid' => Str::uuid()->toString(),
+                'name' => $item
+            ];
+            $this->companyProvinceFilter[] = $item;
+        });
         collect(Company::query()->where('active', true)->pluck('type'))->unique()
             ->each(function ($item) {
                 $this->companyType[] = [
@@ -134,7 +148,7 @@ class Map extends Component
             if ($greenhouse->active
                 && in_array($greenhouse->substrate_type, $this->substrateFilter)
                 && in_array($greenhouse->product_type, $this->productFilter)
-                && in_array($greenhouse->province, $this->provinceFilter)) {
+                && in_array($greenhouse->province->name, $this->provinceFilter)) {
                 return $greenhouse;
             }
             return null;
@@ -146,7 +160,7 @@ class Map extends Component
         return collect(Company::all())->filter(function ($company) {
             if ($company->active
                 && in_array($company->type, $this->companyTypeFilter)
-                && in_array($company->province, $this->companyProvinceFilter)) {
+                && in_array($company->province->name, $this->companyProvinceFilter)) {
                 return $company;
             }
             return null;
@@ -162,7 +176,8 @@ class Map extends Component
                 'coordinates' => [$company->latitude, $company->longitude],
                 'image' => asset($company->company_logo),
                 'name' => $company->name,
-                'area' => $company->province . "\n" . $company->city . "\n" . $company->address,
+                'website' => $company->website,
+                'area' => $company->province->name . "\n" . $company->city->name . "\n" . $company->address,
                 'company' => true
             ];
         }
@@ -175,19 +190,57 @@ class Map extends Component
 
         $greenhouseData = [];
         foreach ($filteredGreenhouses as $greenhouse) {
+            $data = [
+                'Reg_1' => '-',
+                'Reg_2' => '-',
+                'Reg_3' => '-',
+                'Reg_4' => '-',
+                'Reg_5' => '-',
+                'Reg_6' => '-'
+            ];
+            $climateAutomation = "فاقد اتوماسیون اقلیم فعال";
+            $feedingAutomation = "فاقد اتوماسیون تغذیه فعال";
+            if ($greenhouse->automation->count()) {
+                $automation = $greenhouse->automation->first();
+                if ($automation && $automation->active) {
+                    if ($automation->climate_api_link) {
+                        try {
+                            $res = Http::get($automation->climate_api_link)->collect();
+
+                            $data = $res->only(['Reg_1', 'Reg_2', 'Reg_3', 'Reg_4', 'Reg_5', 'Reg_6'])->map(function ($item) {
+                                if ($item && is_int($item)) {
+                                    return $item / 10;
+                                }
+                                return $item;
+                            })->toArray();
+                        } catch (\Exception $exception) {
+                            Log::error($exception->getMessage());
+                        }
+                    }
+                    if ($automation->climate_company_id) {
+                        $climateAutomation = str_contains('شرکت', $automation->climateCompany->name) ? $automation->climateCompany->name : "شرکت " . $automation->climateCompany->name;
+                    }
+                    if ($automation->feeding_company_id) {
+                        $feedingAutomation = str_contains('شرکت', $automation->feedingCompany->name) ? $automation->feedingCompany->name : "شرکت " . $automation->feedingCompany->name;
+                    }
+                }
+            }
+
             $greenhouseData[] = [
                 'coordinates' => [$greenhouse->latitude, $greenhouse->longitude],
                 'image' => asset($greenhouse->image),
                 'name' => $greenhouse->name,
-                'area' => $greenhouse->province . ' - ' . $greenhouse->city,
+                'area' => $greenhouse->province->name . ' - ' . $greenhouse->city->name,
                 'product' => $greenhouse->product_type . ' - ' . $greenhouse->substrate_type,
                 'space' => $greenhouse->meterage,
-                'outsideTemp' => '-',
-                'outsideHumidity' => '-',
-                'lightIntensity' => '-',
-                'windSpeed' => '-',
-                'insideTemp' => '-',
-                'insideHumidity' => '-',
+                'climateAutomation' => $climateAutomation,
+                'feedingAutomation' => $feedingAutomation,
+                'outsideTemp' => $data['Reg_1'], // Reg_1
+                'outsideHumidity' => $data['Reg_2'], // Reg_2
+                'lightIntensity' => $data['Reg_3'], // Reg_3
+                'windSpeed' => $data['Reg_4'], // Reg_4
+                'insideTemp' => $data['Reg_5'], // Reg_5
+                'insideHumidity' => $data['Reg_6'], // Reg_6
                 'company' => false
             ];
         }

@@ -305,13 +305,32 @@ function updateMarkerDetails(markerInfo, type) {
 
                 <div class="divider"></div>
 
-                <div class="info-section">
-                    <h5>سیستم اتوماسیون</h5>
-                    <div class="automation-info">
-                        <p>شرکت سیمرغ هوشمند انرژی</p>
-                        <p>برند سیمهوش</p>
+                ${!isCompany && markerInfo.climateAutomation ? `
+                    <div class="info-section">
+                        <h5>سیستم اتوماسیون اقلیم</h5>
+                        <div class="automation-info">
+                            <p>${markerInfo.climateAutomation}</p>
+                        </div>
                     </div>
-                </div>
+                ` : ''}
+
+                ${!isCompany && markerInfo.feedingAutomation ? `
+                    <div class="info-section">
+                        <h5>سیستم اتوماسیون تغذیه</h5>
+                        <div class="automation-info">
+                            <p>${markerInfo.feedingAutomation}</p>
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${isCompany && markerInfo.website ? `
+                    <div class="info-section">
+                        <h5>وب سایت</h5>
+                        <div class="automation-info" dir="ltr">
+                            <a href="${markerInfo.website}">${markerInfo.website}</a>
+                        </div>
+                    </div>
+                ` : ''}
 
                 ${!isCompany ? `
                     <div class="divider"></div>

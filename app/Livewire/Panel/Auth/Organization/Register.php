@@ -66,17 +66,17 @@ class Register extends Component
 
         DB::beginTransaction();
         try {
-            OrganizationUser::create($validData);
-            $user = User::query()->firstOrCreate(
-                [
-                    'national_id' => $validData['national_id']
-                ],
+            $user = User::query()->create(
                 [
                     'name' => $validData['fname'] . ' ' . $validData['lname'],
                     'national_id' => $validData['national_id'],
                     'phone_number' => $validData['phone_number'],
                 ],
             );
+
+            $validData['user_id'] = $user->id;
+            OrganizationUser::create($validData);
+
             $user->roles()->sync(Role::query()->whereName(Role::ORGANIZATION_ROLE)->first()->id);
             DB::commit();
 

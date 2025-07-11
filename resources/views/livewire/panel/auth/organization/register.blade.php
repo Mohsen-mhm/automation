@@ -580,15 +580,8 @@
                                     class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl border border-teal-200">
                                     <span class="text-center font-bold text-teal-800 mb-4">معرفی نامه نمونه</span>
                                     <div
-                                        class="w-48 h-64 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg border-2 border-teal-200 flex items-center justify-center">
-                                        <div class="text-center text-teal-600">
-                                            <svg class="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                            </svg>
-                                            <p class="text-sm font-medium">نمونه معرفی نامه</p>
-                                        </div>
+                                        class="w-96 h-96 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg border-2 border-teal-200 flex items-center justify-center">
+                                            <img src="{{ asset('assets/img/sample-cover-letter.jpg') }}" class="mx-auto mb-2" alt="معرفی نامه نمونه">
                                     </div>
                                 </div>
                             </div>

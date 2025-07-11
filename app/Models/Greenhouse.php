@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -18,6 +19,7 @@ class Greenhouse extends Model
     public const GREENHOUSE_DELETE = 'greenhouse-delete';
 
     protected $fillable = [
+        'user_id',
         'name',
         'substrate_type',
         'product_type',
@@ -43,6 +45,8 @@ class Greenhouse extends Model
         'image',
         'active',
         'status',
+        'city_id',
+        'province_id',
     ];
 
     public function automation(): HasMany
@@ -53,5 +57,26 @@ class Greenhouse extends Model
     public function alert(): HasOne
     {
         return $this->hasOne(GreenhouseAlert::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the province this company belongs to
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    /**
+     * Get the city this company belongs to
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

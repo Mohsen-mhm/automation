@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrganizationUser extends Model
 {
@@ -16,6 +17,7 @@ class OrganizationUser extends Model
     public const ORGAN_DELETE = 'organ-delete';
 
     protected $fillable = [
+        'user_id',
         'fname',
         'lname',
         'national_id',
@@ -33,4 +35,9 @@ class OrganizationUser extends Model
         'active',
         'status',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

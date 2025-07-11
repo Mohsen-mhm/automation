@@ -1,13 +1,5 @@
-<x-modal>
-    <x-slot name="name">
-        assign-modal
-    </x-slot>
-
-    <x-slot name="title">
-        دسترسی های این نقش
-    </x-slot>
-
-    <x-slot name="content">
+<div class="w-full p-5 overflow-x-hidden">
+    <div>
         <form class="p-4 md:p-5" wire:submit="assign">
             @csrf
 
@@ -30,5 +22,5 @@
                 @endif
             </div>
         </form>
-    </x-slot>
-</x-modal>
+    </div>
+</div>

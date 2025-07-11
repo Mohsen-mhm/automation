@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -39,5 +40,8 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->hasRole($permission->roles);
             });
         }
+        Gate::define('chart-permissions', static function ($user) {
+            return $user->hasRole(Role::ADMIN_ROLE);
+        });
     }
 }

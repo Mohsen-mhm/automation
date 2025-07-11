@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
@@ -17,6 +18,7 @@ class Company extends Model
     public const COMPANY_DELETE = 'company-delete';
 
     protected $fillable = [
+        'user_id',
         'name',
         'type',
         'national_id',
@@ -50,6 +52,8 @@ class Company extends Model
         'operation_licence',
         'active',
         'status',
+        'city_id',
+        'province_id',
     ];
 
     // ---------- Relations ---------- //
@@ -62,5 +66,40 @@ class Company extends Model
     public function feedingAutomations(): HasMany
     {
         return $this->hasMany(Automation::class, 'feeding_company_id');
+    }
+
+    public function greenhouses()
+    {
+        return $this->hasManyThrough(
+            Greenhouse::class,
+            Automation::class,
+            'climate_company_id', // Foreign key on automations table
+            'id', // Foreign key on greenhouses table
+            'id', // Local key on companies table
+            'greenhouse_id' // Local key on automations table
+        )->orWhereHas('automations', function($query) {
+            $query->where('feeding_company_id', $this->id);
+        });
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the province this company belongs to
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    /**
+     * Get the city this company belongs to
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

@@ -10,6 +10,7 @@
         "asantibanez/livewire-charts": "^3.0",
         "barryvdh/laravel-dompdf": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
+        "hekmatinasser/verta": "^8.5",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
@@ -17,8 +18,10 @@
         "melipayamak/laravel": "1.0.0",
         "milwad/laravel-validate": "*",
         "morilog/jalali": "^3.4",
+        "phpoffice/phpspreadsheet": "^4.4",
         "rappasoft/laravel-livewire-tables": "^3.2",
-        "yoeunes/toastr": "^2.3"
+        "yoeunes/toastr": "^2.3",
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Panel\Auth\Greenhouse;
 
+use App\Models\Greenhouse;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\SMS\smsService;
@@ -17,7 +18,7 @@ use Milwad\LaravelValidate\Rules\ValidPhoneNumber;
 class Login extends Component
 {
     #[Validate]
-    public string $national_id;
+    public string $licence_number;
     #[Validate]
     public string $phone_number;
     #[Validate]
@@ -26,7 +27,7 @@ class Login extends Component
     public function rules()
     {
         return [
-            'national_id' => ['required', new ValidNationalCard()],
+            'licence_number' => ['required', 'string'],
             'phone_number' => ['required', new ValidPhoneNumber()],
             'code' => ['required'],
         ];
@@ -43,14 +44,16 @@ class Login extends Component
     public function sendSMS()
     {
         $this->validate([
-            'national_id' => ['required', new ValidNationalCard()],
+            'licence_number' => ['required', 'string'],
             'phone_number' => ['required', new ValidPhoneNumber()],
         ]);
 
-        $user = User::query()->where([
-            'national_id' => $this->national_id,
-            'phone_number' => $this->phone_number,
+        $greenhouse = Greenhouse::query()->where([
+            'licence_number' => $this->licence_number,
+            'owner_phone' => $this->phone_number,
         ])->first();
+
+        $user = $greenhouse->user;
 
         if ($user && $user->hasRole(Role::GREENHOUSE_ROLE)) {
             $code = smsService::generateCode($user->id);
@@ -62,8 +65,8 @@ class Login extends Component
                 toastr()->error('خطا در ارسال کد. دوباره تلاش کنید یا با پشتیبانی در ارتباط باشید', 'خطا');
             }
         } else {
-            $this->addError('national_id', 'کد ملی یا شماره همراه صحیح نیست.');
-            $this->addError('phone_number', 'کد ملی یا شماره همراه صحیح نیست.');
+            $this->addError('licence_number', 'شماره پروانه یا شماره همراه صحیح نیست.');
+            $this->addError('phone_number', 'شماره پروانه یا شماره همراه صحیح نیست.');
         }
     }
 
@@ -72,10 +75,12 @@ class Login extends Component
         try {
             $this->validate();
 
-            $user = User::query()->where([
-                'national_id' => $this->national_id,
-                'phone_number' => $this->phone_number,
+            $greenhouse = Greenhouse::query()->where([
+                'licence_number' => $this->licence_number,
+                'owner_phone' => $this->phone_number,
             ])->first();
+
+            $user = $greenhouse->user;
 
             if ($user && $user->hasRole(Role::GREENHOUSE_ROLE)) {
                 $status = smsService::checkCode($user->id, $this->code);
@@ -87,8 +92,8 @@ class Login extends Component
                     $this->addError('code', 'کد نامعتبر است.');
                 }
             } else {
-                $this->addError('national_id', 'کد ملی یا شماره همراه صحیح نیست.');
-                $this->addError('phone_number', 'کد ملی یا شماره همراه صحیح نیست.');
+                $this->addError('licence_number', 'شماره پروانه یا شماره همراه صحیح نیست.');
+                $this->addError('phone_number', 'شماره پروانه یا شماره همراه صحیح نیست.');
             }
         } catch (Exception $e) {
             toastr()->error('خطای سرور، دوباره تلاش کنید');

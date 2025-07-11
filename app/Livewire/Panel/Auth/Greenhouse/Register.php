@@ -87,7 +87,7 @@ class Register extends Component
             'city' => ['required', 'string'],
             'address' => ['required', 'string'],
             'postal' => ['required', 'string'],
-            'location_link' => ['required', 'string', new ValidUrl(), 'unique:greenhouses,location_link', 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
+            'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
             'operation_licence' => ['required', 'image'],
             'image' => ['required', 'image'],
         ];
@@ -122,18 +122,18 @@ class Register extends Component
 
         DB::beginTransaction();
         try {
-            $greenhouse = Greenhouse::create($validData);
-            GreenhouseAlert::create(['greenhouse_id' => $greenhouse->id]);
-            $user = User::query()->firstOrCreate(
-                [
-                    'national_id' => $validData['owner_national_id']
-                ],
+            $user = User::query()->create(
                 [
                     'name' => $validData['name'],
                     'national_id' => $validData['owner_national_id'],
                     'phone_number' => $validData['owner_phone'],
                 ]
             );
+
+            $validData['user_id'] = $user->id;
+            $greenhouse = Greenhouse::create($validData);
+            GreenhouseAlert::create(['greenhouse_id' => $greenhouse->id]);
+
             $user->roles()->sync(Role::query()->whereName(Role::GREENHOUSE_ROLE)->first()->id);
 
             DB::commit();

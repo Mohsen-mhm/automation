@@ -11,23 +11,23 @@
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
-    height: 5px;
+    height: 7px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #013328;
+    background: #007e64;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #026B56;
+    background: #00d7aa;
     border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #001F18;
+    background: #00af84;
 }
 /* Modern Sidebar Styles */
 

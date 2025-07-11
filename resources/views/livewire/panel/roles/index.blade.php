@@ -3,7 +3,7 @@
         <livewire:panel.roles.roles-table/>
     </div>
 
-    @can(\App\Models\Role::ROLE_ASSIGN)
-        <livewire:panel.roles.assign-role/>
-    @endcan
+{{--    @can(\App\Models\Role::ROLE_ASSIGN)--}}
+{{--        <livewire:panel.roles.assign-role/>--}}
+{{--    @endcan--}}
 </div>

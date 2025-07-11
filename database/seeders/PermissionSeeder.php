@@ -119,6 +119,10 @@ class PermissionSeeder extends Seeder
                 'title' => 'ویرایش اتوماسیون',
             ],
             [
+                'name' => 'automation-delete',
+                'title' => 'حدف اتوماسیون',
+            ],
+            [
                 'name' => 'automation-confirm',
                 'title' => 'تایید/رد کردن اطلاعات اتوماسیون',
             ],
@@ -153,6 +157,46 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'contact-us-index',
                 'title' => 'دسترسی به صفحه تماس با ما',
+            ],
+            [
+                'name' => 'city-index',
+                'title' => 'دسترسی به لیست شهر ها',
+            ],
+            [
+                'name' => 'city-create',
+                'title' => 'ایجاد شهر جدید',
+            ],
+            [
+                'name' => 'city-edit',
+                'title' => 'ویرایش شهر',
+            ],
+            [
+                'name' => 'city-delete',
+                'title' => 'حدف شهر',
+            ],
+            [
+                'name' => 'province-index',
+                'title' => 'دسترسی به لیست استان ها',
+            ],
+            [
+                'name' => 'province-create',
+                'title' => 'ایجاد استان جدید',
+            ],
+            [
+                'name' => 'province-edit',
+                'title' => 'ویرایش استان',
+            ],
+            [
+                'name' => 'province-delete',
+                'title' => 'حدف استان',
+            ],
+            [
+                'name' => 'chart-view',
+                'title' => 'مشاهده نمودارها',
+            ],
+            [
+                'name' => 'chart-manage-permissions',
+                'title' => 'مدیریت دسترسی نمودارها',
             ],
         ];
 

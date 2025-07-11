@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Panel\Auth\Company;
 
+use App\Models\Company;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\SMS\smsService;
@@ -47,16 +48,16 @@ class Login extends Component
             'phone_number' => ['required', new ValidPhoneNumber()],
         ]);
 
-        $user = User::query()->where([
+        $company = Company::query()->where([
             'national_id' => $this->national_id,
-            'phone_number' => $this->phone_number,
+            'interface_phone' => $this->phone_number,
         ])->first();
+        $user = $company->user;
 
         if ($user && $user->hasRole(Role::COMPANY_ROLE)) {
             try {
                 $code = smsService::generateCode($user->id);
-//                $result = smsService::sendSMS($user->getPhone(), $code);
-                $result = true;
+                $result = smsService::sendSMS($user->getPhone(), $code);
 
                 if ($result) {
                     $this->dispatch('start-interval');
@@ -82,10 +83,11 @@ class Login extends Component
         try {
             $this->validate();
 
-            $user = User::query()->where([
+            $company = Company::query()->where([
                 'national_id' => $this->national_id,
-                'phone_number' => $this->phone_number,
+                'interface_phone' => $this->phone_number,
             ])->first();
+            $user = $company->user;
 
             if ($user && $user->hasRole(Role::COMPANY_ROLE)) {
                 $status = smsService::checkCode($user->id, $this->code);

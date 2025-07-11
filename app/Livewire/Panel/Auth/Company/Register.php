@@ -70,7 +70,7 @@ class Register extends Component
         return [
             'name' => ['required', 'string', 'min:2', 'max:150'],
             'type' => ['required', 'string', 'in:' . collect($this->companyTypes)->implode(',')],
-            'national_id' => ['required', 'string', 'min:4', 'unique:companies,national_id'],
+            'national_id' => ['required', 'string', 'min:4'],
             'registration_number' => ['required', 'string', 'unique:companies,registration_number'],
             'registration_place' => ['required', 'string'],
             'registration_date' => ['required', 'string'],
@@ -92,8 +92,8 @@ class Register extends Component
             'landline_number' => ['required', 'string'],
             'phone_number' => ['nullable', 'string'],
             'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
-            'website' => ['required', 'string', 'unique:companies,website'],
-            'email' => ['required', 'email', 'unique:companies,email'],
+            'website' => ['required', 'string'],
+            'email' => ['required', 'email'],
             'official_newspaper' => ['required', 'file', 'mimes:jpeg,png,svg,pdf'],
             'operation_licence' => ['required', 'image'],
         ];
@@ -131,17 +131,17 @@ class Register extends Component
 
         DB::beginTransaction();
         try {
-            Company::create($validData);
-            $user = User::query()->firstOrCreate(
-                [
-                    'national_id' => $validData['national_id']
-                ],
+            $user = User::query()->create(
                 [
                     'name' => $validData['name'],
                     'national_id' => $validData['national_id'],
                     'phone_number' => $validData['interface_phone'],
                 ]
             );
+
+            $validData['user_id'] = $user->id;
+            Company::create($validData);
+
             $user->roles()->sync(Role::query()->whereName(Role::COMPANY_ROLE)->first()->id);
 
             DB::commit();

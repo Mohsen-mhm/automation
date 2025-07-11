@@ -1,5 +1,21 @@
 <?php
 
+use App\Http\Controllers\Panel\AboutUsController;
+use App\Http\Controllers\Panel\AlertController;
+use App\Http\Controllers\Panel\AutomationController;
+use App\Http\Controllers\Panel\ChartPermissionController;
+use App\Http\Controllers\Panel\CityController;
+use App\Http\Controllers\Panel\CompanyController;
+use App\Http\Controllers\Panel\ConfigController;
+use App\Http\Controllers\Panel\ContactUsController;
+use App\Http\Controllers\Panel\DashboardController;
+use App\Http\Controllers\Panel\GreenhouseController;
+use App\Http\Controllers\Panel\OrganizationController;
+use App\Http\Controllers\Panel\PermissionController;
+use App\Http\Controllers\Panel\ProfileController;
+use App\Http\Controllers\Panel\ProvinceController;
+use App\Http\Controllers\Panel\RoleController;
+use App\Http\Controllers\Panel\UserController;
 use App\Livewire\AboutUs;
 use App\Livewire\ContactUs;
 use App\Livewire\Home;
@@ -10,6 +26,7 @@ use App\Livewire\Panel\Auth\Organization\Login as OrganizationLogin;
 use App\Livewire\Panel\Auth\Company\Register as CompanyRegister;
 use App\Livewire\Panel\Auth\Greenhouse\Register as GreenhouseRegister;
 use App\Livewire\Panel\Auth\Organization\Register as OrganizationRegister;
+use App\Models\ChartPermission;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +75,196 @@ Route::get('system-start', function () {
     Artisan::call('optimize:clear');
 });
 
+Route::prefix('panel')->name('panel.')->middleware(['web', 'auth'])->group(function () {
 
+    // Config management routes
+    Route::controller(ConfigController::class)->prefix('configs')->name('configs.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'getData')->name('data');
+        Route::get('/export', 'export')->name('export'); // Add this line
+        Route::get('/{config}/edit', 'edit')->name('edit');
+        Route::put('/{config}', 'update')->name('update');
+        Route::post('/update-filters', 'updateFilters')->name('update-filters');
+    });
+
+    // Permissions management routes
+    Route::controller(PermissionController::class)->prefix('permissions')->name('permissions.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'getData')->name('data');
+        Route::get('/{permission}', 'show')->name('show');
+        Route::get('/export', 'export')->name('export');
+        Route::get('/stats', 'getStats')->name('stats');
+    });
+
+    // Roles management routes
+    Route::controller(RoleController::class)->prefix('roles')->name('roles.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'getData')->name('data');
+        Route::get('/export', 'export')->name('export');
+        Route::get('/stats', 'getStats')->name('stats');
+        Route::get('/{role}/edit', 'edit')->name('edit');
+        Route::get('/{role}/clone', 'clone')->name('clone');
+        Route::get('/{role}', 'show')->name('show');
+        Route::put('/{role}', 'update')->name('update');
+        Route::post('/bulk-assign', 'bulkAssignPermissions')->name('bulk-assign');
+    });
+
+    Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'getData')->name('data');
+        Route::get('/{user}/edit', 'edit')->name('edit');
+        Route::put('/{user}', 'update')->name('update');
+        Route::post('/{user}/toggle-status', 'toggleStatus')->name('toggle-status');
+        Route::get('/export', 'export')->name('export');
+    });
+
+    Route::controller(AboutUsController::class)->prefix('about-us')->name('about.us.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::put('/update', 'update')->name('update');
+        Route::post('/upload-image', 'uploadImage')->name('upload.image');
+    });
+
+    Route::controller(ContactUsController::class)->prefix('contact-us')->name('contact-us.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'getData')->name('data');
+        Route::get('/export', 'export')->name('export');
+        Route::get('/{contactUs}', 'show')->name('show');
+    });
+
+    Route::controller(CompanyController::class)->prefix('companies')->name('companies.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{company}', 'show')->name('show');
+        Route::get('/{company}/edit', 'edit')->name('edit');
+        Route::put('/{company}', 'update')->name('update');
+        Route::delete('/{company}', 'destroy')->name('destroy');
+
+        // Data routes should come AFTER parameter routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+        Route::get('/provinces/list', 'getProvinces')->name('provinces');
+        Route::get('/cities/list', 'getCities')->name('cities');
+        Route::get('/province/{province}/cities', 'getCitiesByProvince')->name('cities-by-province');
+        Route::post('/coordinates/extract', 'getCoordinates')->name('coordinates');
+    });
+
+    Route::controller(GreenhouseController::class)->prefix('greenhouses')->name('greenhouses.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{greenhouse}', 'show')->name('show');
+        Route::get('/{greenhouse}/edit', 'edit')->name('edit');
+        Route::put('/{greenhouse}', 'update')->name('update');
+        Route::delete('/{greenhouse}', 'destroy')->name('destroy');
+
+        // Data routes should come AFTER parameter routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+        Route::get('/provinces/list', 'getProvinces')->name('provinces');
+        Route::get('/cities/list', 'getCities')->name('cities');
+        Route::get('/province/{province}/cities', 'getCitiesByProvince')->name('cities-by-province');
+        Route::post('/coordinates/extract', 'getCoordinates')->name('coordinates');
+    });
+
+    Route::controller(OrganizationController::class)->prefix('organizations')->name('organizations.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{organization}', 'show')->name('show');
+        Route::get('/{organization}/edit', 'edit')->name('edit');
+        Route::put('/{organization}', 'update')->name('update');
+        Route::delete('/{organization}', 'destroy')->name('destroy');
+
+        // Additional organization routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+    });
+
+    Route::controller(AutomationController::class)->prefix('automations')->name('automations.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+
+        // IMPORTANT: Make sure you're using {automation} not {id}
+        Route::get('/{automation}', 'show')->name('show');
+        Route::get('/{automation}/edit', 'edit')->name('edit');
+        Route::put('/{automation}', 'update')->name('update');
+        Route::delete('/{automation}', 'destroy')->name('destroy');
+
+        // Data routes should come AFTER parameter routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+    });
+
+    Route::controller(ProvinceController::class)->prefix('provinces')->name('provinces.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{province}', 'show')->name('show');
+        Route::get('/{province}/edit', 'edit')->name('edit');
+        Route::put('/{province}', 'update')->name('update');
+        Route::delete('/{province}', 'destroy')->name('destroy');
+
+        // Additional province routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+        Route::post('/{province}/toggle-status', 'toggleStatus')->name('toggle-status');
+        Route::get('/options/list', 'getOptions')->name('options');
+    });
+
+    // City management routes
+    Route::controller(CityController::class)->prefix('cities')->name('cities.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+
+        // IMPORTANT: Make sure you're using {city} not {id}
+        Route::get('/{city}/edit', 'edit')->name('edit');
+        Route::put('/{city}', 'update')->name('update');
+        Route::delete('/{city}', 'destroy')->name('destroy');
+        Route::post('/{city}/toggle-status', 'toggleStatus')->name('toggle-status');
+
+        // Data routes should come AFTER parameter routes
+        Route::get('/data/table', 'getData')->name('data');
+        Route::get('/statistics', 'stats')->name('stats');
+        Route::get('/export/download', 'export')->name('export');
+        Route::get('/options/list', 'getOptions')->name('options');
+        Route::get('/province/{province}/list', 'getByProvince')->name('by-province');
+    });
+
+    Route::controller(AlertController::class)->prefix('alerts')->name('alerts.')->group(function () {
+        Route::get('/alerts', 'index')->name('index');
+        Route::post('/alerts', 'store')->name('store');
+
+        Route::get('/{id}/alerts', 'admin')->name('admin');
+        Route::post('/{id}/alerts', 'storeAdmin')->name('admin.store');
+
+        Route::get('/api/alerts/stats', 'stats')->name('stats');
+    });
+
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::put('/', 'update')->name('update');
+        Route::post('/coordinates', 'getCoordinates')->name('coordinates');
+    });
+
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+    Route::controller(ChartPermissionController::class)->group(function () {
+        Route::get('/chart-permissions', 'index')->name('chart-permissions.index');
+        Route::post('/chart-permissions/update', 'update')->name('chart-permissions.update');
+        Route::post('/chart-permissions/toggle', 'toggle')->name('chart-permissions.toggle');
+    });
+});
+
+Route::middleware(['auth'])->post('logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect()->route('home');
+})->name('logout');

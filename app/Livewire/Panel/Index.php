@@ -19,7 +19,7 @@ class Index extends Component
     public function mount()
     {
         $result = smsService::getCredit();
-        $this->credit = $result ?: null;
+        $this->credit = null;
     }
 
     public function usersCountChart(): ColumnChartModel
@@ -39,16 +39,24 @@ class Index extends Component
             ->setTitle('شرکت ها')
             ->setColumnWidth(20)
             ->setOpacity(1);
+
         $companyByProvinces = Company::query()
-            ->selectRaw('province, COUNT(*) as count')
-            ->groupBy('province')
+            ->selectRaw('provinces.name as province_name, COUNT(*) as count')
+            ->join('provinces', 'companies.province_id', '=', 'provinces.id')
+            ->groupBy('provinces.name')
             ->get();
 
         foreach ($companyByProvinces as $province) {
-            $companyPerProvince->addColumn($province->province, $province->count, $this->generateRandomColor());
+            $companyPerProvince->addColumn(
+                $province->province_name,
+                $province->count,
+                $this->generateRandomColor()
+            );
         }
+
         return $companyPerProvince;
     }
+
 
     public function greenhouseCountPerProvince(): ColumnChartModel
     {
@@ -56,16 +64,24 @@ class Index extends Component
             ->setTitle('گلخانه ها')
             ->setColumnWidth(20)
             ->setOpacity(1);
+
         $greenhouseByProvinces = Greenhouse::query()
-            ->selectRaw('province, COUNT(*) as count')
-            ->groupBy('province')
+            ->selectRaw('provinces.name as province_name, COUNT(*) as count')
+            ->join('provinces', 'greenhouses.province_id', '=', 'provinces.id')
+            ->groupBy('provinces.name')
             ->get();
 
         foreach ($greenhouseByProvinces as $province) {
-            $greenhousePerProvince->addColumn($province->province, $province->count, $this->generateRandomColor());
+            $greenhousePerProvince->addColumn(
+                $province->province_name,
+                $province->count,
+                $this->generateRandomColor()
+            );
         }
+
         return $greenhousePerProvince;
     }
+
 
     public function climateAutomationCountPerCompany(): ColumnChartModel
     {

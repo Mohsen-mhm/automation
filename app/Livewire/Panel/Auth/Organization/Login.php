@@ -48,10 +48,11 @@ class Login extends Component
             'phone_number' => ['required', new ValidPhoneNumber()],
         ]);
 
-        $user = User::query()->where([
+        $organization = OrganizationUser::query()->where([
             'national_id' => $this->national_id,
             'phone_number' => $this->phone_number,
         ])->first();
+        $user = $organization->user;
 
         if ($user && $user->hasRole(Role::ORGANIZATION_ROLE)) {
             $code = smsService::generateCode($user->id);
@@ -73,10 +74,11 @@ class Login extends Component
         try {
             $this->validate();
 
-            $user = User::query()->where([
+            $organization = OrganizationUser::query()->where([
                 'national_id' => $this->national_id,
                 'phone_number' => $this->phone_number,
             ])->first();
+            $user = $organization->user;
 
             if ($user && $user->hasRole(Role::ORGANIZATION_ROLE)) {
                 $status = smsService::checkCode($user->id, $this->code);
