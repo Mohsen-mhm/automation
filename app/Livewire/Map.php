@@ -235,12 +235,12 @@ class Map extends Component
                 'space' => $greenhouse->meterage,
                 'climateAutomation' => $climateAutomation,
                 'feedingAutomation' => $feedingAutomation,
-                'outsideTemp' => $data['Reg_1'], // Reg_1
-                'outsideHumidity' => $data['Reg_2'], // Reg_2
-                'lightIntensity' => $data['Reg_3'], // Reg_3
-                'windSpeed' => $data['Reg_4'], // Reg_4
-                'insideTemp' => $data['Reg_5'], // Reg_5
-                'insideHumidity' => $data['Reg_6'], // Reg_6
+                'outsideTemp' => array_key_exists('Reg_1', $data) ? $data['Reg_1'] : '-', // Reg_1
+                'outsideHumidity' => array_key_exists('Reg_2', $data) ? $data['Reg_2'] : '-', // Reg_2
+                'lightIntensity' => array_key_exists('Reg_3', $data) ? $data['Reg_3'] : '-', // Reg_3
+                'windSpeed' => array_key_exists('Reg_4', $data) ? $data['Reg_4'] : '-', // Reg_4
+                'insideTemp' => array_key_exists('Reg_5', $data) ? $data['Reg_5'] : '-', // Reg_5
+                'insideHumidity' => array_key_exists('Reg_6', $data) ? $data['Reg_6'] : '-', // Reg_6
                 'company' => false
             ];
         }
