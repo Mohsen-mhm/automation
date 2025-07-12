@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\OrganizationAuthController;
 use App\Http\Controllers\Panel\AboutUsController;
 use App\Http\Controllers\Panel\AlertController;
 use App\Http\Controllers\Panel\AutomationController;
@@ -44,10 +46,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Home::class)->name('home');
 
 Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () {
-    Route::get('/simurgh', AdminLogin::class)->name('simurgh');
-    Route::get('/company', CompanyLogin::class)->name('company');
-    Route::get('/greenhouse', GreenhouseLogin::class)->name('greenhouse');
-    Route::get('/organization', OrganizationLogin::class)->name('organization');
+//    Route::get('/simurgh', AdminLogin::class)->name('simurgh');
+//    Route::get('/company', CompanyLogin::class)->name('company');
+//    Route::get('/greenhouse', GreenhouseLogin::class)->name('greenhouse');
+//    Route::get('/organization', OrganizationLogin::class)->name('organization');
 
     Route::get('/dwop', function () {
         \Illuminate\Support\Facades\Auth::loginUsingId(\App\Models\User::query()->where([
@@ -58,11 +60,11 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
     });
 });
 
-Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
-    Route::get('/company', CompanyRegister::class)->name('company');
-    Route::get('/greenhouse', GreenhouseRegister::class)->name('greenhouse');
-    Route::get('/organization', OrganizationRegister::class)->name('organization');
-});
+//Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
+//    Route::get('/company', CompanyRegister::class)->name('company');
+//    Route::get('/greenhouse', GreenhouseRegister::class)->name('greenhouse');
+//    Route::get('/organization', OrganizationRegister::class)->name('organization');
+//});
 
 Route::get('/about-us', AboutUs::class)->name('about.us');
 Route::get('/contact-us', ContactUs::class)->name('contact.us');
@@ -73,6 +75,49 @@ Route::get('system-start', function () {
     Artisan::call('storage:link');
     Artisan::call('db:seed');
     Artisan::call('optimize:clear');
+});
+
+Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () {
+    Route::get('/simurgh', [AdminLoginController::class, 'showLoginForm'])->name('simurgh');
+    Route::post('/simurgh', [AdminLoginController::class, 'login'])->name('simurgh.submit');
+    Route::post('/simurgh/send-code', [AdminLoginController::class, 'sendCode'])->name('simurgh.send-code');
+});
+
+Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () {
+    Route::get('/greenhouse', [App\Http\Controllers\Auth\GreenhouseController::class, 'showLogin'])->name('greenhouse');
+    Route::post('/greenhouse', [App\Http\Controllers\Auth\GreenhouseController::class, 'login']);
+    Route::post('/greenhouse/send-sms', [App\Http\Controllers\Auth\GreenhouseController::class, 'sendSms'])->name('greenhouse.send-sms');
+});
+
+Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
+    Route::get('/greenhouse', [App\Http\Controllers\Auth\GreenhouseController::class, 'showRegister'])->name('greenhouse');
+    Route::post('/greenhouse', [App\Http\Controllers\Auth\GreenhouseController::class, 'register']);
+    Route::get('/greenhouse/provinces', [App\Http\Controllers\Auth\GreenhouseController::class, 'getProvinces'])->name('greenhouse.provinces');
+    Route::get('/greenhouse/cities/{province}', [App\Http\Controllers\Auth\GreenhouseController::class, 'getCities'])->name('greenhouse.cities');
+});
+
+Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () {
+    Route::get('/organization', [OrganizationAuthController::class, 'showLogin'])->name('organization');
+    Route::post('/organization', [OrganizationAuthController::class, 'login'])->name('organization.submit');
+    Route::post('/organization/send-sms', [OrganizationAuthController::class, 'sendSms'])->name('organization.send-sms');
+});
+
+Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
+    Route::get('/organization', [OrganizationAuthController::class, 'showRegister'])->name('organization');
+    Route::post('/organization', [OrganizationAuthController::class, 'register'])->name('organization.submit');
+    Route::get('/organization/cities', [OrganizationAuthController::class, 'getCitiesByProvince'])->name('organization.cities');
+});
+
+Route::prefix('/auth')->as('auth.')->middleware(['guest'])->group(function () {
+    Route::prefix('/company')->as('company.')->group(function () {
+        Route::get('/login', [App\Http\Controllers\Auth\CompanyController::class, 'showLogin'])->name('login');
+        Route::post('/login', [App\Http\Controllers\Auth\CompanyController::class, 'login'])->name('login.post');
+        Route::post('/send-sms', [App\Http\Controllers\Auth\CompanyController::class, 'sendSms'])->name('send-sms');
+
+        Route::get('/register', [App\Http\Controllers\Auth\CompanyController::class, 'showRegister'])->name('register');
+        Route::post('/register', [App\Http\Controllers\Auth\CompanyController::class, 'register'])->name('register.post');
+        Route::get('/cities', [App\Http\Controllers\Auth\CompanyController::class, 'getCities'])->name('cities');
+    });
 });
 
 Route::prefix('panel')->name('panel.')->middleware(['web', 'auth'])->group(function () {
