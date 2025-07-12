@@ -127,7 +127,8 @@
             sidebarToggleDetail: false,
             selected: '',
             mapLoaded: false,
-            showBackdrop: false
+            showBackdrop: false,
+            sidebarToggle: false
          }"
      x-init="
             // Initialize selected from localStorage manually
