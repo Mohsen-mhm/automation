@@ -177,6 +177,9 @@ class Map extends Component
                 'image' => asset($company->company_logo),
                 'name' => $company->name,
                 'website' => $company->website,
+                'tel' => $company->landline_number,
+                'brand_logo' => asset($company->brand_logo),
+                'brand' => $company->brand,
                 'area' => $company->province->name . "\n" . $company->city->name . "\n" . $company->address,
                 'company' => true
             ];

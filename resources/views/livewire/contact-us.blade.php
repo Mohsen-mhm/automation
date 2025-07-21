@@ -133,7 +133,7 @@
                                                           d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                                 </svg>
                                             </div>
-                                            <input type="email" id="email" name="email" wire:model="email" required
+                                            <input type="email" id="email" name="email" wire:model="email"
                                                    class="block w-full pr-10 py-4 text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-200 text-right"
                                                    placeholder="ایمیل خود را وارد کنید">
                                         </div>
@@ -156,7 +156,7 @@
                                                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                                 </svg>
                                             </div>
-                                            <input type="tel" id="phone" name="phone" wire:model="phone"
+                                            <input type="tel" id="phone" name="phone" wire:model="phone" required
                                                    class="block w-full pr-10 py-4 text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-200 text-right"
                                                    placeholder="شماره تماس خود را وارد کنید">
                                         </div>
@@ -176,7 +176,7 @@
                                                           d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                                 </svg>
                                             </div>
-                                            <input type="text" id="subject" name="subject" wire:model="subject"
+                                            <input type="text" id="subject" name="subject" wire:model="subject" required
                                                    class="block w-full pr-10 py-4 text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-200 text-right"
                                                    placeholder="موضوع پیام خود را وارد کنید">
                                         </div>

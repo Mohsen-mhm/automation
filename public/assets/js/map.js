@@ -340,6 +340,27 @@ function updateMarkerDetails(markerInfo, type) {
                     </div>
                 ` : ''}
 
+                ${isCompany && markerInfo.tel ? `
+                    <div class="info-section">
+                        <h5>تلفن تماس</h5>
+                        <div class="automation-info" dir="ltr">
+                            <a href="tel:${markerInfo.tel}" target="_blank">${markerInfo.tel}</a>
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${isCompany && markerInfo.brand_logo ? `
+                    <div class="info-section mb-16">
+                        <h5>نام و تصویر برند</h5>
+                        <div class="automation-info flex justify-between items-center space-x-2" dir="ltr">
+                            <p>${markerInfo.brand}</p>
+                            <img src="${markerInfo.brand_logo || './assets/img/default-image.jpg'}"
+                                 alt="${markerInfo.brand}" class="w-28"
+                                 onerror="this.src='./assets/img/default-image.jpg'">
+                        </div>
+                    </div>
+                ` : ''}
+
                 ${!isCompany ? `
                     <div class="divider"></div>
 

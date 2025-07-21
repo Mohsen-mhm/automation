@@ -1067,23 +1067,31 @@
 
                 <!-- Footer Help -->
                 <div class="text-center mt-8">
-                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40">
-                        <p class="text-slate-600 mb-4">نیاز به راهنمایی دارید؟</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <a href="#"
-                               class="text-blue-600 hover:text-blue-700 font-medium transition-colors flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                                تماس با پشتیبانی
-                            </a>
+                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40 flex justify-around items-center">
+                        <div>
+                            <p class="text-slate-600 mb-4">نیاز به راهنمایی دارید؟</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                                <a href="{{ route('contact.us') }}"
+                                   class="text-blue-600 hover:text-blue-700 font-medium transition-colors flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    تماس با پشتیبانی
+                                </a>
+                            </div>
                         </div>
-                        <p class="text-sm text-slate-500 mt-4">
-                            قبلاً ثبت نام کرده‌اید؟
-                            <a href="{{ route('auth.company.login') }}"
-                               class="text-blue-600 hover:text-blue-700 font-medium transition-colors">ورود</a>
-                        </p>
+                        <div>
+                            <p class="text-sm text-slate-600 mt-4">
+                                قبلاً ثبت نام کرده‌اید؟
+                                <a href="{{ route('auth.company.login') }}"
+                                   class="text-blue-600 hover:text-blue-700 font-medium transition-colors">ورود</a>
+                            </p>
+                            <p class="text-sm text-slate-600 mt-4">
+                                <a href="{{ route('home') }}"
+                                   class="text-blue-600 hover:text-blue-700 font-medium transition-colors">بازگشت به صفحه اصلی</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

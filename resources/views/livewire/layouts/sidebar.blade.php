@@ -27,7 +27,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="h-full overflow-y-auto p-6">
+    <div class="h-full overflow-y-scroll p-6">
         <div id="markers-info" class="space-y-6">
             {{-- Content will be populated by JavaScript --}}
             <div class="flex items-center justify-center h-64 text-slate-400">

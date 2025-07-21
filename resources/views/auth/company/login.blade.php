@@ -176,13 +176,16 @@
 
                 <!-- Footer -->
                 <div class="text-center mt-6">
-                    <p class="text-sm text-white/80">
+                    <p class="text-sm text-slate-600">
                         مشکل در ورود دارید؟
-                        <a href="{{ route('contact.us') }}" class="text-white font-medium hover:text-white/90 transition-colors">تماس با پشتیبانی</a>
+                        <a href="{{ route('contact.us') }}" class="text-blue-600 font-medium hover:text-blue-600/90 transition-colors">تماس با پشتیبانی</a>
                     </p>
-                    <p class="text-sm text-white/60 mt-2">
+                    <p class="text-sm text-slate-600 mt-2">
                         هنوز ثبت نام نکرده‌اید؟
-                        <a href="{{ route('auth.company.register') }}" class="text-white font-medium hover:text-white/90 transition-colors">ثبت نام کنید</a>
+                        <a href="{{ route('auth.company.register') }}" class="text-blue-600 font-medium hover:text-blue-600/90 transition-colors">ثبت نام کنید</a>
+                    </p>
+                    <p class="text-sm text-slate-600 mt-2">
+                        <a href="{{ route('home') }}" class="text-blue-600 font-medium hover:text-blue-600/90 transition-colors">بازگشت به صفحه اصلی</a>
                     </p>
                 </div>
             </div>
