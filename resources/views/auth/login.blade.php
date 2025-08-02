@@ -195,6 +195,12 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="text-center mt-6">
+            <p class="text-sm text-slate-600 mt-2">
+                <a href="{{ route('home') }}" class="text-blue-600 font-medium hover:text-blue-600/90 transition-colors">بازگشت به صفحه اصلی</a>
+            </p>
+        </div>
     </div>
 @endsection
 @push('scripts')

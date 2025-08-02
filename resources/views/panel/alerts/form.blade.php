@@ -44,14 +44,12 @@
                                       d="M12 5V3m0 18v-2M7 7 5.7 5.7m12.8 12.8L17 17M5 12H3m18 0h-2M7 17l-1.4 1.4M18.4 5.6 17 7.1M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="min_lux"
                                name="min_lux"
                                value="{{ old('min_lux', $alert->min_lux ?? '') }}"
                                data-parameter="lux"
                                placeholder="مثال: 1000"
-                               min="0"
-                               max="100000"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-gray-50">
                     </div>
                 </div>
@@ -65,14 +63,12 @@
                                       d="M12 5V3m0 18v-2M7 7 5.7 5.7m12.8 12.8L17 17M5 12H3m18 0h-2M7 17l-1.4 1.4M18.4 5.6 17 7.1M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="max_lux"
                                name="max_lux"
                                value="{{ old('max_lux', $alert->max_lux ?? '') }}"
                                data-parameter="lux"
                                placeholder="مثال: 5000"
-                               min="0"
-                               max="100000"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-gray-50">
                     </div>
                 </div>
@@ -116,14 +112,12 @@
                                       d="M18.1 17.6A7.2 7.2 0 0 1 12 21a6.6 6.6 0 0 1-5.8-3c-2.7-4.6.3-8.8.9-9.7A4.4 4.4 0 0 0 8 4c1.3 1 6.4 3.3 5.5 10.6 1.5-1.1 2.7-3 2.9-6.2 1.4 1 4 5.5 1.7 9.2Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="min_temp"
                                name="min_temp"
                                value="{{ old('min_temp', $alert->min_temp ?? '') }}"
                                data-parameter="temp"
                                placeholder="مثال: 15"
-                               min="-50"
-                               max="100"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-gray-50">
                     </div>
                 </div>
@@ -137,14 +131,12 @@
                                       d="M18.1 17.6A7.2 7.2 0 0 1 12 21a6.6 6.6 0 0 1-5.8-3c-2.7-4.6.3-8.8.9-9.7A4.4 4.4 0 0 0 8 4c1.3 1 6.4 3.3 5.5 10.6 1.5-1.1 2.7-3 2.9-6.2 1.4 1 4 5.5 1.7 9.2Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="max_temp"
                                name="max_temp"
                                value="{{ old('max_temp', $alert->max_temp ?? '') }}"
                                data-parameter="temp"
                                placeholder="مثال: 35"
-                               min="-50"
-                               max="100"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-gray-50">
                     </div>
                 </div>
@@ -188,14 +180,12 @@
                                     d="M11.8 5.7A4.8 4.8 0 0 0 7 10a3.4 3.4 0 0 1 2.7-1.7c1.7 0 3 2 3.8 2.6a5.7 5.7 0 0 0 5.4 1c2-.7 2.9-3 3.1-4-1 1.4-2.4 2.2-4.3 1.2-1.2-.6-2.1-3.4-6-3.3Zm-5 6.3A4.8 4.8 0 0 0 2 16.2a3.4 3.4 0 0 1 2.7-1.7c1.7 0 3 2 3.8 2.6a5.7 5.7 0 0 0 5.4.9c2-.7 3-2.9 3.1-4-1 1.4-2.4 2.3-4.2 1.3-1.3-.7-2.2-3.4-6-3.3Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="min_wind"
                                name="min_wind"
                                value="{{ old('min_wind', $alert->min_wind ?? '') }}"
                                data-parameter="wind"
                                placeholder="مثال: 0"
-                               min="0"
-                               max="500"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 bg-gray-50">
                     </div>
                 </div>
@@ -209,14 +199,12 @@
                                     d="M11.8 5.7A4.8 4.8 0 0 0 7 10a3.4 3.4 0 0 1 2.7-1.7c1.7 0 3 2 3.8 2.6a5.7 5.7 0 0 0 5.4 1c2-.7 2.9-3 3.1-4-1 1.4-2.4 2.2-4.3 1.2-1.2-.6-2.1-3.4-6-3.3Zm-5 6.3A4.8 4.8 0 0 0 2 16.2a3.4 3.4 0 0 1 2.7-1.7c1.7 0 3 2 3.8 2.6a5.7 5.7 0 0 0 5.4.9c2-.7 3-2.9 3.1-4-1 1.4-2.4 2.3-4.2 1.3-1.3-.7-2.2-3.4-6-3.3Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="max_wind"
                                name="max_wind"
                                value="{{ old('max_wind', $alert->max_wind ?? '') }}"
                                data-parameter="wind"
                                placeholder="مثال: 50"
-                               min="0"
-                               max="500"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 bg-gray-50">
                     </div>
                 </div>
@@ -260,14 +248,12 @@
                                       d="M4.4 7.7c2 .5 2.4 2.8 3.2 3.8 1 1.4 2 1.3 3.2 2.7 1.8 2.3 1.3 5.7 1.3 6.7M20 15h-1a4 4 0 0 0-4 4v1M8.6 4c0 .8.1 1.9 1.5 2.6 1.4.7 3 .3 3 2.3 0 .3 0 2 1.9 2 2 0 2-1.7 2-2 0-.6.5-.9 1.2-.9H20m1 4a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="min_humidity"
                                name="min_humidity"
                                value="{{ old('min_humidity', $alert->min_humidity ?? '') }}"
                                data-parameter="humidity"
                                placeholder="مثال: 30"
-                               min="0"
-                               max="100"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50">
                     </div>
                 </div>
@@ -281,14 +267,12 @@
                                       d="M4.4 7.7c2 .5 2.4 2.8 3.2 3.8 1 1.4 2 1.3 3.2 2.7 1.8 2.3 1.3 5.7 1.3 6.7M20 15h-1a4 4 0 0 0-4 4v1M8.6 4c0 .8.1 1.9 1.5 2.6 1.4.7 3 .3 3 2.3 0 .3 0 2 1.9 2 2 0 2-1.7 2-2 0-.6.5-.9 1.2-.9H20m1 4a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                             </svg>
                         </div>
-                        <input type="number"
+                        <input type="number" @if(!$isAdmin) readonly @endif
                                id="max_humidity"
                                name="max_humidity"
                                value="{{ old('max_humidity', $alert->max_humidity ?? '') }}"
                                data-parameter="humidity"
                                placeholder="مثال: 80"
-                               min="0"
-                               max="100"
                                class="range-input block w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50">
                     </div>
                 </div>
@@ -362,14 +346,16 @@
     @enderror
 
     <!-- Submit Button -->
-    <div class="flex justify-center pt-6">
-        <button type="submit"
-                class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            {{ $isAdmin ? 'اعمال تغییرات' : 'ذخیره تنظیمات' }}
-        </button>
-    </div>
+    @if($isAdmin)
+        <div class="flex justify-center pt-6">
+            <button type="submit"
+                    class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                اعمال تغییرات
+            </button>
+        </div>
+    @endif
 </form>

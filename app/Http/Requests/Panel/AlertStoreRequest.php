@@ -15,7 +15,7 @@ class AlertStoreRequest extends FormRequest
     public function authorize(): bool
     {
         return auth()->user()->hasRole(Role::GREENHOUSE_ROLE) ||
-            Gate::allows(GreenhouseAlert::ALERT_EDIT);
+            auth()->user()->hasRole(Role::ADMIN_ROLE);
     }
 
     /**

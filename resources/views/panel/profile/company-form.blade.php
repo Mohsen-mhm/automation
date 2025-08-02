@@ -122,13 +122,13 @@
                     استان
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="province" name="province"
+                <select id="province" name="province_id"
                         class="province-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">استان را انتخاب کنید</option>
                     @foreach($provinces as $province)
                         <option
-                            value="{{ $province->name }}" {{ old('province', $company->province?->name) === $province->name ? 'selected' : '' }}>
+                            value="{{ $province->id }}" {{ old('province', $company->province?->name) === $province->name ? 'selected' : '' }}>
                             {{ $province->name }}
                         </option>
                     @endforeach
@@ -143,12 +143,12 @@
                     شهر
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="city" name="city"
+                <select id="city" name="city_id"
                         class="city-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">شهر را انتخاب کنید</option>
                     @if($company->city)
-                        <option value="{{ $company->city->name }}" selected>{{ $company->city->name }}</option>
+                        <option value="{{ $company->city->id }}" selected>{{ $company->city->name }}</option>
                     @endif
                 </select>
                 @error('city')

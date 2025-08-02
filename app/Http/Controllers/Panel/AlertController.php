@@ -45,8 +45,6 @@ class AlertController extends Controller
      */
     public function admin(Request $request, $id)
     {
-        abort_if(!auth()->user()->isActive(), 403);
-        abort_if(!Gate::allows(GreenhouseAlert::ALERT_INDEX), 403);
 
         $greenhouse = Greenhouse::findOrFail($id);
         $alert = $greenhouse->alert;
@@ -112,7 +110,6 @@ class AlertController extends Controller
     public function storeAdmin(AlertStoreRequest $request, $id)
     {
         abort_if(!auth()->user()->isActive(), 403);
-        abort_if(!Gate::allows(GreenhouseAlert::ALERT_EDIT), 403);
 
         try {
             $greenhouse = Greenhouse::findOrFail($id);

@@ -66,7 +66,7 @@ class ProfileController extends Controller
 
             DB::commit();
 
-            return redirect()->route('panel.profile.index')
+            return redirect()->route('panel.home')
                 ->with('success', 'پروفایل با موفقیت بروزرسانی شد');
 
         } catch (\Exception $e) {

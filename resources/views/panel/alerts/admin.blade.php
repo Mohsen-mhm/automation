@@ -21,7 +21,7 @@
                     <p class="text-gray-600 mt-1">مدیریت محدوده‌های هشدار برای گلخانه {{ $greenhouse->name }}</p>
                 </div>
                 <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <a href="{{ route('panel.greenhouses') }}"
+                    <a href="{{ route('panel.greenhouses.index') }}"
                        class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
