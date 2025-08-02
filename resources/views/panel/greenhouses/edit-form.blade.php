@@ -188,12 +188,12 @@
                     استان
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="province" name="province"
+                <select id="province" name="province_id"
                         class="province-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">استان را انتخاب کنید</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->name }}" {{ $greenhouse->province->name === $province->name ? 'selected' : '' }}>{{ $province->name }}</option>
+                        <option value="{{ $province->id }}" {{ $greenhouse->province->name === $province->name ? 'selected' : '' }}>{{ $province->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -203,10 +203,10 @@
                     شهر
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="city" name="city"
+                <select id="city" name="city_id"
                         class="city-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 transition-all duration-200"
                         required>
-                    <option value="{{ $greenhouse->city->name }}" selected>{{ $greenhouse->city->name }}</option>
+                    <option value="{{ $greenhouse->city->id }}" selected>{{ $greenhouse->city->name }}</option>
                 </select>
             </div>
 

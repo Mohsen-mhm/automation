@@ -100,8 +100,16 @@
                                 <!-- Name and Email Row -->
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="space-y-2">
-                                        <label for="name" class="block text-sm font-semibold text-slate-700">نام و نام
-                                            خانوادگی</label>
+                                        <label for="name" class="flex space-x-1 text-sm font-semibold text-slate-700">
+                                            نام و نام خانوادگی
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="currentColor"
+                                                 class="text-red-600 w-2 h-2">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path
+                                                    d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                                            </svg>
+                                        </label>
                                         <div class="relative group">
                                             <div
                                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -121,7 +129,9 @@
 
                                     <div class="space-y-2">
                                         <label for="email"
-                                               class="block text-sm font-semibold text-slate-700">ایمیل</label>
+                                               class="block text-sm font-semibold text-slate-700">
+                                            ایمیل
+                                        </label>
                                         <div class="relative group">
                                             <div
                                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -143,8 +153,16 @@
                                 <!-- Phone and Subject Row -->
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="space-y-2">
-                                        <label for="phone" class="block text-sm font-semibold text-slate-700">شماره
-                                            تماس</label>
+                                        <label for="phone" class="flex space-x-1 text-sm font-semibold text-slate-700">
+                                            شماره تماس
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="currentColor"
+                                                 class="text-red-600 w-2 h-2">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path
+                                                    d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                                            </svg>
+                                        </label>
                                         <div class="relative group">
                                             <div
                                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -164,7 +182,16 @@
 
                                     <div class="space-y-2">
                                         <label for="subject"
-                                               class="block text-sm font-semibold text-slate-700">موضوع</label>
+                                               class="flex space-x-1 text-sm font-semibold text-slate-700">
+                                            موضوع
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="currentColor"
+                                                 class="text-red-600 w-2 h-2">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path
+                                                    d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                                            </svg>
+                                        </label>
                                         <div class="relative group">
                                             <div
                                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -185,8 +212,16 @@
 
                                 <!-- Message Field -->
                                 <div class="space-y-2">
-                                    <label for="message" class="block text-sm font-semibold text-slate-700">پیام
-                                        شما</label>
+                                    <label for="message" class="flex space-x-1 text-sm font-semibold text-slate-700">
+                                        پیام شما
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="currentColor"
+                                             class="text-red-600 w-2 h-2">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path
+                                                d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                                        </svg>
+                                    </label>
                                     <div class="relative group">
                                         <div class="absolute top-4 right-3 pointer-events-none">
                                             <svg

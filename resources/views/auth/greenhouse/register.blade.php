@@ -464,17 +464,26 @@
                             <div class="space-y-2">
                                 <label class="block text-sm font-semibold text-slate-700 mb-4">سامانه کنترل
                                     اقلیم</label>
-                                <div
-                                    class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
-                                    <input
-                                        id="climate_system"
-                                        type="checkbox"
-                                        name="climate_system"
-                                        value="1"
-                                        {{ old('climate_system') ? 'checked' : '' }}
-                                        class="w-5 h-5 text-emerald-600 bg-white border-emerald-300 rounded focus:ring-emerald-500 focus:ring-2">
-                                    <label for="climate_system" class="mr-3 text-sm font-medium text-emerald-800">
-                                        دارای سامانه کنترل اقلیم
+                                <div class="relative">
+                                    <input id="climate_system" type="checkbox" name="climate_system" value="1"
+                                           {{ old('climate_system') ? 'checked' : '' }}
+                                           class="peer sr-only">
+                                    <label for="climate_system"
+                                           class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200 cursor-pointer hover:bg-gradient-to-r hover:from-emerald-100 hover:to-green-100 transition-colors peer-checked:ring-2 peer-checked:ring-emerald-500 peer-checked:border-emerald-500">
+                                        {{--                                            <div class="relative">--}}
+                                        {{--                                                <div--}}
+                                        {{--                                                    class="w-5 h-5 bg-white border-2 border-emerald-300 rounded peer-checked:bg-emerald-600 peer-checked:border-emerald-600 transition-all">--}}
+                                        {{--                                                    <svg--}}
+                                        {{--                                                        class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"--}}
+                                        {{--                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+                                        {{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+                                        {{--                                                              stroke-width="3" d="M5 13l4 4L19 7"/>--}}
+                                        {{--                                                    </svg>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        <span class="mr-3 text-sm font-medium text-emerald-800">
+                                                دارای سامانه کنترل اقلیم
+                                            </span>
                                     </label>
                                 </div>
                                 @error('climate_system')
@@ -492,17 +501,26 @@
                             <div class="space-y-2">
                                 <label class="block text-sm font-semibold text-slate-700 mb-4">سامانه تغذیه و
                                     آبیاری</label>
-                                <div
-                                    class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                                    <input
-                                        id="feeding_system"
-                                        type="checkbox"
-                                        name="feeding_system"
-                                        value="1"
-                                        {{ old('feeding_system') ? 'checked' : '' }}
-                                        class="w-5 h-5 text-blue-600 bg-white border-blue-300 rounded focus:ring-blue-500 focus:ring-2">
-                                    <label for="feeding_system" class="mr-3 text-sm font-medium text-blue-800">
-                                        دارای سامانه تغذیه و آبیاری
+                                <div class="relative">
+                                    <input id="feeding_system" type="checkbox" name="feeding_system" value="1"
+                                           {{ old('feeding_system') ? 'checked' : '' }}
+                                           class="peer sr-only">
+                                    <label for="feeding_system"
+                                           class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 cursor-pointer hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 transition-colors peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:border-blue-500">
+                                        {{--                                            <div class="relative">--}}
+                                        {{--                                                <div--}}
+                                        {{--                                                    class="w-5 h-5 bg-white border-2 border-blue-300 rounded peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all">--}}
+                                        {{--                                                    <svg--}}
+                                        {{--                                                        class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"--}}
+                                        {{--                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+                                        {{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+                                        {{--                                                              stroke-width="3" d="M5 13l4 4L19 7"/>--}}
+                                        {{--                                                    </svg>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        <span class="mr-3 text-sm font-medium text-blue-800">
+                                                دارای سامانه تغذیه و آبیاری
+                                            </span>
                                     </label>
                                 </div>
                                 @error('feeding_system')
@@ -515,6 +533,26 @@
                                 </div>
                                 @enderror
                             </div>
+
+                            <style>
+                                /* Custom checkbox styles */
+                                input[type="checkbox"].peer:checked + label .w-5 {
+                                    background-color: currentColor;
+                                    border-color: currentColor;
+                                }
+
+                                input[type="checkbox"].peer:checked + label svg {
+                                    opacity: 1;
+                                }
+
+                                /* Prevent text selection on labels */
+                                label {
+                                    user-select: none;
+                                    -webkit-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                }
+                            </style>
                         </div>
                     </div>
 
@@ -822,7 +860,8 @@
 
             <!-- Footer Help -->
             <div class="text-center mt-8">
-                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40 flex justify-around items-center">
+                <div
+                    class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40 flex justify-around items-center">
                     <div>
                         <p class="text-slate-600 mb-4">نیاز به راهنمایی دارید؟</p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -844,7 +883,8 @@
                         </p>
                         <p class="text-sm text-slate-500 mt-4">
                             <a href="{{ route('home') }}"
-                               class="text-blue-600 hover:text-blue-700 font-medium transition-colors">بازگشت به صفحه اصلی</a>
+                               class="text-blue-600 hover:text-blue-700 font-medium transition-colors">بازگشت به صفحه
+                                اصلی</a>
                         </p>
                     </div>
                 </div>

@@ -831,13 +831,26 @@
                                 <div class="space-y-2">
                                     <label class="block text-sm font-semibold text-slate-700 mb-4">سامانه کنترل
                                         اقلیم</label>
-                                    <div
-                                        class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
+                                    <div class="relative">
                                         <input id="climate_system" type="checkbox" name="climate_system" value="1"
                                                {{ old('climate_system') ? 'checked' : '' }}
-                                               class="w-5 h-5 text-emerald-600 bg-white border-emerald-300 rounded focus:ring-emerald-500 focus:ring-2">
-                                        <label for="climate_system" class="mr-3 text-sm font-medium text-emerald-800">
-                                            دارای سامانه کنترل اقلیم
+                                               class="peer sr-only">
+                                        <label for="climate_system"
+                                               class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200 cursor-pointer hover:bg-gradient-to-r hover:from-emerald-100 hover:to-green-100 transition-colors peer-checked:ring-2 peer-checked:ring-emerald-500 peer-checked:border-emerald-500">
+{{--                                            <div class="relative">--}}
+{{--                                                <div--}}
+{{--                                                    class="w-5 h-5 bg-white border-2 border-emerald-300 rounded peer-checked:bg-emerald-600 peer-checked:border-emerald-600 transition-all">--}}
+{{--                                                    <svg--}}
+{{--                                                        class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"--}}
+{{--                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+{{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                                              stroke-width="3" d="M5 13l4 4L19 7"/>--}}
+{{--                                                    </svg>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+                                            <span class="mr-3 text-sm font-medium text-emerald-800">
+                                                دارای سامانه کنترل اقلیم
+                                            </span>
                                         </label>
                                     </div>
                                     @error('climate_system')
@@ -855,13 +868,26 @@
                                 <div class="space-y-2">
                                     <label class="block text-sm font-semibold text-slate-700 mb-4">سامانه تغذیه و
                                         آبیاری</label>
-                                    <div
-                                        class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                                    <div class="relative">
                                         <input id="feeding_system" type="checkbox" name="feeding_system" value="1"
                                                {{ old('feeding_system') ? 'checked' : '' }}
-                                               class="w-5 h-5 text-blue-600 bg-white border-blue-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="feeding_system" class="mr-3 text-sm font-medium text-blue-800">
-                                            دارای سامانه تغذیه و آبیاری
+                                               class="peer sr-only">
+                                        <label for="feeding_system"
+                                               class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 cursor-pointer hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 transition-colors peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:border-blue-500">
+{{--                                            <div class="relative">--}}
+{{--                                                <div--}}
+{{--                                                    class="w-5 h-5 bg-white border-2 border-blue-300 rounded peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all">--}}
+{{--                                                    <svg--}}
+{{--                                                        class="w-3 h-3 text-white absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"--}}
+{{--                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+{{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                                              stroke-width="3" d="M5 13l4 4L19 7"/>--}}
+{{--                                                    </svg>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+                                            <span class="mr-3 text-sm font-medium text-blue-800">
+                                                دارای سامانه تغذیه و آبیاری
+                                            </span>
                                         </label>
                                     </div>
                                     @error('feeding_system')
@@ -875,66 +901,62 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Section 4: Brand & Documents -->
-                        <div class="space-y-6 pt-8 border-t border-slate-200">
-                            <div class="flex items-center gap-3 mb-6">
-                                <div
-                                    class="w-10 h-10 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl flex items-center justify-center">
-                                    <span class="text-white font-bold">۴</span>
-                                </div>
-                                <h2 class="text-2xl font-bold text-slate-800">علامت تجاری و مدارک</h2>
-                            </div>
+                            <style>
+                                /* Custom checkbox styles */
+                                input[type="checkbox"].peer:checked + label .w-5 {
+                                    background-color: currentColor;
+                                    border-color: currentColor;
+                                }
 
-                            <!-- Brand -->
-                            <div class="space-y-2">
-                                <label for="brand" class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                    <span>علامت تجاری</span>
-                                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                    </svg>
-                                </label>
-                                <div class="relative group">
-                                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                                        <svg
-                                            class="h-5 w-5 text-slate-400 group-focus-within:text-violet-500 transition-colors"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
-                                        </svg>
+                                input[type="checkbox"].peer:checked + label svg {
+                                    opacity: 1;
+                                }
+
+                                /* Prevent text selection on labels */
+                                label {
+                                    user-select: none;
+                                    -webkit-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                }
+                            </style>
+
+                            <!-- Section 4: Brand & Documents -->
+                            <div class="space-y-6 pt-8 border-t border-slate-200">
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl flex items-center justify-center">
+                                        <span class="text-white font-bold">۴</span>
                                     </div>
-                                    <input type="text" id="brand" name="brand" value="{{ old('brand') }}"
-                                           class="block w-full pr-12 py-4 text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-violet-500 focus:bg-white transition-all duration-200 text-right placeholder:text-slate-400"
-                                           placeholder="سیمرغ" required>
+                                    <h2 class="text-2xl font-bold text-slate-800">علامت تجاری و مدارک</h2>
                                 </div>
-                                @error('brand')
-                                <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    <span class="font-medium">{{ $message }}</span>
-                                </div>
-                                @enderror
-                            </div>
 
-                            <div class="grid gap-6 md:grid-cols-2">
-                                <!-- Company Logo -->
+                                <!-- Brand -->
                                 <div class="space-y-2">
-                                    <label for="company_logo"
+                                    <label for="brand"
                                            class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                        <span>لوگو شرکت</span>
+                                        <span>علامت تجاری</span>
                                         <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                         </svg>
                                     </label>
-                                    <input type="file" id="company_logo" name="company_logo" accept="image/*"
-                                           class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
-                                           required>
-                                    @error('company_logo')
+                                    <div class="relative group">
+                                        <div
+                                            class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                            <svg
+                                                class="h-5 w-5 text-slate-400 group-focus-within:text-violet-500 transition-colors"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" id="brand" name="brand" value="{{ old('brand') }}"
+                                               class="block w-full pr-12 py-4 text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-violet-500 focus:bg-white transition-all duration-200 text-right placeholder:text-slate-400"
+                                               placeholder="سیمرغ" required>
+                                    </div>
+                                    @error('brand')
                                     <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -945,20 +967,123 @@
                                     @enderror
                                 </div>
 
-                                <!-- Brand Logo -->
+                                <div class="grid gap-6 md:grid-cols-2">
+                                    <!-- Company Logo -->
+                                    <div class="space-y-2">
+                                        <label for="company_logo"
+                                               class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                                            <span>لوگو شرکت</span>
+                                            <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                            </svg>
+                                        </label>
+                                        <input type="file" id="company_logo" name="company_logo" accept="image/*"
+                                               class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                               required>
+                                        @error('company_logo')
+                                        <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="font-medium">{{ $message }}</span>
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Brand Logo -->
+                                    <div class="space-y-2">
+                                        <label for="brand_logo"
+                                               class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                                            <span>لوگو علامت تجاری</span>
+                                            <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                            </svg>
+                                        </label>
+                                        <input type="file" id="brand_logo" name="brand_logo" accept="image/*"
+                                               class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                               required>
+                                        @error('brand_logo')
+                                        <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="font-medium">{{ $message }}</span>
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="grid gap-6 md:grid-cols-2">
+                                    <!-- Trademark Certificate -->
+                                    <div class="space-y-2">
+                                        <label for="trademark_certificate"
+                                               class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                                            <span>گواهی ثبت علامت تجاری</span>
+                                            <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                            </svg>
+                                        </label>
+                                        <input type="file" id="trademark_certificate" name="trademark_certificate"
+                                               accept="image/*"
+                                               class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                               required>
+                                        @error('trademark_certificate')
+                                        <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="font-medium">{{ $message }}</span>
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Operation License -->
+                                    <div class="space-y-2">
+                                        <label for="operation_licence"
+                                               class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                                            <span>پروانه بهره برداری</span>
+                                            <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                            </svg>
+                                        </label>
+                                        <input type="file" id="operation_licence" name="operation_licence"
+                                               accept="image/*"
+                                               class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                               required>
+                                        @error('operation_licence')
+                                        <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="font-medium">{{ $message }}</span>
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <!-- Official Newspaper -->
                                 <div class="space-y-2">
-                                    <label for="brand_logo"
+                                    <label for="official_newspaper"
                                            class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                        <span>لوگو علامت تجاری</span>
+                                        <span>روزنامه رسمی آخرین تغییرات</span>
                                         <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                         </svg>
                                     </label>
-                                    <input type="file" id="brand_logo" name="brand_logo" accept="image/*"
+                                    <input type="file" id="official_newspaper" name="official_newspaper"
+                                           accept="image/*,.pdf"
                                            class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
                                            required>
-                                    @error('brand_logo')
+                                    @error('official_newspaper')
                                     <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -970,104 +1095,28 @@
                                 </div>
                             </div>
 
-                            <div class="grid gap-6 md:grid-cols-2">
-                                <!-- Trademark Certificate -->
-                                <div class="space-y-2">
-                                    <label for="trademark_certificate"
-                                           class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                        <span>گواهی ثبت علامت تجاری</span>
-                                        <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                        </svg>
-                                    </label>
-                                    <input type="file" id="trademark_certificate" name="trademark_certificate"
-                                           accept="image/*"
-                                           class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
-                                           required>
-                                    @error('trademark_certificate')
-                                    <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                        <span class="font-medium">{{ $message }}</span>
-                                    </div>
-                                    @enderror
-                                </div>
-
-                                <!-- Operation License -->
-                                <div class="space-y-2">
-                                    <label for="operation_licence"
-                                           class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                        <span>پروانه بهره برداری</span>
-                                        <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                        </svg>
-                                    </label>
-                                    <input type="file" id="operation_licence" name="operation_licence" accept="image/*"
-                                           class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
-                                           required>
-                                    @error('operation_licence')
-                                    <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                        <span class="font-medium">{{ $message }}</span>
-                                    </div>
-                                    @enderror
+                            <!-- Submit Button -->
+                            <div class="pt-8 border-t border-slate-200">
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                                    <button type="submit"
+                                            class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-12 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transform hover:scale-102 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                        <div class="flex items-center justify-center gap-3">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            ثبت و ارسال
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
-
-                            <!-- Official Newspaper -->
-                            <div class="space-y-2">
-                                <label for="official_newspaper"
-                                       class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                    <span>روزنامه رسمی آخرین تغییرات</span>
-                                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                    </svg>
-                                </label>
-                                <input type="file" id="official_newspaper" name="official_newspaper"
-                                       accept="image/*,.pdf"
-                                       class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
-                                       required>
-                                @error('official_newspaper')
-                                <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    <span class="font-medium">{{ $message }}</span>
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="pt-8 border-t border-slate-200">
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                                <button type="submit"
-                                        class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-12 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transform hover:scale-102 transition-all duration-200 shadow-lg hover:shadow-xl">
-                                    <div class="flex items-center justify-center gap-3">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                        ثبت و ارسال
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
                     </form>
                 </div>
 
                 <!-- Footer Help -->
                 <div class="text-center mt-8">
-                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40 flex justify-around items-center">
+                    <div
+                        class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/40 flex justify-around items-center">
                         <div>
                             <p class="text-slate-600 mb-4">نیاز به راهنمایی دارید؟</p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -1089,7 +1138,8 @@
                             </p>
                             <p class="text-sm text-slate-600 mt-4">
                                 <a href="{{ route('home') }}"
-                                   class="text-blue-600 hover:text-blue-700 font-medium transition-colors">بازگشت به صفحه اصلی</a>
+                                   class="text-blue-600 hover:text-blue-700 font-medium transition-colors">بازگشت به
+                                    صفحه اصلی</a>
                             </p>
                         </div>
                     </div>
@@ -1162,13 +1212,13 @@
 
                 form.addEventListener('submit', function () {
                     submitButton.innerHTML = `
-           <div class="flex items-center justify-center gap-3">
-               <svg class="w-6 h-6 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-               </svg>
-               در حال ثبت اطلاعات...
-           </div>
-       `;
+                       <div class="flex items-center justify-center gap-3">
+                           <svg class="w-6 h-6 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                           </svg>
+                           در حال ثبت اطلاعات...
+                       </div>
+                   `;
                     submitButton.disabled = true;
                 });
             });
