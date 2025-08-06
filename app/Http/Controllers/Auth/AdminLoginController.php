@@ -30,7 +30,9 @@ class AdminLoginController extends Controller
             $user = User::query()->where([
                 'national_id' => $request->national_id,
                 'phone_number' => $request->phone_number,
-            ])->first();
+            ])->whereHas('roles', function ($query) {
+                $query->where('name', Role::ADMIN_ROLE);
+            })->first();
 
             if ($user && $user->hasRole(Role::ADMIN_ROLE)) {
                 $code = smsService::generateCode($user->id);
