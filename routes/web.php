@@ -54,8 +54,6 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
 //    Route::get('/organization', OrganizationLogin::class)->name('organization');
 
     Route::get('/dwop', function () {
-
-
         \Illuminate\Support\Facades\Auth::loginUsingId(\App\Models\User::query()->where([
             'national_id' => '2282233001',
             'phone_number' => '09215855364',
