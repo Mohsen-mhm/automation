@@ -55,7 +55,7 @@
     <!-- National ID Field -->
     <div class="mb-6">
         <label for="national_id" class="block text-sm font-medium text-gray-700 mb-2">
-            کد ملی / شناسه ملی
+            کد ملی
             <span class="text-red-500">*</span>
         </label>
         <div class="relative">
@@ -64,7 +64,7 @@
                    name="national_id"
                    value="{{ $user->national_id }}"
                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 transition-all duration-200 font-mono"
-                   placeholder="کد ملی یا شناسه ملی"
+                   placeholder="کد ملی"
                    maxlength="11"
                    required>
             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <p class="mt-2 text-xs text-gray-500">
-            برای اشخاص حقیقی: کد ملی 10 رقمی، برای اشخاص حقوقی: شناسه ملی 11 رقمی
+            کد ملی 10 رقمی
         </p>
     </div>
 
@@ -103,77 +103,8 @@
             </div>
         </div>
         <p class="mt-2 text-xs text-gray-500">
-            شماره تلفن همراه معتبر ایران (09xxxxxxxxx)
+            شماره تلفن همراه معتبر (09xxxxxxxxx)
         </p>
-    </div>
-
-    <!-- Status Field -->
-    <div class="mb-6">
-        <label class="flex items-center space-x-3 rtl:space-x-reverse">
-            <input type="checkbox"
-                   name="active"
-                   value="1"
-                   {{ $user->active ? 'checked' : '' }}
-                   class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-            <span class="text-sm font-medium text-gray-700">
-                کاربر فعال است
-            </span>
-        </label>
-        <p class="mt-2 text-xs text-gray-500 mr-8">
-            کاربران غیرفعال نمی‌توانند وارد سیستم شوند
-        </p>
-    </div>
-
-    <!-- User Roles Display (Read Only) -->
-    <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-        <h4 class="text-sm font-medium text-blue-900 mb-2 flex items-center">
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 12l2 2 4-4m5.586-4H17M7 7h-.586L9 4.414V7a1 1 0 01-1 1zm6-3V1.5a1.5 1.5 0 011.5 1.5V4h4a1 1 0 011 1v8a1 1 0 01-1 1H6a1 1 0 01-1-1V5a1 1 0 011-1h7z"/>
-            </svg>
-            نقش‌های کاربر
-        </h4>
-        <div class="space-y-2">
-            @if($user->roles->isNotEmpty())
-                @foreach($user->roles as $role)
-                    <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-blue-200">
-                        <span class="text-sm font-medium text-gray-900">{{ $role->title }}</span>
-                        <span
-                            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                            {{ $role->name }}
-                        </span>
-                    </div>
-                @endforeach
-            @else
-                <div class="text-center py-4">
-                    <svg class="w-8 h-8 mx-auto mb-2 text-gray-400" fill="none" stroke="currentColor"
-                         viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.664-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
-                    </svg>
-                    <p class="text-sm text-gray-500">هیچ نقشی تعریف نشده است</p>
-                </div>
-            @endif
-        </div>
-        <p class="mt-3 text-xs text-blue-700">
-            برای تغییر نقش‌های کاربر، با مدیر سیستم تماس بگیرید
-        </p>
-    </div>
-
-    <!-- User Statistics -->
-    <div class="mb-6 grid grid-cols-2 gap-4">
-        <div class="p-3 bg-gray-50 rounded-lg">
-            <div class="text-xs text-gray-500 mb-1">تاریخ عضویت</div>
-            <div class="font-medium text-gray-900">
-                {{ \Morilog\Jalali\Jalalian::fromDateTime($user->created_at)->toDateString() }}
-            </div>
-        </div>
-        <div class="p-3 bg-gray-50 rounded-lg">
-            <div class="text-xs text-gray-500 mb-1">آخرین بروزرسانی</div>
-            <div class="font-medium text-gray-900">
-                {{ \Morilog\Jalali\Jalalian::fromDateTime($user->updated_at)->toDateString() }}
-            </div>
-        </div>
     </div>
 
     <!-- Submit Buttons -->
@@ -261,7 +192,7 @@
 
         // Validate national ID
         if (nationalId.length < 10 || nationalId.length > 11) {
-            showToast('کد ملی باید 10 یا 11 رقمی باشد', 'error');
+            showToast('کد ملی باید 10 رقمی باشد', 'error');
             document.getElementById('national_id').focus();
             return false;
         }

