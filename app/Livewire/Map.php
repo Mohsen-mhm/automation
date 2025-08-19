@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Config;
 use App\Models\Greenhouse;
 use App\Models\Company;
+use App\Models\Automation;
 use Illuminate\Support\Collection;
 
 class Map extends Component
@@ -17,18 +18,24 @@ class Map extends Component
     public array $substrates = [];
     public array $productTypes = [];
     public array $provinces = [];
+    public array $automationTypes = [];
+    public array $serverConnections = [];
     public array $companyProvinces = [];
     public array $companyType = [];
+    public array $companyAutomation = [];
     public array $substrateFilter = [];
     public array $productFilter = [];
     public array $provinceFilter = [];
+    public array $automationTypeFilter = [];
+    public array $serverConnectionFilter = [];
     public array $companyProvinceFilter = [];
     public array $companyTypeFilter = [];
+    public array $companyAutomationFilter = [];
 
     public string $greenhousesData;
     public string $companiesData;
-    public array $greenhouseFilterNames = ['substrateFilter', 'productFilter', 'provinceFilter'];
-    public array $companyFilterNames = ['companyProvinceFilter', 'companyTypeFilter'];
+    public array $greenhouseFilterNames = ['substrateFilter', 'productFilter', 'provinceFilter', 'automationTypeFilter', 'serverConnectionFilter'];
+    public array $companyFilterNames = ['companyProvinceFilter', 'companyTypeFilter', 'companyAutomationFilter'];
 
     public function mount(): void
     {
@@ -60,9 +67,13 @@ class Map extends Component
         $this->substrates = [];
         $this->productTypes = [];
         $this->provinces = [];
+        $this->automationTypes = [];
+        $this->serverConnections = [];
         $this->substrateFilter = [];
         $this->productFilter = [];
         $this->provinceFilter = [];
+        $this->automationTypeFilter = [];
+        $this->serverConnectionFilter = [];
 
         collect(Greenhouse::query()->where('active', true)->pluck('substrate_type'))->unique()
             ->each(function ($item) {
@@ -72,6 +83,7 @@ class Map extends Component
                 ];
                 $this->substrateFilter[] = $item;
             });
+
         collect(Greenhouse::query()->where('active', true)->pluck('product_type'))->unique()
             ->each(function ($item) {
                 $this->productTypes[] = [
@@ -80,6 +92,7 @@ class Map extends Component
                 ];
                 $this->productFilter[] = $item;
             });
+
         collect(
             Greenhouse::with('province')
                 ->where('active', true)
@@ -94,6 +107,21 @@ class Map extends Component
             ];
             $this->provinceFilter[] = $item;
         });
+
+        // Prepare automation type filter (climate_system + feeding_system combined)
+        $this->automationTypes = [
+            ['uuid' => Str::uuid()->toString(), 'name' => 'دارای اتوماسیون کنترل اقلیم', 'value' => 'climate'],
+            ['uuid' => Str::uuid()->toString(), 'name' => 'دارای اتوماسیون تغذیه', 'value' => 'feeding']
+        ];
+        $this->automationTypeFilter = ['climate', 'feeding']; // Include both by default
+
+        // Prepare server connection filter (has automation record)
+        $this->serverConnections = [
+            ['uuid' => Str::uuid()->toString(), 'name' => 'دارای اتصال به سرور', 'value' => true],
+            ['uuid' => Str::uuid()->toString(), 'name' => 'فاقد اتصال به سرور', 'value' => false]
+        ];
+        $this->serverConnectionFilter = [true, false]; // Include both by default
+
         $this->assignGreenhouseFilteredData();
     }
 
@@ -102,8 +130,10 @@ class Map extends Component
         // Reset arrays first
         $this->companyProvinces = [];
         $this->companyType = [];
+        $this->companyAutomation = [];
         $this->companyProvinceFilter = [];
         $this->companyTypeFilter = [];
+        $this->companyAutomationFilter = [];
 
         collect(
             Company::with('province')
@@ -119,6 +149,7 @@ class Map extends Component
             ];
             $this->companyProvinceFilter[] = $item;
         });
+
         collect(Company::query()->where('active', true)->pluck('type'))->unique()
             ->each(function ($item) {
                 $this->companyType[] = [
@@ -127,6 +158,14 @@ class Map extends Component
                 ];
                 $this->companyTypeFilter[] = $item;
             });
+
+        // Prepare company automation filter
+        $this->companyAutomation = [
+            ['uuid' => Str::uuid()->toString(), 'name' => 'مجری اتوماسیون کنترل اقلیم', 'value' => 'climate'],
+            ['uuid' => Str::uuid()->toString(), 'name' => 'مجری اتوماسیون تغذیه', 'value' => 'feeding']
+        ];
+        $this->companyAutomationFilter = ['climate', 'feeding']; // Include both by default
+
         $this->assignCompanyFilteredData();
     }
 
@@ -145,25 +184,84 @@ class Map extends Component
     public function filterGreenhouse(): Collection
     {
         return collect(Greenhouse::all())->filter(function ($greenhouse) {
-            if ($greenhouse->active
-                && in_array($greenhouse->substrate_type, $this->substrateFilter)
-                && in_array($greenhouse->product_type, $this->productFilter)
-                && in_array($greenhouse->province->name, $this->provinceFilter)) {
-                return $greenhouse;
+            // Basic filters
+            if (!$greenhouse->active
+                || !in_array($greenhouse->substrate_type, $this->substrateFilter)
+                || !in_array($greenhouse->product_type, $this->productFilter)
+                || !in_array($greenhouse->province->name, $this->provinceFilter)) {
+                return false;
             }
-            return null;
+
+            // Automation type filter
+            $automationTypeMatch = false;
+            if (empty($this->automationTypeFilter)) {
+                return false;
+            }
+
+            foreach ($this->automationTypeFilter as $filterType) {
+                if ($filterType === 'climate' && $greenhouse->climate_system) {
+                    $automationTypeMatch = true;
+                    break;
+                }
+                if ($filterType === 'feeding' && $greenhouse->feeding_system) {
+                    $automationTypeMatch = true;
+                    break;
+                }
+            }
+
+            if (!$automationTypeMatch) {
+                return false;
+            }
+
+            // Server connection filter (check if automation record exists)
+            if (empty($this->serverConnectionFilter)) {
+                return false;
+            }
+
+            $hasAutomationRecord = Automation::where('greenhouse_id', $greenhouse->id)->exists();
+            $serverConnectionMatch = false;
+
+            foreach ($this->serverConnectionFilter as $filterValue) {
+                $boolFilterValue = $filterValue === true || $filterValue === 1 || $filterValue === '1' || $filterValue === 'true';
+
+                if (($boolFilterValue && $hasAutomationRecord) || (!$boolFilterValue && !$hasAutomationRecord)) {
+                    $serverConnectionMatch = true;
+                    break;
+                }
+            }
+
+            return $serverConnectionMatch;
         });
     }
 
     public function filterCompany(): Collection
     {
         return collect(Company::all())->filter(function ($company) {
-            if ($company->active
-                && in_array($company->type, $this->companyTypeFilter)
-                && in_array($company->province->name, $this->companyProvinceFilter)) {
-                return $company;
+            // Basic filters
+            if (!$company->active
+                || !in_array($company->type, $this->companyTypeFilter)
+                || !in_array($company->province->name, $this->companyProvinceFilter)) {
+                return false;
             }
-            return null;
+
+            // Company automation filter
+            if (empty($this->companyAutomationFilter)) {
+                return false;
+            }
+
+            $automationMatch = false;
+            foreach ($this->companyAutomationFilter as $filterType) {
+                if ($filterType === 'climate' && $company->climate_system) {
+                    $automationMatch = true;
+                    break;
+                }
+                if ($filterType === 'feeding' && $company->feeding_system) {
+                    $automationMatch = true;
+                    break;
+                }
+            }
+
+            return $automationMatch;
         });
     }
 
@@ -181,6 +279,8 @@ class Map extends Component
                 'brand_logo' => asset($company->brand_logo),
                 'brand' => $company->brand,
                 'area' => $company->province->name . "\n" . $company->city->name . "\n" . $company->address,
+                'climateSystem' => $company->climate_system ? 'مجری اتوماسیون کنترل اقلیم' : 'فاقد اتوماسیون کنترل اقلیم',
+                'feedingSystem' => $company->feeding_system ? 'مجری اتوماسیون تغذیه' : 'فاقد اتوماسیون تغذیه',
                 'company' => true
             ];
         }
@@ -229,6 +329,8 @@ class Map extends Component
                 }
             }
 
+            $hasAutomationRecord = Automation::where('greenhouse_id', $greenhouse->id)->exists();
+
             $greenhouseData[] = [
                 'coordinates' => [$greenhouse->latitude, $greenhouse->longitude],
                 'image' => asset($greenhouse->image),
@@ -238,12 +340,15 @@ class Map extends Component
                 'space' => $greenhouse->meterage,
                 'climateAutomation' => $climateAutomation,
                 'feedingAutomation' => $feedingAutomation,
-                'outsideTemp' => array_key_exists('Reg_1', $data) ? $data['Reg_1'] : '-', // Reg_1
-                'outsideHumidity' => array_key_exists('Reg_2', $data) ? $data['Reg_2'] : '-', // Reg_2
-                'lightIntensity' => array_key_exists('Reg_3', $data) ? $data['Reg_3'] : '-', // Reg_3
-                'windSpeed' => array_key_exists('Reg_4', $data) ? $data['Reg_4'] : '-', // Reg_4
-                'insideTemp' => array_key_exists('Reg_5', $data) ? $data['Reg_5'] : '-', // Reg_5
-                'insideHumidity' => array_key_exists('Reg_6', $data) ? $data['Reg_6'] : '-', // Reg_6
+                'climateSystem' => $greenhouse->climate_system ? 'دارای اتوماسیون کنترل اقلیم' : 'فاقد اتوماسیون کنترل اقلیم',
+                'feedingSystem' => $greenhouse->feeding_system ? 'دارای اتوماسیون تغذیه' : 'فاقد اتوماسیون تغذیه',
+                'serverConnection' => $hasAutomationRecord ? 'دارای اتصال به سرور' : 'فاقد اتصال به سرور',
+                'outsideTemp' => array_key_exists('Reg_1', $data) ? $data['Reg_1'] : '-',
+                'outsideHumidity' => array_key_exists('Reg_2', $data) ? $data['Reg_2'] : '-',
+                'lightIntensity' => array_key_exists('Reg_3', $data) ? $data['Reg_3'] : '-',
+                'windSpeed' => array_key_exists('Reg_4', $data) ? $data['Reg_4'] : '-',
+                'insideTemp' => array_key_exists('Reg_5', $data) ? $data['Reg_5'] : '-',
+                'insideHumidity' => array_key_exists('Reg_6', $data) ? $data['Reg_6'] : '-',
                 'company' => false
             ];
         }

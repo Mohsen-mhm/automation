@@ -146,10 +146,11 @@
             <div>
                 <label for="landline_number" class="block text-sm font-medium text-gray-700 mb-2">
                     تلفن ثابت
+                    <span class="text-red-500">*</span>
                 </label>
                 <input type="tel" id="landline_number" name="landline_number"
                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
-                       placeholder="07123456789">
+                       placeholder="07123456789" required>
             </div>
 
             <div>

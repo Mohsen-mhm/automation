@@ -34,7 +34,7 @@ class OrganizationRegisterRequest extends FormRequest
             'city' => ['required', 'string', 'exists:cities,name'],
             'address' => ['required', 'string', 'max:500'],
             'postal' => ['required', 'string', 'max:10'],
-            'landline_number' => ['nullable', 'string'],
+            'landline_number' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
         ];
     }

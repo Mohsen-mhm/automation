@@ -1,12 +1,9 @@
-{{-- Modern & Functional Map Component --}}
 <div class="space-y-6">
-    {{-- Page Header --}}
     <div class="text-center">
         <h2 class="text-3xl font-bold text-slate-800 mb-2">نقشه گلخانه‌ها و شرکت‌های اتوماسیون</h2>
         <p class="text-slate-600">مشاهده و جستجوی گلخانه‌ها و شرکت‌های اتوماسیون در سراسر کشور</p>
     </div>
 
-    {{-- Modern Tab Navigation --}}
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 p-1">
         <nav class="flex space-x-1 rtl:space-x-reverse">
             <button
@@ -34,7 +31,6 @@
         </nav>
     </div>
 
-    {{-- Modern Filters Section --}}
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 p-6">
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -116,6 +112,22 @@
                                                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                             </svg>
                                             @break
+                                        @case(\App\Models\Filter::GREENHOUSE_AUTOMATION_TYPE_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            </svg>
+                                            @break
+                                        @case(\App\Models\Filter::GREENHOUSE_SERVER_CONNECTION_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                                            </svg>
+                                            @break
                                     @endswitch
                                 </div>
                                 <span>{{ $filter->title }}</span>
@@ -136,7 +148,8 @@
                                 x-transition:leave-start="opacity-100 transform scale-100"
                                 x-transition:leave-end="opacity-0 transform scale-95"
                                 @click.away="{{ toCamelCase($filter->name) }}Open = false"
-                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5" style="z-index: 999 !important;">
+                                class="absolute top-full mt-2 left-0 z-50 min-w-[170px] bg-white border border-slate-200 rounded-xl shadow-xl p-1.5"
+                                style="z-index: 999 !important;">
 
                                 @switch($filter->name)
                                     @case(\App\Models\Filter::GREENHOUSE_SUBSTRATE_FILTER)
@@ -207,6 +220,52 @@
                                             </div>
                                         </div>
                                         @break
+
+                                    @case(\App\Models\Filter::GREENHOUSE_AUTOMATION_TYPE_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($automationTypes as $automation)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $automation['value'] }}"
+                                                            wire:model.live="automationTypeFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $automation['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+
+                                    @case(\App\Models\Filter::GREENHOUSE_SERVER_CONNECTION_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($serverConnections as $connection)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $connection['value'] }}"
+                                                            wire:model.live="serverConnectionFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                            <span
+                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                                {{ $connection['name'] }}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
                                 @endswitch
                             </div>
                         </div>
@@ -247,6 +306,15 @@
                                                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                             </svg>
                                             @break
+                                        @case(\App\Models\Filter::COMPANY_AUTOMATION_FILTER)
+                                            <svg class="w-4 h-4 text-slate-500 group-hover:text-emerald-600" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            </svg>
+                                            @break
                                     @endswitch
                                 </div>
                                 <span>{{ $filter->title }}</span>
@@ -282,10 +350,10 @@
                                                             wire:model.live="companyProvinceFilter"
                                                             class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
                                                         <div class="mr-3 flex-1">
-                                                            <span
-                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
-                                                                {{ $province['name'] }}
-                                                            </span>
+                                                    <span
+                                                        class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                        {{ $province['name'] }}
+                                                    </span>
                                                         </div>
                                                     </label>
                                                 @endforeach
@@ -305,10 +373,33 @@
                                                             wire:model.live="companyTypeFilter"
                                                             class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
                                                         <div class="mr-3 flex-1">
-                                                            <span
-                                                                class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
-                                                                {{ $type['name'] }}
-                                                            </span>
+                                                    <span
+                                                        class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                        {{ $type['name'] }}
+                                                    </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @break
+
+                                    @case(\App\Models\Filter::COMPANY_AUTOMATION_FILTER)
+                                        <div class="max-h-60 overflow-y-auto custom-scrollbar">
+                                            <div class="space-y-1">
+                                                @foreach($companyAutomation as $automation)
+                                                    <label
+                                                        class="flex items-center p-3 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors duration-200">
+                                                        <input
+                                                            type="checkbox"
+                                                            value="{{ $automation['value'] }}"
+                                                            wire:model.live="companyAutomationFilter"
+                                                            class="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-500 focus:ring-2">
+                                                        <div class="mr-3 flex-1">
+                                                    <span
+                                                        class="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                                                        {{ $automation['name'] }}
+                                                    </span>
                                                         </div>
                                                     </label>
                                                 @endforeach
@@ -326,7 +417,25 @@
         @if($activeTab === 'company')
             {{-- Active Filters Display --}}
             @php
-                $activeFilterCount = count($companyTypeFilter) + count($companyProvinceFilter);
+                $activeFilterCount = count($companyTypeFilter) + count($companyProvinceFilter) + count($companyAutomationFilter);
+                $displayFilters = [];
+
+                // Add company filters
+                foreach($companyTypeFilter as $filter) {
+                    $displayFilters[] = $filter;
+                }
+                foreach($companyProvinceFilter as $filter) {
+                    $displayFilters[] = $filter;
+                }
+
+                // Add company automation filters with proper names
+                foreach($companyAutomationFilter as $filter) {
+                    if($filter === 'climate') {
+                        $displayFilters[] = 'مجری اتوماسیون کنترل اقلیم';
+                    } elseif($filter === 'feeding') {
+                        $displayFilters[] = 'مجری اتوماسیون تغذیه';
+                    }
+                }
             @endphp
 
             @if($activeFilterCount > 0)
@@ -335,21 +444,46 @@
                         <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        @foreach(array_merge($companyTypeFilter, $companyProvinceFilter) as $filter)
+                        @foreach($displayFilters as $filter)
                             <span
                                 class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-                            {{ $filter }}
-                        </span>
+                                {{ $filter }}
+                            </span>
                         @endforeach
                     </div>
                 </div>
             @endif
         @endif
-
         @if($activeTab === 'greenhouse')
-            {{-- Active Filters Display --}}
             @php
-                $activeFilterCount = count($substrateFilter) + count($productFilter) + count($provinceFilter);
+                $activeFilterCount = count($substrateFilter) + count($productFilter) + count($provinceFilter) + count($automationTypeFilter) + count($serverConnectionFilter);
+                $displayFilters = [];
+
+                foreach($substrateFilter as $filter) {
+                    $displayFilters[] = $filter;
+                }
+                foreach($productFilter as $filter) {
+                    $displayFilters[] = $filter;
+                }
+                foreach($provinceFilter as $filter) {
+                    $displayFilters[] = $filter;
+                }
+
+                foreach($automationTypeFilter as $filter) {
+                    if($filter === 'climate') {
+                        $displayFilters[] = 'دارای اتوماسیون کنترل اقلیم';
+                    } elseif($filter === 'feeding') {
+                        $displayFilters[] = 'دارای اتوماسیون تغذیه';
+                    }
+                }
+
+                foreach($serverConnectionFilter as $filter) {
+                    if($filter === true || $filter === 1 || $filter === '1') {
+                        $displayFilters[] = 'دارای اتصال به سرور';
+                    } else {
+                        $displayFilters[] = 'فاقد اتصال به سرور';
+                    }
+                }
             @endphp
 
             @if($activeFilterCount > 0)
@@ -358,11 +492,11 @@
                         <h4 class="text-sm font-semibold text-slate-700">فیلترهای فعال ({{ $activeFilterCount }})</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        @foreach(array_merge($substrateFilter, $productFilter, $provinceFilter) as $filter)
+                        @foreach($displayFilters as $filter)
                             <span
                                 class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-                            {{ $filter }}
-                        </span>
+                                {{ $filter }}
+                            </span>
                         @endforeach
                     </div>
                 </div>
@@ -370,7 +504,6 @@
         @endif
     </div>
 
-    {{-- Modern Map Container --}}
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/50 overflow-hidden">
         <div class="p-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
             <div class="flex items-center justify-between">
@@ -395,46 +528,37 @@
         <div id="map" class="w-full h-[700px]" wire:ignore></div>
     </div>
 
-    {{-- Enhanced JavaScript Integration --}}
     <script>
-        // Initialize data from Livewire
         let greenhouseMarkers = {!! $greenhousesData !!};
         let companyMarkers = {!! $companiesData !!};
         let currentActiveTab = '{{ $activeTab }}';
 
         document.addEventListener('livewire:init', () => {
-            // Listen for filter submissions
             Livewire.on('submit-filter', (e) => {
                 console.log('🔄 Filter event received:', e[0].type, 'Data length:', JSON.parse(e[0].data).length);
 
-                // Show loading state
                 const mapContainer = document.getElementById('map');
                 if (mapContainer) {
                     mapContainer.style.opacity = '0.7';
                     mapContainer.style.transition = 'opacity 0.3s ease';
                 }
 
-                // Render markers with slight delay for smooth UX
                 setTimeout(() => {
                     renderMarkers(e[0].type, JSON.parse(e[0].data));
 
-                    // Remove loading state
                     if (mapContainer) {
                         mapContainer.style.opacity = '1';
                     }
                 }, 100);
             });
 
-            // Listen for tab change events
             Livewire.on('tab-changed', (e) => {
                 console.log('🔄 Tab changed to:', e[0].activeTab);
                 currentActiveTab = e[0].activeTab;
             });
         });
 
-        // Initialize map when DOM is ready
         document.addEventListener('DOMContentLoaded', function () {
-            // Wait for map to initialize, then show initial data
             setTimeout(() => {
                 if (typeof renderMarkers === 'function') {
                     console.log('🗺️ Initializing map with:', currentActiveTab, 'data');
@@ -447,26 +571,24 @@
             }, 1000);
         });
 
-        // Add smooth transitions for better UX
         document.addEventListener('alpine:init', () => {
-            // Add custom scroll behavior for filter dropdowns
             const style = document.createElement('style');
             style.textContent = `
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 6px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: #f1f5f9;
-                    border-radius: 3px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: #cbd5e1;
-                    border-radius: 3px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: #94a3b8;
-                }
-            `;
+               .custom-scrollbar::-webkit-scrollbar {
+                   width: 6px;
+               }
+               .custom-scrollbar::-webkit-scrollbar-track {
+                   background: #f1f5f9;
+                   border-radius: 3px;
+               }
+               .custom-scrollbar::-webkit-scrollbar-thumb {
+                   background: #cbd5e1;
+                   border-radius: 3px;
+               }
+               .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                   background: #94a3b8;
+               }
+           `;
             document.head.appendChild(style);
         });
     </script>

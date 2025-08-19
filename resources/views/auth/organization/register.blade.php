@@ -482,8 +482,12 @@
                             <div class="grid gap-6 md:grid-cols-2">
                                 <!-- Landline Number -->
                                 <div class="space-y-2">
-                                    <label for="landline_number" class="block text-sm font-semibold text-slate-700">
-                                        شماره تلفن ثابت
+                                    <label for="landline_number" class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                                        <span>شماره تلفن ثابت</span>
+                                        <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                        </svg>
                                     </label>
                                     <div class="relative group">
                                         <div
@@ -501,7 +505,7 @@
                                             name="landline_number"
                                             value="{{ old('landline_number') }}"
                                             class="block w-full pr-12 py-4 text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 focus:bg-white transition-all duration-200 text-left placeholder:text-slate-400 @error('landline_number') border-red-500 bg-red-50 @enderror"
-                                            placeholder="07123456789">
+                                            placeholder="07123456789" required>
                                     </div>
                                     @error('landline_number')
                                     <div class="flex items-center gap-2 text-red-600 text-sm mt-2">

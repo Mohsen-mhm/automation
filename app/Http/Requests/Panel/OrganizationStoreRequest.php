@@ -37,7 +37,7 @@ class OrganizationStoreRequest extends FormRequest
             'city' => ['required', 'string', 'max:100'],
             'address' => ['required', 'string', 'max:500'],
             'postal' => ['required', 'string', 'regex:/^(?!(\d)\1{3})[13-9]{4}[1346-9][013-9]{5}$/'],
-            'landline_number' => ['nullable', 'string', new ValidPhoneNumber()],
+            'landline_number' => ['required', 'string', new ValidPhoneNumber()],
             'phone_number' => ['required', 'string', new ValidPhoneNumber()],
             'status' => ['nullable', 'string', 'in:pending,edited,confirmed,rejected,deactivate'],
         ];

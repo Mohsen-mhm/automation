@@ -222,7 +222,7 @@
                     کد پستی
                     <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="postal" name="postal" required
+                <input type="text" id="postal" name="postal"
                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                        placeholder="7181234567">
             </div>
@@ -260,7 +260,7 @@
                     پروانه بهره برداری
                     <span class="text-red-500">*</span>
                 </label>
-                <input type="file" id="operation_licence" name="operation_licence" accept="image/*" required
+                <input type="file" id="operation_licence" name="operation_licence" accept="image/*"
                        class="w-full text-sm text-gray-900 border border-gray-300 rounded-xl cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
             </div>
 

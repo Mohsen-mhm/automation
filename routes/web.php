@@ -61,6 +61,29 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
         return redirect()->route('panel.home');
     });
 });
+Route::get('/filters', function () {
+    \App\Models\Filter::query()->create([
+        'uuid' => Str::uuid(),
+        'name' => \App\Models\Filter::GREENHOUSE_AUTOMATION_TYPE_FILTER,
+        'title' => 'نوع اتوماسیون',
+        'type' => \App\Models\Filter::GREENHOUSE_TYPE,
+        'active' => true,
+    ]);
+    \App\Models\Filter::query()->create([
+        'uuid' => Str::uuid(),
+        'name' => \App\Models\Filter::GREENHOUSE_SERVER_CONNECTION_FILTER,
+        'title' => 'متصل به سرور',
+        'type' => \App\Models\Filter::GREENHOUSE_TYPE,
+        'active' => true,
+    ]);
+    \App\Models\Filter::query()->create([
+        'uuid' => Str::uuid(),
+        'name' => \App\Models\Filter::COMPANY_AUTOMATION_FILTER,
+        'title' => 'مجری اتوماسیون',
+        'type' => \App\Models\Filter::COMPANY_TYPE,
+        'active' => true,
+    ]);
+});
 
 //Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
 //    Route::get('/company', CompanyRegister::class)->name('company');
@@ -225,7 +248,6 @@ Route::prefix('panel')->name('panel.')->middleware(['web', 'auth'])->group(funct
         Route::put('/{organization}', 'update')->name('update');
         Route::delete('/{organization}', 'destroy')->name('destroy');
 
-        // Additional organization routes
         Route::get('/data/table', 'getData')->name('data');
         Route::get('/statistics', 'stats')->name('stats');
         Route::get('/export/download', 'export')->name('export');

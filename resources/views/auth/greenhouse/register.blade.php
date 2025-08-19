@@ -695,8 +695,7 @@
                                         name="postal"
                                         value="{{ old('postal') }}"
                                         class="block w-full pr-12 py-4 text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:bg-white transition-all duration-200 text-right placeholder:text-slate-400 @error('postal') border-red-500 bg-red-50 @enderror"
-                                        placeholder="718123456"
-                                        required>
+                                        placeholder="718123456">
                                 </div>
                                 @error('postal')
                                 <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
@@ -775,8 +774,7 @@
                                     class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 @error('operation_licence') border-red-500 bg-red-50 @enderror"
                                     id="operation_licence"
                                     type="file"
-                                    accept="image/*"
-                                    required>
+                                    accept="image/*">
                                 @error('operation_licence')
                                 <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -802,8 +800,7 @@
                                     class="block w-full py-4 px-4 text-sm text-slate-900 bg-slate-50/50 border border-slate-200 rounded-xl cursor-pointer focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:bg-white transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 @error('image') border-red-500 bg-red-50 @enderror"
                                     id="image"
                                     type="file"
-                                    accept="image/*"
-                                    required>
+                                    accept="image/*">
                                 @error('image')
                                 <div class="flex items-center gap-2 text-red-600 text-sm mt-2">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

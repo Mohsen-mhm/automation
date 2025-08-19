@@ -42,9 +42,9 @@ class GreenhouseStoreRequest extends FormRequest
             'province_id' => ['required', 'integer', 'exists:provinces,id'],
             'city_id' => ['required', 'integer', 'exists:cities,id'],
             'address' => ['required', 'string'],
-            'postal' => ['required', 'string', new ValidIranPostalCode()],
+            'postal' => ['nullable', 'string', new ValidIranPostalCode()],
             'location_link' => ['required', 'string', 'url', 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
-            'operation_licence' => ['required', 'image', 'max:2048'],
+            'operation_licence' => ['nullable', 'image', 'max:2048'],
             'image' => ['nullable', 'image', 'max:2048'],
             'status' => ['nullable', 'string', 'in:pending,edited,confirmed,rejected,deactivate'],
         ];

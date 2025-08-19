@@ -17,8 +17,11 @@ class Filter extends Model
     public const GREENHOUSE_SUBSTRATE_FILTER = 'greenhouse_substrate_type';
     public const GREENHOUSE_PRODUCT_FILTER = 'greenhouse_product_type';
     public const GREENHOUSE_PROVINCE_FILTER = 'greenhouse_province';
+    public const GREENHOUSE_AUTOMATION_TYPE_FILTER = 'greenhouse_automation_type';
+    public const GREENHOUSE_SERVER_CONNECTION_FILTER = 'greenhouse_server_connection';
     public const COMPANY_TYPE_FILTER = 'company_type';
     public const COMPANY_PROVINCE_FILTER = 'company_province';
+    public const COMPANY_AUTOMATION_FILTER = 'company_automation';
 
     protected $fillable = [
         'uuid',

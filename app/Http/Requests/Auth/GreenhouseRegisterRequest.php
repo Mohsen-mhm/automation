@@ -40,10 +40,10 @@ class GreenhouseRegisterRequest extends FormRequest
             'province_id' => ['required', 'exists:provinces,id'],
             'city_id' => ['required', 'exists:cities,id'],
             'address' => ['required', 'string'],
-            'postal' => ['required', 'string', new ValidIranPostalCode()],
+            'postal' => ['nullable', 'string', new ValidIranPostalCode()],
             'location_link' => ['required', 'string', new ValidUrl(), 'regex:/^https?:\/\/maps\.app\.goo\.gl\/[\w\-]+$/'],
-            'operation_licence' => ['required', 'image', 'max:2048'],
-            'image' => ['required', 'image', 'max:2048'],
+            'operation_licence' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:2048'],
         ];
     }
 
