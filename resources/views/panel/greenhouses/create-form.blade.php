@@ -181,27 +181,27 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="province" class="block text-sm font-medium text-gray-700 mb-2">
+                <label for="province_id" class="block text-sm font-medium text-gray-700 mb-2">
                     استان
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="province" name="province"
-                        class="province-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
+                <select id="province_id" name="province_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">استان را انتخاب کنید</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->name }}">{{ $province->name }}</option>
+                        <option value="{{ $province->id }}">{{ $province->name }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div>
-                <label for="city" class="block text-sm font-medium text-gray-700 mb-2">
+                <label for="city_id" class="block text-sm font-medium text-gray-700 mb-2">
                     شهر
                     <span class="text-red-500">*</span>
                 </label>
-                <select id="city" name="city"
-                        class="city-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
+                <select id="city_id" name="city_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">ابتدا استان را انتخاب کنید</option>
                 </select>
@@ -314,4 +314,38 @@
             ایجاد گلخانه
         </button>
     </div>
+
+    <script>
+        const provinceSelect = document.getElementById('province_id');
+        const citySelect = document.getElementById('city_id');
+
+        provinceSelect.addEventListener('change', function () {
+            const provinceId = this.value;
+
+            citySelect.innerHTML = '<option value="">در حال بارگذاری...</option>';
+            citySelect.disabled = true;
+
+            if (provinceId) {
+                fetch(`{{ route('panel.greenhouses.cities-by-province', '') }}/${provinceId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            let options = '<option value="">شهر را انتخاب کنید</option>';
+                            data.cities.forEach(city => {
+                                options += `<option value="${city.id}">${city.name}</option>`;
+                            });
+                            citySelect.innerHTML = options;
+                            citySelect.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        citySelect.innerHTML = '<option value="">خطا در بارگذاری شهرها</option>';
+                        citySelect.disabled = false;
+                    });
+            } else {
+                citySelect.innerHTML = '<option value="">ابتدا استان را انتخاب کنید</option>';
+                citySelect.disabled = false;
+            }
+        });
+    </script>
 </form>

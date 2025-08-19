@@ -98,6 +98,8 @@ class DashboardController extends Controller
             'activeCompanies' => Company::where('active', true)->count(),
             'totalGreenhouses' => Greenhouse::count(),
             'activeGreenhouses' => Greenhouse::where('active', true)->count(),
+            'totalOrganization' => OrganizationUser::count(),
+            'activeOrganization' => OrganizationUser::where('active', true)->count(),
             'totalAutomations' => Automation::count(),
             'activeAutomations' => Automation::where('active', true)->count(),
             'organizationUsers' => OrganizationUser::count(),

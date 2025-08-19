@@ -426,7 +426,6 @@
                 background: #94a3b8;
             }
 
-            /* Responsive adjustments */
             @media (max-width: 768px) {
                 .container {
                     padding-left: 1rem;
@@ -434,22 +433,18 @@
                 }
             }
 
-            /* Animation for success message */
             .show-success {
                 transform: translateX(0) !important;
             }
         </style>
 
-        <!-- JavaScript for Enhanced UX -->
         <script>
-            // Form submission animation
             document.addEventListener('DOMContentLoaded', function () {
                 const form = document.querySelector('form');
                 const submitButton = form.querySelector('button[type="submit"]');
                 const successMessage = document.getElementById('success-message');
 
                 form.addEventListener('submit', function (e) {
-                    // Add loading state to button
                     submitButton.innerHTML = `
                     <div class="flex items-center justify-center gap-2">
                         <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -460,15 +455,11 @@
                 `;
                     submitButton.disabled = true;
 
-                    // Simulate form submission (remove this in production)
                     setTimeout(() => {
-                        // Show success message
                         successMessage.classList.add('show-success');
 
-                        // Reset form
                         form.reset();
 
-                        // Reset button
                         submitButton.innerHTML = `
                         <div class="flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -479,14 +470,12 @@
                     `;
                         submitButton.disabled = false;
 
-                        // Hide success message after 5 seconds
                         setTimeout(() => {
                             successMessage.classList.remove('show-success');
                         }, 5000);
                     }, 2000);
                 });
 
-                // Real-time validation feedback
                 const inputs = form.querySelectorAll('input, textarea');
                 inputs.forEach(input => {
                     input.addEventListener('blur', function () {

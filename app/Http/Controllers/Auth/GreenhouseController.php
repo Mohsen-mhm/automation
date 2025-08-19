@@ -18,6 +18,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Morilog\Jalali\Jalalian;
 
@@ -250,6 +251,7 @@ class GreenhouseController extends Controller
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get(['id', 'name']);
+        Log::info($provinceId, ['cities' => $cities]);
 
         return response()->json([
             'success' => true,

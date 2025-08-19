@@ -10,11 +10,11 @@ use Livewire\Component;
 
 class ContactUs extends Component
 {
-    public string|null $name;
-    public string|null $email;
-    public string|null $phone;
-    public string|null $subject;
-    public string|null $message;
+    public ?string $name;
+    public ?string $email;
+    public ?string $phone;
+    public ?string $subject;
+    public ?string $message;
 
     public function rules(): array
     {

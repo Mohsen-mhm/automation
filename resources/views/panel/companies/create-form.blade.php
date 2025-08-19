@@ -97,7 +97,7 @@
                     <span class="text-red-500">*</span>
                 </label>
                 <select id="province_id" name="province_id"
-                        class="province-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">استان را انتخاب کنید</option>
                     @foreach($provinces as $province)
@@ -112,7 +112,7 @@
                     <span class="text-red-500">*</span>
                 </label>
                 <select id="city_id" name="city_id"
-                        class="city-select w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 transition-all duration-200"
                         required>
                     <option value="">ابتدا استان را انتخاب کنید</option>
                 </select>
@@ -398,4 +398,38 @@
             ایجاد شرکت
         </button>
     </div>
+
+    <script>
+        const provinceSelect = document.getElementById('province_id');
+        const citySelect = document.getElementById('city_id');
+
+        provinceSelect.addEventListener('change', function () {
+            const provinceId = this.value;
+
+            citySelect.innerHTML = '<option value="">در حال بارگذاری...</option>';
+            citySelect.disabled = true;
+
+            if (provinceId) {
+                fetch(`{{ route('panel.greenhouses.cities-by-province', '') }}/${provinceId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            let options = '<option value="">شهر را انتخاب کنید</option>';
+                            data.cities.forEach(city => {
+                                options += `<option value="${city.id}">${city.name}</option>`;
+                            });
+                            citySelect.innerHTML = options;
+                            citySelect.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        citySelect.innerHTML = '<option value="">خطا در بارگذاری شهرها</option>';
+                        citySelect.disabled = false;
+                    });
+            } else {
+                citySelect.innerHTML = '<option value="">ابتدا استان را انتخاب کنید</option>';
+                citySelect.disabled = false;
+            }
+        });
+    </script>
 </form>

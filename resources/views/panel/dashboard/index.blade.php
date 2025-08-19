@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- Stats Cards (Always visible for admin) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white">
                         <div class="flex items-center justify-between">
                             <div>
@@ -133,6 +133,23 @@
                                 <p class="text-amber-100 text-sm font-medium">گلخانه‌ها</p>
                                 <p class="text-3xl font-bold">{{ number_format($statsCards['totalGreenhouses']) }}</p>
                                 <p class="text-amber-200 text-xs mt-1">{{ number_format($statsCards['activeGreenhouses']) }}
+                                    فعال</p>
+                            </div>
+                            <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M7.242 7.194a24.16 24.16 0 0 1 3.72-3.062m0 0c3.443-2.277 6.732-2.969 8.24-1.46 2.054 2.053.03 7.407-4.522 11.959-4.552 4.551-9.906 6.576-11.96 4.522C1.223 17.658 1.89 14.412 4.121 11m6.838-6.868c-3.443-2.277-6.732-2.969-8.24-1.46-2.054 2.053-.03 7.407 4.522 11.959m3.718-10.499a24.16 24.16 0 0 1 3.719 3.062M17.798 11c2.23 3.412 2.898 6.658 1.402 8.153-1.502 1.503-4.771.822-8.2-1.433m1-6.808a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-amber-100 text-sm font-medium">کاربران سازمانی</p>
+                                <p class="text-3xl font-bold">{{ number_format($statsCards['totalOrganization']) }}</p>
+                                <p class="text-amber-200 text-xs mt-1">{{ number_format($statsCards['activeOrganization']) }}
                                     فعال</p>
                             </div>
                             <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
@@ -205,7 +222,7 @@
 
                     <!-- Company and Greenhouse Charts in Grid -->
                     @if((in_array('company_per_province', $visibleCharts) && isset($chartData['company_per_province'])) || (in_array('greenhouse_per_province', $visibleCharts) && isset($chartData['greenhouse_per_province'])))
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="grid grid-cols-1 gap-8">
                             @if(in_array('company_per_province', $visibleCharts) && isset($chartData['company_per_province']))
                                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
                                     <div class="flex items-center justify-between mb-6">
